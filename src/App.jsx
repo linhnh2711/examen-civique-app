@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import HomePage from './components/HomePage';
 import QuizPage from './components/QuizPage';
 import ResultPage from './components/ResultPage';
+import ExamenBlancPage from './components/ExamenBlancPage';
+import ExamenResultPage from './components/ExamenResultPage';
 import InstallPrompt from './components/InstallPrompt';
 import { loadStats, saveStats } from './utils/storage';
 
@@ -10,6 +12,7 @@ const App = () => {
   const [stats, setStats] = useState({ total: 0, correct: 0, streak: 0, bestStreak: 0 });
   const [currentStreak, setCurrentStreak] = useState(0);
   const [quizScore, setQuizScore] = useState(0);
+  const [examenResult, setExamenResult] = useState(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
@@ -49,12 +52,18 @@ const App = () => {
     setShowInstallPrompt(false);
   };
 
+  const handleBackHome = () => {
+    setMode('home');
+    setCurrentStreak(0);
+  };
+
   return (
     <>
       {mode === 'home' && (
         <HomePage
           stats={stats}
           onStartQuiz={() => setMode('quiz')}
+          onStartExamen={() => setMode('examen')}
         />
       )}
       
@@ -68,7 +77,7 @@ const App = () => {
             setQuizScore(score);
             setMode('result');
           }}
-          onBack={() => setMode('home')}
+          onBack={handleBackHome}
         />
       )}
       
@@ -76,7 +85,25 @@ const App = () => {
         <ResultPage
           score={quizScore}
           currentStreak={currentStreak}
-          onBackHome={() => setMode('home')}
+          onBackHome={handleBackHome}
+          totalQuestions={15}
+        />
+      )}
+
+      {mode === 'examen' && (
+        <ExamenBlancPage
+          onBack={handleBackHome}
+          onComplete={(result) => {
+            setExamenResult(result);
+            setMode('examen-result');
+          }}
+        />
+      )}
+
+      {mode === 'examen-result' && (
+        <ExamenResultPage
+          result={examenResult}
+          onBackHome={handleBackHome}
         />
       )}
 

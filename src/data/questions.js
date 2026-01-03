@@ -662,14 +662,40 @@ export const questionsDB = {
   ]
 };
 
-// Fonction pour obtenir 15 questions aléatoires
+// Fonction helper để shuffle array
+const shuffleArray = (array) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
+// Fonction để shuffle options và update correct index
+const shuffleQuestion = (question) => {
+  const correctAnswer = question.options[question.correct];
+  const shuffledOptions = shuffleArray(question.options);
+  const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+  
+  return {
+    ...question,
+    options: shuffledOptions,
+    correct: newCorrectIndex
+  };
+};
+
+// Fonction pour obtenir questions aléatoires AVEC options shuffled
 export const getRandomQuestions = (count = 15) => {
   const allQuestions = [...questionsDB.CSP];
   const shuffled = allQuestions.sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
+  const selectedQuestions = shuffled.slice(0, count);
+  
+  // Shuffle options cho mỗi câu hỏi
+  return selectedQuestions.map(q => shuffleQuestion(q));
 };
 
-// Fonction pour obtenir toutes les questions (pour mode examen)
+// Fonction pour obtenir toutes les questions (pour mode examen) AVEC shuffle
 export const getAllQuestions = () => {
-  return [...questionsDB.CSP];
+  return questionsDB.CSP.map(q => shuffleQuestion(q));
 };

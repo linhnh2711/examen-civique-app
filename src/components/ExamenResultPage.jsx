@@ -1,0 +1,203 @@
+import React, { useState } from 'react';
+import { Trophy, XCircle, Home, ChevronDown, ChevronUp, Check, X, Clock } from 'lucide-react';
+
+const ExamenResultPage = ({ result, onBackHome }) => {
+  const [showDetails, setShowDetails] = useState(false);
+  const { score, total, answers, questions, timeSpent } = result;
+  
+  const percentage = Math.round((score / total) * 100);
+  const passed = percentage >= 80; // 80% requis (32/40)
+  
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}min ${secs}s`;
+  };
+
+  // Grouper par catégorie
+  const resultsByCategory = {};
+  questions.forEach(q => {
+    if (!resultsByCategory[q.category]) {
+      resultsByCategory[q.category] = { correct: 0, total: 0 };
+    }
+    resultsByCategory[q.category].total++;
+    if (answers[q.id] === q.correct) {
+      resultsByCategory[q.category].correct++;
+    }
+  });
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
+      <div className="max-w-4xl mx-auto">
+        {/* Result Header */}
+        <div className="bg-white rounded-3xl shadow-2xl p-8 text-center mb-6">
+          <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
+            passed ? 'bg-green-100' : 'bg-red-100'
+          }`}>
+            {passed ? (
+              <Trophy className="w-12 h-12 text-green-600" />
+            ) : (
+              <XCircle className="w-12 h-12 text-red-600" />
+            )}
+          </div>
+
+          <h2 className="text-3xl font-bold mb-2 text-gray-900">
+            {passed ? 'Félicitations ! Vous avez réussi !' : 'Examen non validé'}
+          </h2>
+          <p className="text-gray-600 mb-8">
+            {passed 
+              ? "Vous avez atteint le niveau requis pour l'examen civique français." 
+              : "Vous devez obtenir au moins 80% (32/40) pour valider l'examen."}
+          </p>
+
+          {/* Score principale */}
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 mb-6">
+            <div className={`text-6xl font-bold mb-2 ${
+              passed ? 'text-green-600' : 'text-red-600'
+            }`}>
+              {percentage}%
+            </div>
+            <div className="text-2xl font-bold text-gray-900 mb-4">
+              {score} / {total}
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-4">
+              <div 
+                className={`h-4 rounded-full transition-all ${
+                  passed ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-orange-500'
+                }`}
+                style={{ width: `${percentage}%` }}
+              />
+            </div>
+            <div className="mt-4 text-sm text-gray-600 flex items-center justify-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>Temps écoulé: {formatTime(timeSpent)}</span>
+            </div>
+          </div>
+
+          {/* Stats par catégorie */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {Object.entries(resultsByCategory).map(([category, stats]) => {
+              const catPercentage = Math.round((stats.correct / stats.total) * 100);
+              return (
+                <div key={category} className="bg-gray-50 rounded-xl p-4">
+                  <div className="text-sm font-medium text-gray-600 mb-2">{category}</div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">
+                      {stats.correct} / {stats.total}
+                    </span>
+                    <span className={`text-sm font-bold ${
+                      catPercentage >= 80 ? 'text-green-600' : 'text-orange-600'
+                    }`}>
+                      {catPercentage}%
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Voir détails button */}
+          <button
+            onClick={() => setShowDetails(!showDetails)}
+            className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 mb-4"
+          >
+            {showDetails ? (
+              <>
+                <ChevronUp className="w-5 h-5" />
+                Masquer les détails
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-5 h-5" />
+                Voir les réponses détaillées
+              </>
+            )}
+          </button>
+
+          {/* Retour home */}
+          <button
+            onClick={onBackHome}
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <Home className="w-5 h-5" />
+            Retour à l'accueil
+          </button>
+        </div>
+
+        {/* Détails des réponses */}
+        {showDetails && (
+          <div className="space-y-4">
+            {questions.map((q, index) => {
+              const userAnswer = answers[q.id];
+              const isCorrect = userAnswer === q.correct;
+              const wasAnswered = userAnswer !== undefined;
+
+              return (
+                <div key={q.id} className={`bg-white rounded-2xl p-6 border-2 ${
+                  isCorrect ? 'border-green-200' : wasAnswered ? 'border-red-200' : 'border-gray-200'
+                }`}>
+                  <div className="flex items-start gap-4">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                      isCorrect ? 'bg-green-100' : wasAnswered ? 'bg-red-100' : 'bg-gray-100'
+                    }`}>
+                      {isCorrect ? (
+                        <Check className="w-5 h-5 text-green-600" />
+                      ) : wasAnswered ? (
+                        <X className="w-5 h-5 text-red-600" />
+                      ) : (
+                        <span className="text-gray-500 text-sm">?</span>
+                      )}
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="text-sm text-gray-500 mb-1">Question {index + 1} - {q.category}</div>
+                      <h3 className="font-bold text-gray-900 mb-3">{q.question}</h3>
+                      
+                      <div className="space-y-2">
+                        {q.options.map((option, optIndex) => {
+                          const isUserAnswer = userAnswer === optIndex;
+                          const isCorrectAnswer = q.correct === optIndex;
+                          
+                          let bgColor = 'bg-gray-50';
+                          let textColor = 'text-gray-700';
+                          let icon = null;
+                          
+                          if (isCorrectAnswer) {
+                            bgColor = 'bg-green-50 border-2 border-green-300';
+                            textColor = 'text-green-900';
+                            icon = <Check className="w-5 h-5 text-green-600" />;
+                          } else if (isUserAnswer && !isCorrectAnswer) {
+                            bgColor = 'bg-red-50 border-2 border-red-300';
+                            textColor = 'text-red-900';
+                            icon = <X className="w-5 h-5 text-red-600" />;
+                          }
+                          
+                          return (
+                            <div key={optIndex} className={`p-3 rounded-lg ${bgColor} flex items-center justify-between`}>
+                              <span className={`${textColor} text-sm`}>{option}</span>
+                              {icon}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      
+                      {!isCorrect && (
+                        <div className="mt-3 p-3 bg-blue-50 rounded-lg">
+                          <p className="text-sm text-blue-900">
+                            <strong>💡 Explication:</strong> {q.explanation}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ExamenResultPage;

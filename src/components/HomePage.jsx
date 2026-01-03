@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookOpen, Trophy, Flame, Star, ChevronRight, Award } from 'lucide-react';
 
-const HomePage = ({ stats, onStartQuiz }) => {
+const HomePage = ({ stats, onStartQuiz, onStartExamen }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-4xl mx-auto p-6">
@@ -75,20 +75,23 @@ const HomePage = ({ stats, onStartQuiz }) => {
             <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 opacity-60">
+          <button
+            onClick={onStartExamen}
+            className="w-full bg-white rounded-2xl p-6 shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-xl hover:scale-105 group"
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
-                  <Award className="w-6 h-6 text-gray-400" />
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                  <Award className="w-6 h-6 text-purple-600" />
                 </div>
                 <div className="text-left">
                   <div className="font-bold text-lg text-gray-900">Examen Blanc</div>
-                  <div className="text-sm text-gray-500">40 questions - Conditions réelles</div>
+                  <div className="text-sm text-gray-600">40 questions - 45 minutes - Conditions réelles</div>
                 </div>
               </div>
-              <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Bientôt</div>
+              <ChevronRight className="w-6 h-6 text-purple-600 group-hover:translate-x-1 transition-transform" />
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Info */}
