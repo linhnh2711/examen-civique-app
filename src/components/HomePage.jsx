@@ -76,7 +76,8 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen }) => {
           </button>
 
           <button
-            onClick={onStartExamen}
+            onClick={() => {
+    console.log('Button clicked!');onStartExamen()}}
             className="w-full bg-white rounded-2xl p-6 shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-xl hover:scale-105 group"
           >
             <div className="flex items-center justify-between">

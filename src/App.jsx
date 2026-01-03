@@ -9,6 +9,9 @@ import { loadStats, saveStats } from './utils/storage';
 
 const App = () => {
   const [mode, setMode] = useState('home');
+  useEffect(() => {
+  console.log('Current mode:', mode);
+}, [mode]);
   const [stats, setStats] = useState({ total: 0, correct: 0, streak: 0, bestStreak: 0 });
   const [currentStreak, setCurrentStreak] = useState(0);
   const [quizScore, setQuizScore] = useState(0);
