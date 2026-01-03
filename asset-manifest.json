@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/examen-civique-app/static/css/main.e06c6d51.css",
-    "main.js": "/examen-civique-app/static/js/main.073a1628.js",
+    "main.css": "/examen-civique-app/static/css/main.0877b42b.css",
+    "main.js": "/examen-civique-app/static/js/main.170cdf0b.js",
     "index.html": "/examen-civique-app/index.html",
-    "main.e06c6d51.css.map": "/examen-civique-app/static/css/main.e06c6d51.css.map",
-    "main.073a1628.js.map": "/examen-civique-app/static/js/main.073a1628.js.map"
+    "main.0877b42b.css.map": "/examen-civique-app/static/css/main.0877b42b.css.map",
+    "main.170cdf0b.js.map": "/examen-civique-app/static/js/main.170cdf0b.js.map"
   },
   "entrypoints": [
-    "static/css/main.e06c6d51.css",
-    "static/js/main.073a1628.js"
+    "static/css/main.0877b42b.css",
+    "static/js/main.170cdf0b.js"
   ]
 }
