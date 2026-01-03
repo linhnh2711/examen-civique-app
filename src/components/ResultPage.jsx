@@ -1,9 +1,7 @@
 import React from 'react';
 import { Trophy, Star, Flame, Home } from 'lucide-react';
-import { questionsDB } from '../data/questions';
 
-const ResultPage = ({ score, currentStreak, onBackHome }) => {
-  const totalQuestions = questionsDB.CSP.length;
+const ResultPage = ({ score, currentStreak, onBackHome, totalQuestions = 15 }) => {
   const percentage = Math.round((score / totalQuestions) * 100);
   const passed = percentage >= 80;
 

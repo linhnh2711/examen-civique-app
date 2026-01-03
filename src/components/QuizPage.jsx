@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Home, Flame, Check, X, ChevronRight } from 'lucide-react';
-import { questionsDB } from '../data/questions';
+import { getRandomQuestions } from '../data/questions';
 
 const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onComplete, onBack }) => {
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
 
-  const questions = questionsDB.CSP;
+  // Lấy 15 câu hỏi random khi component mount
+  useEffect(() => {
+    const randomQuestions = getRandomQuestions(15);
+    setQuestions(randomQuestions);
+  }, []);
+
+  // Đợi questions load xong
+  if (questions.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Chargement des questions...</p>
+        </div>
+      </div>
+    );
+  }
+
   const question = questions[currentQuestion];
 
   const handleAnswerSelect = (index) => {
