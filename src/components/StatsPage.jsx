@@ -24,10 +24,13 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
       if (q.tags.includes('CR')) categories[q.category].cr++;
     });
 
-    const categoryArray = Object.entries(categories).map(([name, data]) => ({
-      name,
-      ...data
-    }));
+    // Sort alphabetically with French locale for consistency
+    const categoryArray = Object.entries(categories)
+      .map(([name, data]) => ({
+        name,
+        ...data
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
     setCategoryStats(categoryArray);
 
     // Load recent quiz history

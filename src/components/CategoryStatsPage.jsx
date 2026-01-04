@@ -29,12 +29,15 @@ const CategoryStatsPage = ({ examType, onBack, onNavigateToPractice }) => {
       }
     });
 
-    const categoryArray = Object.entries(categories).map(([name, data]) => ({
-      name,
-      total: data.total,
-      learned: data.learned,
-      percentage: Math.round((data.learned / data.total) * 100)
-    })).sort((a, b) => a.name.localeCompare(b.name));
+    // Sort alphabetically with French locale for consistency
+    const categoryArray = Object.entries(categories)
+      .map(([name, data]) => ({
+        name,
+        total: data.total,
+        learned: data.learned,
+        percentage: Math.round((data.learned / data.total) * 100)
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
 
     setCategoryStats(categoryArray);
   }, [examType]);

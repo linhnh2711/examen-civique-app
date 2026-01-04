@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Star, ChevronRight, Award, Target, BarChart3, RefreshCw, Moon, Sun } from 'lucide-react';
+import { BookOpen, ChevronRight, Award, Target, BarChart3, RefreshCw, Moon, Sun } from 'lucide-react';
 import { getProgress, loadWrongAnswers } from '../utils/storage';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -63,75 +63,71 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWron
           </div>
         </div>
 
-        {/* Progress Cards */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
-          {/* CSP Progress */}
+        {/* Progress and Best Streak - Side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {/* Progress Card - Shows only selected type */}
           <button
-            onClick={() => onViewCategoryProgress('CSP')}
+            onClick={() => onViewCategoryProgress(selectedType)}
             className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:scale-105 text-left ${
-              selectedType === 'CSP' ? 'border-blue-500' : 'border-gray-100 dark:border-gray-700'
+              selectedType === 'CSP' ? 'border-blue-500' : 'border-purple-500'
             }`}>
             <div className="flex items-center gap-2 mb-3">
-              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <div className="font-bold text-lg text-gray-900 dark:text-white">Progress CSP</div>
+              <Target className={`w-5 h-5 ${
+                selectedType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+              }`} />
+              <div className="font-bold text-lg text-gray-900 dark:text-white">
+                Progress {selectedType}
+              </div>
             </div>
             <div className="mb-3">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                {progressCSP.percentage}%
+              <div className={`text-3xl font-bold ${
+                selectedType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+              }`}>
+                {selectedType === 'CSP' ? progressCSP.percentage : progressCR.percentage}%
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                {progressCSP.learned} / {progressCSP.total} questions
+                {selectedType === 'CSP'
+                  ? `${progressCSP.learned} / ${progressCSP.total} questions`
+                  : `${progressCR.learned} / ${progressCR.total} questions`
+                }
               </div>
             </div>
             <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
               <div
-                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all"
-                style={{ width: `${progressCSP.percentage}%` }}
+                className={`h-2 rounded-full transition-all ${
+                  selectedType === 'CSP'
+                    ? 'bg-gradient-to-r from-blue-500 to-blue-600'
+                    : 'bg-gradient-to-r from-purple-500 to-purple-600'
+                }`}
+                style={{
+                  width: `${selectedType === 'CSP' ? progressCSP.percentage : progressCR.percentage}%`
+                }}
               />
             </div>
           </button>
 
-          {/* CR Progress */}
+          {/* Statistics */}
           <button
-            onClick={() => onViewCategoryProgress('CR')}
-            className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:scale-105 text-left ${
-              selectedType === 'CR' ? 'border-purple-500' : 'border-gray-100 dark:border-gray-700'
-            }`}>
+            onClick={onViewStats}
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-orange-200 dark:border-orange-800 hover:border-orange-400 dark:hover:border-orange-600 transition-all hover:shadow-xl hover:scale-105 text-left">
             <div className="flex items-center gap-2 mb-3">
-              <Target className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              <div className="font-bold text-lg text-gray-900 dark:text-white">Progress CR</div>
+              <BarChart3 className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+              <div className="font-bold text-lg text-gray-900 dark:text-white">
+                Statistiques
+              </div>
             </div>
             <div className="mb-3">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
-                {progressCR.percentage}%
+              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
+                {stats.bestStreak}
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-400">
-                {progressCR.learned} / {progressCR.total} questions
+                Meilleure série
               </div>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-              <div
-                className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all"
-                style={{ width: `${progressCR.percentage}%` }}
-              />
+            <div className="text-sm text-orange-600 dark:text-orange-400 font-medium">
+              Voir toutes vos statistiques →
             </div>
           </button>
-        </div>
-
-        {/* Best Streak */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
-              <Star className="w-6 h-6 text-orange-600 dark:text-orange-400" />
-            </div>
-            <div className="flex-1">
-              <div className="font-bold text-lg text-gray-900 dark:text-white">Meilleure série</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Série de bonnes réponses consécutives</div>
-            </div>
-            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
-              {stats.bestStreak}
-            </div>
-          </div>
         </div>
 
         {/* Mode de jeu */}
@@ -192,25 +188,6 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWron
               </div>
             </button>
           )}
-
-          {/* Statistics */}
-          <button
-            onClick={onViewStats}
-            className="w-full bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 transition-all hover:shadow-xl hover:scale-105 group"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
-                  <BarChart3 className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-                </div>
-                <div className="text-left">
-                  <div className="font-bold text-lg text-gray-900 dark:text-white">Statistiques</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Voir votre progression détaillée</div>
-                </div>
-              </div>
-              <ChevronRight className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </button>
         </div>
 
         {/* Info */}

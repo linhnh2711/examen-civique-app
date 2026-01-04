@@ -29,12 +29,15 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
       }
     });
 
-    const categoryArray = Object.entries(categories).map(([name, data]) => ({
-      name,
-      total: data.total,
-      learned: data.learned,
-      percentage: Math.round((data.learned / data.total) * 100)
-    })).sort((a, b) => a.name.localeCompare(b.name));
+    // Sort alphabetically with French locale for consistency
+    const categoryArray = Object.entries(categories)
+      .map(([name, data]) => ({
+        name,
+        total: data.total,
+        learned: data.learned,
+        percentage: Math.round((data.learned / data.total) * 100)
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
 
     setCategoryStats(categoryArray);
   }, [examType]);
@@ -111,7 +114,7 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
                     <span>{cat.total} questions</span>
                     <span>•</span>
                     <span className={examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'}>
-                      {examType}: {cat.total}
+                      {cat.learned} étudiées
                     </span>
                   </div>
                 </div>
