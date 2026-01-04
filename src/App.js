@@ -182,6 +182,7 @@ const App = () => {
         <CategoryStatsPage
           examType={quizType}
           onBack={() => setMode('stats')}
+          onNavigateToPractice={() => setMode('category-progress')}
         />
       )}
 

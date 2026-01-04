@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Home, BarChart3 } from 'lucide-react';
+import { Home, BarChart3, BookOpen } from 'lucide-react';
 import { questionsDB } from '../data/questions';
 import { loadLearnedQuestions } from '../utils/storage';
 
-const CategoryStatsPage = ({ examType, onBack }) => {
+const CategoryStatsPage = ({ examType, onBack, onNavigateToPractice }) => {
   const [categoryStats, setCategoryStats] = useState([]);
 
   useEffect(() => {
@@ -89,6 +89,28 @@ const CategoryStatsPage = ({ examType, onBack }) => {
             />
           </div>
         </div>
+
+        {/* Practice Button */}
+        <button
+          onClick={onNavigateToPractice}
+          className={`w-full mb-8 rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:scale-105 group ${
+            examType === 'CSP'
+              ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700 hover:border-blue-500 dark:hover:border-blue-500'
+              : 'bg-purple-50 dark:bg-purple-900/20 border-purple-300 dark:border-purple-700 hover:border-purple-500 dark:hover:border-purple-500'
+          }`}
+        >
+          <div className="flex items-center justify-center gap-3">
+            <BookOpen className={`w-6 h-6 ${
+              examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+            }`} />
+            <span className={`text-lg font-bold ${
+              examType === 'CSP' ? 'text-blue-900 dark:text-blue-300' : 'text-purple-900 dark:text-purple-300'
+            }`}>
+              Pratiquer par catégorie
+            </span>
+            <span className="text-lg">→</span>
+          </div>
+        </button>
 
         {/* Categories Title */}
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
