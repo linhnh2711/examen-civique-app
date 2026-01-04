@@ -3,7 +3,7 @@ import { BookOpen, Star, ChevronRight, Award, Target, BarChart3, RefreshCw, Moon
 import { getProgress, loadWrongAnswers } from '../utils/storage';
 import { useTheme } from '../contexts/ThemeContext';
 
-const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWrong }) => {
+const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWrong, onViewCategoryProgress }) => {
   const { isDark, toggleTheme } = useTheme();
   const [progressCSP, setProgressCSP] = useState({ learned: 0, total: 180, percentage: 0 });
   const [progressCR, setProgressCR] = useState({ learned: 0, total: 180, percentage: 0 });
@@ -66,9 +66,11 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWron
         {/* Progress Cards */}
         <div className="grid grid-cols-2 gap-4 mb-8">
           {/* CSP Progress */}
-          <div className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all ${
-            selectedType === 'CSP' ? 'border-blue-500' : 'border-gray-100 dark:border-gray-700'
-          }`}>
+          <button
+            onClick={() => onViewCategoryProgress('CSP')}
+            className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:scale-105 text-left ${
+              selectedType === 'CSP' ? 'border-blue-500' : 'border-gray-100 dark:border-gray-700'
+            }`}>
             <div className="flex items-center gap-2 mb-3">
               <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <div className="font-bold text-lg text-gray-900 dark:text-white">Progress CSP</div>
@@ -87,12 +89,14 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWron
                 style={{ width: `${progressCSP.percentage}%` }}
               />
             </div>
-          </div>
+          </button>
 
           {/* CR Progress */}
-          <div className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all ${
-            selectedType === 'CR' ? 'border-purple-500' : 'border-gray-100 dark:border-gray-700'
-          }`}>
+          <button
+            onClick={() => onViewCategoryProgress('CR')}
+            className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all hover:shadow-xl hover:scale-105 text-left ${
+              selectedType === 'CR' ? 'border-purple-500' : 'border-gray-100 dark:border-gray-700'
+            }`}>
             <div className="flex items-center gap-2 mb-3">
               <Target className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               <div className="font-bold text-lg text-gray-900 dark:text-white">Progress CR</div>
@@ -111,7 +115,7 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWron
                 style={{ width: `${progressCR.percentage}%` }}
               />
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Best Streak */}

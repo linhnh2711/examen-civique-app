@@ -11,6 +11,36 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Define callbacks first before useEffect
+  const calculateAndSubmit = useCallback(() => {
+    let score = 0;
+    questions.forEach(q => {
+      const userAnswer = answers[q.id];
+      if (userAnswer === q.correct) {
+        score++;
+      } else if (userAnswer !== undefined) {
+        // Save wrong answer for review
+        addWrongAnswer(q.id, userAnswer, q.correct);
+      }
+    });
+
+    const passed = score >= Math.ceil(questions.length * 0.8); // 80% to pass
+
+    onComplete({
+      score,
+      total: questions.length,
+      answers,
+      questions,
+      timeSpent: (45 * 60) - timeLeft,
+      passed
+    });
+  }, [questions, answers, timeLeft, onComplete]);
+
+  const handleAutoSubmit = useCallback(() => {
+    setIsSubmitting(true);
+    calculateAndSubmit();
+  }, [calculateAndSubmit]);
+
   // Load 40 questions aléatoires
   useEffect(() => {
     const randomQuestions = getQuestionsByType(examType, 40);
@@ -53,35 +83,6 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
       markQuestionAsLearned(q.id, q.tags);
     }
   };
-
-  const calculateAndSubmit = useCallback(() => {
-    let score = 0;
-    questions.forEach(q => {
-      const userAnswer = answers[q.id];
-      if (userAnswer === q.correct) {
-        score++;
-      } else if (userAnswer !== undefined) {
-        // Save wrong answer for review
-        addWrongAnswer(q.id, userAnswer, q.correct);
-      }
-    });
-
-    const passed = score >= Math.ceil(questions.length * 0.8); // 80% to pass
-
-    onComplete({
-      score,
-      total: questions.length,
-      answers,
-      questions,
-      timeSpent: (45 * 60) - timeLeft,
-      passed
-    });
-  }, [questions, answers, timeLeft, onComplete]);
-
-  const handleAutoSubmit = useCallback(() => {
-    setIsSubmitting(true);
-    calculateAndSubmit();
-  }, [calculateAndSubmit]);
 
   const handleSubmit = () => {
     setShowConfirmSubmit(true);

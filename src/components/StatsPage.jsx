@@ -3,7 +3,7 @@ import { Home, TrendingUp, Target, Award, Calendar, BarChart3, PieChart } from '
 import { getProgress, loadQuizHistory } from '../utils/storage';
 import { questionsDB } from '../data/questions';
 
-const StatsPage = ({ stats, onBack }) => {
+const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
   const [progressCSP, setProgressCSP] = useState({ learned: 0, total: 180, percentage: 0 });
   const [progressCR, setProgressCR] = useState({ learned: 0, total: 180, percentage: 0 });
   const [categoryStats, setCategoryStats] = useState([]);
@@ -103,7 +103,10 @@ const StatsPage = ({ stats, onBack }) => {
         {/* Progress by Type */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* CSP Progress */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+          <button
+            onClick={() => onViewCategoryProgress('CSP')}
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
+          >
             <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <PieChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               Progression CSP
@@ -123,10 +126,13 @@ const StatsPage = ({ stats, onBack }) => {
                 style={{ width: `${progressCSP.percentage}%` }}
               />
             </div>
-          </div>
+          </button>
 
           {/* CR Progress */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+          <button
+            onClick={() => onViewCategoryProgress('CR')}
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
+          >
             <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <PieChart className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               Progression CR
@@ -146,7 +152,7 @@ const StatsPage = ({ stats, onBack }) => {
                 style={{ width: `${progressCR.percentage}%` }}
               />
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Category Breakdown */}

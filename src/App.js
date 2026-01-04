@@ -6,6 +6,8 @@ import ExamenBlancPage from './components/ExamenBlancPage';
 import ExamenResultPage from './components/ExamenResultPage';
 import StatsPage from './components/StatsPage';
 import ReviewPage from './components/ReviewPage';
+import CategoryProgressPage from './components/CategoryProgressPage';
+import CategoryStatsPage from './components/CategoryStatsPage';
 import InstallPrompt from './components/InstallPrompt';
 import { loadStats, saveStats, addQuizResult } from './utils/storage';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -19,6 +21,7 @@ const App = () => {
   const [examenResult, setExamenResult] = useState(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const savedStats = loadStats();
@@ -103,6 +106,10 @@ const App = () => {
           }}
           onViewStats={() => setMode('stats')}
           onReviewWrong={() => setMode('review')}
+          onViewCategoryProgress={(type) => {
+            setQuizType(type);
+            setMode('category-progress');
+          }}
         />
       )}
       
@@ -146,12 +153,35 @@ const App = () => {
         <StatsPage
           stats={stats}
           onBack={handleBackHome}
+          onViewCategoryProgress={(type) => {
+            setQuizType(type);
+            setMode('category-stats');
+          }}
         />
       )}
 
       {mode === 'review' && (
         <ReviewPage
           onBack={handleBackHome}
+        />
+      )}
+
+      {mode === 'category-progress' && (
+        <CategoryProgressPage
+          examType={quizType}
+          onBack={handleBackHome}
+          onStartCategoryQuiz={(type, category) => {
+            setQuizType(type);
+            setSelectedCategory(category);
+            setMode('quiz');
+          }}
+        />
+      )}
+
+      {mode === 'category-stats' && (
+        <CategoryStatsPage
+          examType={quizType}
+          onBack={() => setMode('stats')}
         />
       )}
 
