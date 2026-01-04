@@ -57,75 +57,76 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
         </div>
 
         {/* Overall Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {/* Total Questions */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Total réponses</div>
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Total réponses</div>
             </div>
-            <div className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+            <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
           </div>
 
           {/* Accuracy */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
-                <Target className="w-5 h-5 text-green-600 dark:text-green-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                <Target className="w-4 h-4 md:w-5 md:h-5 text-green-600 dark:text-green-400" />
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Précision</div>
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Précision</div>
             </div>
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400">{accuracy}%</div>
+            <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">{accuracy}%</div>
           </div>
 
           {/* Best Streak */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-orange-600 dark:text-orange-400" />
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Meilleure série</div>
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Meilleure série</div>
             </div>
-            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.bestStreak}</div>
+            <div className="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.bestStreak}</div>
           </div>
 
           {/* Correct Answers */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
-                <Award className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+                <Award className="w-4 h-4 md:w-5 md:h-5 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Bonnes réponses</div>
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Bonnes réponses</div>
             </div>
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.correct}</div>
+            <div className="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.correct}</div>
           </div>
         </div>
 
         {/* Progress by Type */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 mb-8">
           {/* CSP Progress */}
           <button
             onClick={() => onViewCategoryProgress('CSP')}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
           >
-            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <PieChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              Progression CSP
+            <h3 className="font-bold text-sm md:text-lg text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2">
+              <PieChart className="w-4 h-4 md:w-5 md:h-5 text-blue-600 dark:text-blue-400" />
+              <span className="hidden md:inline">Progression CSP</span>
+              <span className="md:hidden">CSP</span>
             </h3>
-            <div className="mb-4">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-4xl font-bold text-blue-600 dark:text-blue-400">{progressCSP.percentage}%</span>
-                <span className="text-gray-500 dark:text-gray-400">complété</span>
+            <div className="mb-3 md:mb-4">
+              <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-2">
+                <span className="text-2xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">{progressCSP.percentage}%</span>
+                <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">complété</span>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                {progressCSP.learned} / {progressCSP.total} questions étudiées
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                {progressCSP.learned} / {progressCSP.total}
               </div>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3">
               <div
-                className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 md:h-3 rounded-full transition-all"
                 style={{ width: `${progressCSP.percentage}%` }}
               />
             </div>
@@ -134,24 +135,25 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
           {/* CR Progress */}
           <button
             onClick={() => onViewCategoryProgress('CR')}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
           >
-            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <PieChart className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              Progression CR
+            <h3 className="font-bold text-sm md:text-lg text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2">
+              <PieChart className="w-4 h-4 md:w-5 md:h-5 text-purple-600 dark:text-purple-400" />
+              <span className="hidden md:inline">Progression CR</span>
+              <span className="md:hidden">CR</span>
             </h3>
-            <div className="mb-4">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-4xl font-bold text-purple-600 dark:text-purple-400">{progressCR.percentage}%</span>
-                <span className="text-gray-500 dark:text-gray-400">complété</span>
+            <div className="mb-3 md:mb-4">
+              <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-2">
+                <span className="text-2xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">{progressCR.percentage}%</span>
+                <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">complété</span>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                {progressCR.learned} / {progressCR.total} questions étudiées
+              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                {progressCR.learned} / {progressCR.total}
               </div>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3">
               <div
-                className="bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full transition-all"
+                className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 md:h-3 rounded-full transition-all"
                 style={{ width: `${progressCR.percentage}%` }}
               />
             </div>
