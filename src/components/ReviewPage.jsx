@@ -1,32 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Flame, Check, X, ChevronRight } from 'lucide-react';
-import { getQuestionsByType } from '../data/questions';
-import { markQuestionAsLearned, addWrongAnswer } from '../utils/storage';
+import { Home, Check, X, ChevronRight, BookMarked } from 'lucide-react';
+import { loadWrongAnswers, removeWrongAnswer } from '../utils/storage';
+import { questionsDB } from '../data/questions';
 
-const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onComplete, onBack, quizType = 'CSP' }) => {
+const ReviewPage = ({ onBack }) => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
-  const [score, setScore] = useState(0);
 
   useEffect(() => {
-    const randomQuestions = getQuestionsByType(quizType, 15);
-    setQuestions(randomQuestions);
-  }, [quizType]);
+    loadWrongAnswersData();
+  }, []);
+
+  const loadWrongAnswersData = () => {
+    const wrong = loadWrongAnswers();
+
+    // Get full question data
+    const questionData = wrong.map(w => {
+      const q = questionsDB.find(q => q.id === w.questionId);
+      return { ...q, wrongData: w };
+    }).filter(q => q.id); // Filter out not found
+
+    setQuestions(questionData);
+  };
 
   if (questions.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Chargement des questions {quizType}...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="max-w-3xl mx-auto p-6">
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors mb-6"
+          >
+            <Home className="w-5 h-5" />
+            <span className="font-medium">Accueil</span>
+          </button>
+
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-12 shadow-lg border border-gray-100 dark:border-gray-700 text-center">
+            <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Excellent travail !</h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              Vous n'avez aucune question à réviser pour le moment.
+            </p>
+            <button
+              onClick={onBack}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all"
+            >
+              Retour à l'accueil
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
-  const question = questions[currentQuestion];
+  const question = questions[currentIndex];
 
   const handleAnswerSelect = (index) => {
     if (showResult) return;
@@ -35,46 +66,25 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
 
   const handleSubmit = () => {
     if (selectedAnswer === null) return;
-
     setShowResult(true);
-    const isCorrect = selectedAnswer === question.correct;
 
-    // Mark question as learned (đã trả lời)
-    markQuestionAsLearned(question.id, question.tags);
-
-    if (isCorrect) {
-      setScore(score + 1);
-      const newStreak = currentStreak + 1;
-      onStreakUpdate(newStreak);
-      const newStats = {
-        ...stats,
-        total: stats.total + 1,
-        correct: stats.correct + 1,
-        streak: newStreak,
-        bestStreak: Math.max(stats.bestStreak, newStreak)
-      };
-      onUpdateStats(newStats);
-    } else {
-      // Save wrong answer for review
-      addWrongAnswer(question.id, selectedAnswer, question.correct);
-
-      onStreakUpdate(0);
-      const newStats = {
-        ...stats,
-        total: stats.total + 1,
-        streak: 0
-      };
-      onUpdateStats(newStats);
+    // If correct, remove from wrong answers
+    if (selectedAnswer === question.correct) {
+      removeWrongAnswer(question.id);
     }
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
       setSelectedAnswer(null);
       setShowResult(false);
     } else {
-      onComplete(score);
+      // Reload data to reflect removals
+      loadWrongAnswersData();
+      setCurrentIndex(0);
+      setSelectedAnswer(null);
+      setShowResult(false);
     }
   };
 
@@ -92,18 +102,13 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
             <Home className="w-5 h-5" />
             <span className="font-medium">Accueil</span>
           </button>
-          <div className="flex items-center gap-4">
-            <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-bold">
-              {quizType}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-red-100 dark:bg-red-900/50 px-3 py-1 rounded-full">
+              <BookMarked className="w-4 h-4 text-red-600 dark:text-red-400" />
+              <span className="font-bold text-red-600 dark:text-red-400">{questions.length}</span>
             </div>
-            {currentStreak > 0 && (
-              <div className="flex items-center gap-2 bg-orange-100 dark:bg-orange-900/50 px-3 py-1 rounded-full">
-                <Flame className="w-4 h-4 text-orange-600 dark:text-orange-400" />
-                <span className="font-bold text-orange-600 dark:text-orange-400">{currentStreak}</span>
-              </div>
-            )}
             <div className="text-sm font-medium text-gray-600 dark:text-gray-300">
-              {currentQuestion + 1} / {questions.length}
+              {currentIndex + 1} / {questions.length}
             </div>
           </div>
         </div>
@@ -111,14 +116,19 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
         {/* Progress Bar */}
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-8">
           <div
-            className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full transition-all"
-            style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+            className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full transition-all"
+            style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
           />
         </div>
 
-        {/* Category */}
-        <div className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
-          {question.category}
+        {/* Category and attempts */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
+            {question.category}
+          </div>
+          <div className="inline-block bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 px-4 py-2 rounded-full text-sm font-medium">
+            {question.wrongData.attempts} {question.wrongData.attempts > 1 ? 'erreurs' : 'erreur'}
+          </div>
         </div>
 
         {/* Question */}
@@ -131,7 +141,7 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
           {question.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
             const isCorrectAnswer = index === question.correct;
-            
+
             let bgColor = 'bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700';
             let borderColor = 'border-gray-200 dark:border-gray-600';
             let icon = null;
@@ -156,9 +166,8 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
                 key={index}
                 onClick={() => handleAnswerSelect(index)}
                 disabled={showResult}
-                className={`w-full p-4 rounded-xl border-2 ${borderColor} ${bgColor} text-left transition-all flex items-center justify-between group ${
-                  !showResult && 'hover:scale-102'
-                }`}
+                className={`w-full p-4 rounded-xl border-2 ${borderColor} ${bgColor} text-left transition-all flex items-center justify-between group ${!showResult && 'hover:scale-102'
+                  }`}
               >
                 <span className="font-medium text-gray-900 dark:text-white">{option}</span>
                 {icon}
@@ -169,11 +178,10 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
 
         {/* Explanation */}
         {showResult && (
-          <div className={`p-4 rounded-xl mb-6 ${
-            isCorrect ? 'bg-green-50 dark:bg-green-900/30 border-2 border-green-200 dark:border-green-800' : 'bg-blue-50 dark:bg-blue-900/30 border-2 border-blue-200 dark:border-blue-800'
-          }`}>
+          <div className={`p-4 rounded-xl mb-6 ${isCorrect ? 'bg-green-50 dark:bg-green-900/30 border-2 border-green-200 dark:border-green-800' : 'bg-blue-50 dark:bg-blue-900/30 border-2 border-blue-200 dark:border-blue-800'
+            }`}>
             <p className={`font-medium mb-2 ${isCorrect ? 'text-green-900 dark:text-green-300' : 'text-blue-900 dark:text-blue-300'}`}>
-              {isCorrect ? '✅ Correct !' : '💡 Explication'}
+              {isCorrect ? '✅ Parfait ! Cette question a été retirée de votre liste de révision.' : '💡 Explication'}
             </p>
             <p className={isCorrect ? 'text-green-800 dark:text-green-300' : 'text-blue-800 dark:text-blue-300'}>
               {question.explanation}
@@ -187,11 +195,10 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
             <button
               onClick={handleSubmit}
               disabled={selectedAnswer === null}
-              className={`flex-1 py-4 rounded-xl font-bold transition-all ${
-                selectedAnswer === null
+              className={`flex-1 py-4 rounded-xl font-bold transition-all ${selectedAnswer === null
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                   : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-105'
-              }`}
+                }`}
             >
               Vérifier
             </button>
@@ -200,7 +207,7 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
               onClick={handleNext}
               className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2"
             >
-              {currentQuestion < questions.length - 1 ? 'Suivant' : 'Terminer'}
+              {currentIndex < questions.length - 1 ? 'Suivant' : 'Terminer'}
               <ChevronRight className="w-5 h-5" />
             </button>
           )}
@@ -210,4 +217,4 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
   );
 };
 
-export default QuizPage;
+export default ReviewPage;

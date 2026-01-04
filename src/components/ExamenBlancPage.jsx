@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Home, Clock, AlertCircle, ChevronRight, Check, X } from 'lucide-react';
-import { getRandomQuestions } from '../data/questions';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Home, Clock, AlertCircle, ChevronRight } from 'lucide-react';
+import { getQuestionsByType } from '../data/questions';
+import { markQuestionAsLearned, addWrongAnswer } from '../utils/storage';
 
-const ExamenBlancPage = ({ onBack, onComplete }) => {
+const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -12,9 +13,9 @@ const ExamenBlancPage = ({ onBack, onComplete }) => {
 
   // Load 40 questions aléatoires
   useEffect(() => {
-    const randomQuestions = getRandomQuestions(40);
+    const randomQuestions = getQuestionsByType(examType, 40);
     setQuestions(randomQuestions);
-  }, []);
+  }, [examType]);
 
   // Timer countdown
   useEffect(() => {
@@ -32,7 +33,7 @@ const ExamenBlancPage = ({ onBack, onComplete }) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [questions, isSubmitting]);
+  }, [questions, isSubmitting, handleAutoSubmit]);
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -45,32 +46,45 @@ const ExamenBlancPage = ({ onBack, onComplete }) => {
       ...answers,
       [questionId]: answerIndex
     });
+    
+    // Mark as learned khi user chọn đáp án
+    const q = questions.find(question => question.id === questionId);
+    if (q) {
+      markQuestionAsLearned(q.id, q.tags);
+    }
   };
 
-  const handleAutoSubmit = () => {
-    setIsSubmitting(true);
-    calculateAndSubmit();
-  };
-
-  const handleSubmit = () => {
-    setShowConfirmSubmit(true);
-  };
-
-  const calculateAndSubmit = () => {
+  const calculateAndSubmit = useCallback(() => {
     let score = 0;
     questions.forEach(q => {
-      if (answers[q.id] === q.correct) {
+      const userAnswer = answers[q.id];
+      if (userAnswer === q.correct) {
         score++;
+      } else if (userAnswer !== undefined) {
+        // Save wrong answer for review
+        addWrongAnswer(q.id, userAnswer, q.correct);
       }
     });
-    
+
+    const passed = score >= Math.ceil(questions.length * 0.8); // 80% to pass
+
     onComplete({
       score,
       total: questions.length,
       answers,
       questions,
-      timeSpent: (45 * 60) - timeLeft
+      timeSpent: (45 * 60) - timeLeft,
+      passed
     });
+  }, [questions, answers, timeLeft, onComplete]);
+
+  const handleAutoSubmit = useCallback(() => {
+    setIsSubmitting(true);
+    calculateAndSubmit();
+  }, [calculateAndSubmit]);
+
+  const handleSubmit = () => {
+    setShowConfirmSubmit(true);
   };
 
   const confirmSubmit = () => {
@@ -88,7 +102,7 @@ const ExamenBlancPage = ({ onBack, onComplete }) => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Préparation de l'examen...</p>
+          <p className="text-gray-600">Préparation de l'examen {examType}...</p>
         </div>
       </div>
     );

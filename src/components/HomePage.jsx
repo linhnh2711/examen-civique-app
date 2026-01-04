@@ -1,66 +1,141 @@
-import React from 'react';
-import { BookOpen, Trophy, Flame, Star, ChevronRight, Award } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { BookOpen, Star, ChevronRight, Award, Target, BarChart3, RefreshCw, Moon, Sun } from 'lucide-react';
+import { getProgress, loadWrongAnswers } from '../utils/storage';
+import { useTheme } from '../contexts/ThemeContext';
 
-const HomePage = ({ stats, onStartQuiz, onStartExamen }) => {
+const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWrong }) => {
+  const { isDark, toggleTheme } = useTheme();
+  const [progressCSP, setProgressCSP] = useState({ learned: 0, total: 180, percentage: 0 });
+  const [progressCR, setProgressCR] = useState({ learned: 0, total: 180, percentage: 0 });
+  const [selectedType, setSelectedType] = useState('CSP');
+  const [wrongAnswersCount, setWrongAnswersCount] = useState(0);
+
+  useEffect(() => {
+    setProgressCSP(getProgress('CSP'));
+    setProgressCR(getProgress('CR'));
+    setWrongAnswersCount(loadWrongAnswers().length);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-4xl mx-auto p-6">
-        {/* Header */}
-        <div className="text-center mb-8 pt-8">
+        {/* Header with Type Selector */}
+        <div className="text-center mb-6 pt-8">
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-md hover:shadow-lg transition-all"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-gray-700 dark:text-gray-300" />}
+            </button>
+          </div>
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl mb-4 shadow-lg">
             <BookOpen className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400 mb-2">
             Examen Civique
           </h1>
-          <p className="text-gray-600">Préparez-vous pour votre examen civique français</p>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">Préparez-vous pour votre examen civique français</p>
+
+          {/* Type Selector */}
+          <div className="inline-flex bg-white dark:bg-gray-700 rounded-xl p-1 shadow-md">
+            <button
+              onClick={() => setSelectedType('CSP')}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                selectedType === 'CSP'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              CSP
+            </button>
+            <button
+              onClick={() => setSelectedType('CR')}
+              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                selectedType === 'CR'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              CR
+            </button>
+          </div>
         </div>
 
-        {/* Statistiques */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-                <Trophy className="w-5 h-5 text-green-600" />
+        {/* Progress Cards */}
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          {/* CSP Progress */}
+          <div className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all ${
+            selectedType === 'CSP' ? 'border-blue-500' : 'border-gray-100 dark:border-gray-700'
+          }`}>
+            <div className="flex items-center gap-2 mb-3">
+              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <div className="font-bold text-lg text-gray-900 dark:text-white">Progress CSP</div>
+            </div>
+            <div className="mb-3">
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                {progressCSP.percentage}%
               </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">{stats.correct}</div>
-                <div className="text-sm text-gray-500">Correctes</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                {progressCSP.learned} / {progressCSP.total} questions
               </div>
+            </div>
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all"
+                style={{ width: `${progressCSP.percentage}%` }}
+              />
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
-                <Flame className="w-5 h-5 text-orange-600" />
+          {/* CR Progress */}
+          <div className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 transition-all ${
+            selectedType === 'CR' ? 'border-purple-500' : 'border-gray-100 dark:border-gray-700'
+          }`}>
+            <div className="flex items-center gap-2 mb-3">
+              <Target className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              <div className="font-bold text-lg text-gray-900 dark:text-white">Progress CR</div>
+            </div>
+            <div className="mb-3">
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                {progressCR.percentage}%
               </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">{stats.streak}</div>
-                <div className="text-sm text-gray-500">Série actuelle</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                {progressCR.learned} / {progressCR.total} questions
               </div>
             </div>
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all"
+                style={{ width: `${progressCR.percentage}%` }}
+              />
+            </div>
           </div>
+        </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-                <Star className="w-5 h-5 text-blue-600" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">{stats.bestStreak}</div>
-                <div className="text-sm text-gray-500">Meilleure série</div>
-              </div>
+        {/* Best Streak */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
+              <Star className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div className="flex-1">
+              <div className="font-bold text-lg text-gray-900 dark:text-white">Meilleure série</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Série de bonnes réponses consécutives</div>
+            </div>
+            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
+              {stats.bestStreak}
             </div>
           </div>
         </div>
 
         {/* Mode de jeu */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Modes d'apprentissage</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Modes d'apprentissage</h2>
           
           <button
-            onClick={onStartQuiz}
+            onClick={() => onStartQuiz(selectedType)}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-between group"
           >
             <div className="flex items-center gap-4">
@@ -68,7 +143,7 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen }) => {
                 <BookOpen className="w-6 h-6" />
               </div>
               <div className="text-left">
-                <div className="font-bold text-lg">Quiz Pratique</div>
+                <div className="font-bold text-lg">Quiz Pratique {selectedType}</div>
                 <div className="text-sm text-white/80">15 questions - Mode apprentissage</div>
               </div>
             </div>
@@ -76,29 +151,68 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen }) => {
           </button>
 
           <button
-            onClick={() => {
-    console.log('Button clicked!');onStartExamen()}}
-            className="w-full bg-white rounded-2xl p-6 shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-xl hover:scale-105 group"
+            onClick={() => onStartExamen(selectedType)}
+            className="w-full bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 transition-all hover:shadow-xl hover:scale-105 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 transition-colors">
-                  <Award className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-colors">
+                  <Award className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 </div>
                 <div className="text-left">
-                  <div className="font-bold text-lg text-gray-900">Examen Blanc</div>
-                  <div className="text-sm text-gray-600">40 questions - 45 minutes - Conditions réelles</div>
+                  <div className="font-bold text-lg text-gray-900 dark:text-white">Examen Blanc {selectedType}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">40 questions - 45 minutes - Conditions réelles</div>
                 </div>
               </div>
-              <ChevronRight className="w-6 h-6 text-purple-600 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-6 h-6 text-purple-600 dark:text-purple-400 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </button>
+
+          {/* Review Wrong Answers */}
+          {wrongAnswersCount > 0 && (
+            <button
+              onClick={onReviewWrong}
+              className="w-full bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-red-200 dark:border-red-800 hover:border-red-400 dark:hover:border-red-600 transition-all hover:shadow-xl hover:scale-105 group"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center group-hover:bg-red-200 dark:group-hover:bg-red-800/50 transition-colors">
+                    <RefreshCw className="w-6 h-6 text-red-600 dark:text-red-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-bold text-lg text-gray-900 dark:text-white">Réviser les erreurs</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">{wrongAnswersCount} question{wrongAnswersCount > 1 ? 's' : ''} à réviser</div>
+                  </div>
+                </div>
+                <ChevronRight className="w-6 h-6 text-red-600 dark:text-red-400 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </button>
+          )}
+
+          {/* Statistics */}
+          <button
+            onClick={onViewStats}
+            className="w-full bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 transition-all hover:shadow-xl hover:scale-105 group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
+                  <BarChart3 className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+                </div>
+                <div className="text-left">
+                  <div className="font-bold text-lg text-gray-900 dark:text-white">Statistiques</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Voir votre progression détaillée</div>
+                </div>
+              </div>
+              <ChevronRight className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:translate-x-1 transition-transform" />
             </div>
           </button>
         </div>
 
         {/* Info */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-6">
-          <h3 className="font-bold text-blue-900 mb-2">📚 À propos de l'examen</h3>
-          <ul className="text-sm text-blue-800 space-y-1">
+        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-6">
+          <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-2">📚 À propos de l'examen {selectedType}</h3>
+          <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1">
             <li>• 40 questions à choix multiples</li>
             <li>• 80% de bonnes réponses requis (32/40)</li>
             <li>• 5 thématiques officielles</li>

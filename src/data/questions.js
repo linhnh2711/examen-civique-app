@@ -1,668 +1,5265 @@
-export const questionsDB = {
-  CSP: [
-    // PRINCIPES ET VALEURS DE LA RÉPUBLIQUE (12 câu)
-    {
-      id: 1,
-      category: "Principes et valeurs",
-      question: "À quoi correspond la date du 14 juillet ?",
-      options: [
-        "La fin de la Seconde Guerre mondiale",
-        "La prise de la Bastille en 1789",
-        "L'abolition de l'esclavage",
-        "La signature de la Constitution"
-      ],
-      correct: 1,
-      explanation: "Le 14 juillet commémore la prise de la Bastille le 14 juillet 1789, événement majeur de la Révolution française."
-    },
-    {
-      id: 2,
-      category: "Principes et valeurs",
-      question: "Quelle est la devise de la République française ?",
-      options: [
-        "Travail, Famille, Patrie",
-        "Liberté, Égalité, Fraternité",
-        "Unité, Justice, Progrès",
-        "Paix, Liberté, Solidarité"
-      ],
-      correct: 1,
-      explanation: "La devise de la République française est 'Liberté, Égalité, Fraternité' depuis 1848."
-    },
-    {
-      id: 3,
-      category: "Principes et valeurs",
-      question: "Quel est l'hymne national français ?",
-      options: [
-        "La Carmagnole",
-        "Le Chant des Partisans",
-        "La Marseillaise",
-        "Aux Armes Citoyens"
-      ],
-      correct: 2,
-      explanation: "La Marseillaise est l'hymne national de la France depuis 1795, composée par Rouget de Lisle."
-    },
-    {
-      id: 4,
-      category: "Principes et valeurs",
-      question: "Quelles sont les couleurs du drapeau français ?",
-      options: [
-        "Rouge, blanc, vert",
-        "Bleu, blanc, rouge",
-        "Bleu, blanc, noir",
-        "Rouge, jaune, bleu"
-      ],
-      correct: 1,
-      explanation: "Le drapeau français est tricolore : bleu, blanc et rouge, dans cet ordre."
-    },
-    {
-      id: 5,
-      category: "Principes et valeurs",
-      question: "Qu'est-ce que la laïcité ?",
-      options: [
-        "L'interdiction des religions",
-        "La neutralité de l'État vis-à-vis des religions",
-        "L'obligation d'avoir une religion",
-        "Le financement des églises par l'État"
-      ],
-      correct: 1,
-      explanation: "La laïcité est le principe de séparation entre l'État et les religions, garantissant la liberté de conscience et de culte."
-    },
-    {
-      id: 6,
-      category: "Principes et valeurs",
-      question: "En quelle année la loi de séparation des Églises et de l'État a-t-elle été votée ?",
-      options: [
-        "1789",
-        "1905",
-        "1958",
-        "1981"
-      ],
-      correct: 1,
-      explanation: "La loi de séparation des Églises et de l'État a été votée le 9 décembre 1905."
-    },
-    {
-      id: 7,
-      category: "Principes et valeurs",
-      question: "Que signifie 'Liberté' dans la devise républicaine ?",
-      options: [
-        "Faire tout ce qu'on veut",
-        "La liberté d'expression et de conscience",
-        "Ne pas payer d'impôts",
-        "Refuser les lois"
-      ],
-      correct: 1,
-      explanation: "La liberté comprend notamment la liberté d'expression, de conscience, de religion, dans le respect des lois."
-    },
-    {
-      id: 8,
-      category: "Principes et valeurs",
-      question: "Que représente Marianne ?",
-      options: [
-        "La première femme présidente",
-        "Un symbole de la République française",
-        "Une sainte catholique",
-        "La reine de France"
-      ],
-      correct: 1,
-      explanation: "Marianne est l'allégorie de la République française, symbole de liberté et de raison."
-    },
-    {
-      id: 9,
-      category: "Principes et valeurs",
-      question: "Quelle est la fête nationale française ?",
-      options: [
-        "Le 1er mai",
-        "Le 11 novembre",
-        "Le 14 juillet",
-        "Le 8 mai"
-      ],
-      correct: 2,
-      explanation: "La fête nationale française est célébrée le 14 juillet, jour de la prise de la Bastille."
-    },
-    {
-      id: 10,
-      category: "Principes et valeurs",
-      question: "Qu'est-ce que la Déclaration des droits de l'homme et du citoyen ?",
-      options: [
-        "Un texte de 1789 sur les droits fondamentaux",
-        "Une loi européenne",
-        "Un traité international",
-        "Une décision de justice"
-      ],
-      correct: 0,
-      explanation: "La Déclaration des droits de l'homme et du citoyen de 1789 définit les droits fondamentaux des citoyens français."
-    },
-    {
-      id: 11,
-      category: "Principes et valeurs",
-      question: "Que signifie 'Égalité' dans la devise ?",
-      options: [
-        "Tout le monde gagne pareil",
-        "L'égalité devant la loi",
-        "Interdiction de la propriété privée",
-        "Uniformité des opinions"
-      ],
-      correct: 1,
-      explanation: "L'égalité signifie que tous les citoyens sont égaux devant la loi, sans discrimination."
-    },
-    {
-      id: 12,
-      category: "Principes et valeurs",
-      question: "Que signifie 'Fraternité' ?",
-      options: [
-        "L'obligation d'avoir des frères",
-        "La solidarité entre citoyens",
-        "Le service militaire",
-        "Le vote obligatoire"
-      ],
-      correct: 1,
-      explanation: "La fraternité exprime la solidarité et le lien qui unit tous les citoyens français."
-    },
+// Database câu hỏi với tags CSP/CR
+// Auto-generated by scripts/generateQuestions.js
+// Total: 150 CSP + 199 CR questions
 
-    // INSTITUTIONS (12 câu)
-    {
-      id: 13,
-      category: "Système institutionnel",
-      question: "Qui nomme le Premier ministre ?",
-      options: [
-        "Les députés",
-        "Le président de la République",
-        "Le Sénat",
-        "Les citoyens par vote"
-      ],
-      correct: 1,
-      explanation: "Le Premier ministre est nommé par le président de la République."
-    },
-    {
-      id: 14,
-      category: "Système institutionnel",
-      question: "Pour combien de temps est élu le président de la République française ?",
-      options: [
-        "4 ans",
-        "5 ans",
-        "7 ans",
-        "10 ans"
-      ],
-      correct: 1,
-      explanation: "Le président de la République est élu pour un mandat de 5 ans (quinquennat) depuis la réforme de 2002."
-    },
-    {
-      id: 15,
-      category: "Système institutionnel",
-      question: "À partir de quel âge a-t-on le droit de voter en France ?",
-      options: [
-        "16 ans",
-        "18 ans",
-        "21 ans",
-        "25 ans"
-      ],
-      correct: 1,
-      explanation: "Le droit de vote est accordé à tous les citoyens français à partir de 18 ans depuis 1974."
-    },
-    {
-      id: 16,
-      category: "Système institutionnel",
-      question: "Combien y a-t-il de départements en France ?",
-      options: [
-        "95",
-        "100",
-        "101",
-        "110"
-      ],
-      correct: 2,
-      explanation: "La France compte 101 départements : 96 en métropole et 5 en outre-mer."
-    },
-    {
-      id: 17,
-      category: "Système institutionnel",
-      question: "Qu'est-ce que l'Assemblée nationale ?",
-      options: [
-        "Le gouvernement",
-        "La chambre des députés",
-        "Le conseil des ministres",
-        "La cour de justice"
-      ],
-      correct: 1,
-      explanation: "L'Assemblée nationale est la chambre basse du Parlement français, composée de 577 députés élus au suffrage universel direct."
-    },
-    {
-      id: 18,
-      category: "Système institutionnel",
-      question: "Quelle est la plus haute juridiction administrative en France ?",
-      options: [
-        "La Cour de cassation",
-        "Le Conseil d'État",
-        "Le Conseil constitutionnel",
-        "La Cour des comptes"
-      ],
-      correct: 1,
-      explanation: "Le Conseil d'État est la plus haute juridiction de l'ordre administratif."
-    },
-    {
-      id: 19,
-      category: "Système institutionnel",
-      question: "Qui vote les lois en France ?",
-      options: [
-        "Le président",
-        "Le gouvernement",
-        "Le Parlement",
-        "Les citoyens"
-      ],
-      correct: 2,
-      explanation: "Les lois sont votées par le Parlement, composé de l'Assemblée nationale et du Sénat."
-    },
-    {
-      id: 20,
-      category: "Système institutionnel",
-      question: "Quel est le rôle du Sénat ?",
-      options: [
-        "Nommer le président",
-        "Représenter les collectivités territoriales",
-        "Juger les criminels",
-        "Commander l'armée"
-      ],
-      correct: 1,
-      explanation: "Le Sénat représente les collectivités territoriales et participe au vote des lois avec l'Assemblée nationale."
-    },
-    {
-      id: 21,
-      category: "Système institutionnel",
-      question: "Quelle est la durée du mandat des députés ?",
-      options: [
-        "3 ans",
-        "5 ans",
-        "6 ans",
-        "9 ans"
-      ],
-      correct: 1,
-      explanation: "Les députés sont élus pour un mandat de 5 ans."
-    },
-    {
-      id: 22,
-      category: "Système institutionnel",
-      question: "Qui préside le Conseil des ministres ?",
-      options: [
-        "Le Premier ministre",
-        "Le président de la République",
-        "Le ministre de l'Intérieur",
-        "Le président de l'Assemblée"
-      ],
-      correct: 1,
-      explanation: "Le président de la République préside le Conseil des ministres."
-    },
-    {
-      id: 23,
-      category: "Système institutionnel",
-      question: "Quelle institution contrôle la constitutionnalité des lois ?",
-      options: [
-        "Le Conseil d'État",
-        "Le Conseil constitutionnel",
-        "La Cour de cassation",
-        "Le Parlement"
-      ],
-      correct: 1,
-      explanation: "Le Conseil constitutionnel vérifie que les lois sont conformes à la Constitution."
-    },
-    {
-      id: 24,
-      category: "Système institutionnel",
-      question: "Combien de fois maximum peut-on être élu président de la République consécutivement ?",
-      options: [
-        "1 fois",
-        "2 fois",
-        "3 fois",
-        "Pas de limite"
-      ],
-      correct: 1,
-      explanation: "Depuis 2008, on ne peut effectuer plus de deux mandats consécutifs de président."
-    },
+export const questionsDB = [
+  {
+    "id": 1,
+    "question": "Les dirigeants sont élus par les citoyens dans :",
+    "options": [
+      "Une monarchie",
+      "Une démocratie",
+      "Une dictature",
+      "Une théocratie"
+    ],
+    "correct": 1,
+    "explanation": "Dans une démocratie, les dirigeants sont élus par les citoyens lors d'élections libres. La France est une république démocratique où le peuple exerce sa souveraineté par le vote.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "A-t-on le droit de ne pas respecter une loi ?",
+    "options": [
+      "Oui, si on n'est pas d'accord avec elle",
+      "Oui, si elle est ancienne",
+      "Non, jamais",
+      "Oui, si la majorité des citoyens la refuse"
+    ],
+    "correct": 2,
+    "explanation": "Non, personne n'a le droit de ne pas respecter une loi en vigueur. Toute loi votée doit être respectée par tous, même si on n'est pas d'accord avec elle.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Qui doit respecter la loi ?",
+    "options": [
+      "Seulement les citoyens français",
+      "Seulement les personnes majeures",
+      "Tout le monde sans exception",
+      "Seulement les personnes qui ont voté"
+    ],
+    "correct": 2,
+    "explanation": "Tout le monde doit respecter la loi sans exception : citoyens, étrangers, gouvernants, y compris le président de la République. Le principe d'égalité devant la loi est fondamental.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Quel est le rôle de l'autorité judiciaire ?",
+    "options": [
+      "Voter les lois",
+      "Faire respecter la loi et punir ceux qui ne la respectent pas",
+      "Proposer de nouvelles lois",
+      "Élire le président de la République"
+    ],
+    "correct": 1,
+    "explanation": "L'autorité judiciaire a pour mission de faire appliquer la loi et de sanctionner ceux qui ne la respectent pas. Elle garantit le respect des droits et libertés.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Quel pouvoir détient un juge ? Le pouvoir :",
+    "options": [
+      "Législatif",
+      "Exécutif",
+      "Judiciaire",
+      "Constituant"
+    ],
+    "correct": 2,
+    "explanation": "Un juge détient le pouvoir judiciaire, distinct du pouvoir législatif (qui vote les lois) et du pouvoir exécutif (qui gouverne). C'est le principe de séparation des pouvoirs.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "L'autorité judiciaire est exercée par :",
+    "options": [
+      "Le président de la République",
+      "Les députés et sénateurs",
+      "Les juges et magistrats",
+      "Les ministres"
+    ],
+    "correct": 2,
+    "explanation": "L'autorité judiciaire est exercée par les juges et magistrats qui rendent la justice de manière indépendante. Le président de la République en est le garant.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Que se passe-t-il si un ministre ne respecte pas la loi ?",
+    "options": [
+      "Il ne peut pas être poursuivi",
+      "Il peut être poursuivi comme tout citoyen",
+      "Il est automatiquement démis de ses fonctions",
+      "Il doit seulement présenter des excuses"
+    ],
+    "correct": 1,
+    "explanation": "Un ministre qui ne respecte pas la loi peut être poursuivi devant la justice comme tout citoyen. Nul n'est au-dessus de la loi, principe fondamental de l'État de droit.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "Qui est élu lors des élections législatives ?",
+    "options": [
+      "Les sénateurs",
+      "Les députés",
+      "Le président de la République",
+      "Les maires"
+    ],
+    "correct": 1,
+    "explanation": "Les élections législatives permettent d'élire les 577 députés qui siègent à l'Assemblée nationale. Elles ont lieu tous les cinq ans au suffrage universel direct.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "Combien de députés composent l'Assemblée nationale ?",
+    "options": [
+      "348",
+      "577",
+      "450",
+      "622"
+    ],
+    "correct": 1,
+    "explanation": "L'Assemblée nationale est composée de 577 députés élus au suffrage universel direct pour cinq ans. Ils représentent les circonscriptions législatives françaises.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "Quand sont élus les sénateurs ?",
+    "options": [
+      "Au suffrage universel direct",
+      "Par les députés",
+      "Au suffrage universel indirect",
+      "Par le président de la République"
+    ],
+    "correct": 2,
+    "explanation": "Les sénateurs sont élus au suffrage universel indirect par des grands électeurs (élus locaux). Contrairement aux députés, ils ne sont pas élus directement par tous les citoyens.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Qui est élu lors des élections municipales ?",
+    "options": [
+      "Les députés",
+      "Les maires directement",
+      "Les conseillers municipaux",
+      "Les préfets"
+    ],
+    "correct": 2,
+    "explanation": "Les élections municipales permettent d'élire les conseillers municipaux qui ensuite élisent le maire parmi eux. Elles ont lieu tous les six ans.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 12,
+    "question": "Qui est élu lors des élections présidentielles ?",
+    "options": [
+      "Le Premier ministre",
+      "Le président du Sénat",
+      "Le président de l'Assemblée nationale",
+      "Le président de la République"
+    ],
+    "correct": 3,
+    "explanation": "Les élections présidentielles permettent d'élire le président de la République française au suffrage universel direct pour un mandat de cinq ans.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 13,
+    "question": "À partir de quel âge a-t-on le droit de voter ?",
+    "options": [
+      "16 ans",
+      "21 ans",
+      "18 ans",
+      "25 ans"
+    ],
+    "correct": 2,
+    "explanation": "Le droit de vote est accordé à partir de 18 ans en France. C'est l'âge de la majorité civile et politique depuis 1974.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 14,
+    "question": "Pour combien de temps est élu le président de la République française ?",
+    "options": [
+      "4 ans",
+      "5 ans",
+      "7 ans",
+      "6 ans"
+    ],
+    "correct": 1,
+    "explanation": "Le président de la République est élu pour un mandat de 5 ans (quinquennat) renouvelable une fois. Ce mandat était de 7 ans avant la réforme de 2000.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 15,
+    "question": "Pour combien de temps sont élus les députés ?",
+    "options": [
+      "3 ans",
+      "4 ans",
+      "5 ans",
+      "6 ans"
+    ],
+    "correct": 2,
+    "explanation": "Les députés de l'Assemblée nationale sont élus pour un mandat de 5 ans. L'Assemblée peut être dissoute avant la fin du mandat par le président de la République.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 16,
+    "question": "Pour combien de temps sont élus les sénateurs ?",
+    "options": [
+      "5 ans",
+      "6 ans",
+      "7 ans",
+      "9 ans"
+    ],
+    "correct": 1,
+    "explanation": "Les sénateurs sont élus pour un mandat de 6 ans. Le Sénat est renouvelé par moitié tous les trois ans, assurant ainsi une continuité institutionnelle.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 17,
+    "question": "Qui possède le pouvoir exécutif ?",
+    "options": [
+      "L'Assemblée nationale",
+      "Le président de la République et le gouvernement",
+      "Le Sénat",
+      "Le Conseil constitutionnel"
+    ],
+    "correct": 1,
+    "explanation": "Le pouvoir exécutif est détenu par le président de la République et le gouvernement dirigé par le Premier ministre. Ils sont chargés d'appliquer les lois et de gouverner.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 18,
+    "question": "Quelle condition est nécessaire pour voter aux élections ?",
+    "options": [
+      "Avoir un diplôme",
+      "Être propriétaire",
+      "Être inscrit sur les listes électorales",
+      "Payer des impôts"
+    ],
+    "correct": 2,
+    "explanation": "Pour voter, il faut obligatoirement être inscrit sur les listes électorales de sa commune. L'inscription peut se faire en mairie ou en ligne.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 19,
+    "question": "Qui peut voter aux élections en France ?",
+    "options": [
+      "Tous les résidents majeurs",
+      "Tous les citoyens français majeurs",
+      "Tous les européens majeurs résidents",
+      "Toute personne travaillant en France"
+    ],
+    "correct": 1,
+    "explanation": "Peuvent voter aux élections nationales tous les citoyens français majeurs (18 ans) jouissant de leurs droits civiques et inscrits sur les listes électorales.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 20,
+    "question": "Que signifie « suffrage universel » ?",
+    "options": [
+      "Seuls les hommes peuvent voter",
+      "Seuls les riches peuvent voter",
+      "Tous les citoyens majeurs peuvent voter",
+      "Seuls les diplômés peuvent voter"
+    ],
+    "correct": 2,
+    "explanation": "Le suffrage universel signifie que tous les citoyens majeurs ont le droit de voter, sans distinction de sexe, de fortune, de capacité ou de race. C'est un principe démocratique fondamental.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 21,
+    "question": "Concernant les partis politiques, quelle proposition est correcte ?",
+    "options": [
+      "Les partis politiques sont interdits en France",
+      "Les partis politiques concourent à l'expression du suffrage",
+      "Il ne peut exister que deux partis politiques en France",
+      "Les partis politiques sont nommés par le Président de la République"
+    ],
+    "correct": 1,
+    "explanation": "Selon l'article 4 de la Constitution, les partis et groupements politiques concourent à l'expression du suffrage et se forment et exercent leur activité librement.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 22,
+    "question": "Quel est le rôle des députés ?",
+    "options": [
+      "Ils dirigent les régions",
+      "Ils votent les lois à l'Assemblée nationale",
+      "Ils nomment les ministres",
+      "Ils jugent les affaires pénales"
+    ],
+    "correct": 1,
+    "explanation": "Les députés sont élus pour siéger à l'Assemblée nationale où ils examinent, discutent et votent les lois avec les sénateurs.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 23,
+    "question": "La séparation des pouvoirs est un principe fondamental. Quels sont les trois pouvoirs concernés ?",
+    "options": [
+      "Le pouvoir militaire, le pouvoir économique et le pouvoir médiatique",
+      "Le pouvoir exécutif, le pouvoir législatif et le pouvoir judiciaire",
+      "Le pouvoir présidentiel, le pouvoir ministériel et le pouvoir préfectoral",
+      "Le pouvoir national, le pouvoir régional et le pouvoir local"
+    ],
+    "correct": 1,
+    "explanation": "La séparation des pouvoirs, théorisée par Montesquieu, distingue le pouvoir exécutif (gouvernement), le pouvoir législatif (Parlement) et le pouvoir judiciaire (tribunaux) pour garantir l'équilibre démocratique.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 24,
+    "question": "Qui possède le pouvoir législatif ?",
+    "options": [
+      "Le Président de la République seul",
+      "Le Parlement composé de l'Assemblée nationale et du Sénat",
+      "Le Premier ministre et son gouvernement",
+      "Le Conseil constitutionnel"
+    ],
+    "correct": 1,
+    "explanation": "Le pouvoir législatif appartient au Parlement, composé de l'Assemblée nationale et du Sénat, qui vote les lois.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 25,
+    "question": "Qui sanctionne l'auteur d'un vol ?",
+    "options": [
+      "Le maire de la commune",
+      "Le Président de la République",
+      "Le juge du tribunal",
+      "Le préfet du département"
+    ],
+    "correct": 2,
+    "explanation": "C'est le pouvoir judiciaire, représenté par un juge du tribunal, qui sanctionne l'auteur d'une infraction pénale comme le vol.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 26,
+    "question": "Qui élit les députés ?",
+    "options": [
+      "Le Président de la République",
+      "Les citoyens français inscrits sur les listes électorales",
+      "Les sénateurs",
+      "Les conseillers municipaux"
+    ],
+    "correct": 1,
+    "explanation": "Les députés sont élus au suffrage universel direct par les citoyens français majeurs inscrits sur les listes électorales lors des élections législatives.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 27,
+    "question": "Qui vote les lois ?",
+    "options": [
+      "Le gouvernement",
+      "Le Parlement (Assemblée nationale et Sénat)",
+      "Le Conseil d'État",
+      "Les préfets"
+    ],
+    "correct": 1,
+    "explanation": "Le Parlement, composé de l'Assemblée nationale et du Sénat, est l'institution qui vote les lois en France.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 28,
+    "question": "Qui réside au palais de l'Élysée ?",
+    "options": [
+      "Le Premier ministre",
+      "Le Président de l'Assemblée nationale",
+      "Le Président de la République",
+      "Le Président du Sénat"
+    ],
+    "correct": 2,
+    "explanation": "Le palais de l'Élysée, situé à Paris, est la résidence officielle et le lieu de travail du Président de la République française.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 29,
+    "question": "Combien y a-t-il de départements en France ?",
+    "options": [
+      "96 départements",
+      "101 départements",
+      "85 départements",
+      "110 départements"
+    ],
+    "correct": 1,
+    "explanation": "La France compte 101 départements : 96 en métropole et 5 départements d'outre-mer (Guadeloupe, Martinique, Guyane, La Réunion, Mayotte).",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 30,
+    "question": "Qui représente l'État dans un département ?",
+    "options": [
+      "Le président du conseil départemental",
+      "Le préfet",
+      "Le maire du chef-lieu",
+      "Le député"
+    ],
+    "correct": 1,
+    "explanation": "Le préfet est le représentant de l'État dans le département et veille à l'application des lois et des décisions du gouvernement.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 31,
+    "question": "Qui dirige la commune ?",
+    "options": [
+      "Le préfet",
+      "Le président du conseil départemental",
+      "Le maire",
+      "Le sous-préfet"
+    ],
+    "correct": 2,
+    "explanation": "Le maire est élu par le conseil municipal et dirige la commune. Il exerce à la fois des compétences communales et représente l'État dans la commune.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 32,
+    "question": "Est-ce que le président de la République a tous les pouvoirs ?",
+    "options": [
+      "Oui, il peut faire tout ce qu'il veut",
+      "Non, ses pouvoirs sont définis et limités par la Constitution",
+      "Oui, mais seulement en temps de guerre",
+      "Non, il n'a aucun pouvoir réel"
+    ],
+    "correct": 1,
+    "explanation": "Le Président de la République dispose de pouvoirs importants mais définis et limités par la Constitution. La séparation des pouvoirs garantit l'équilibre démocratique.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 33,
+    "question": "Qui est le préfet ?",
+    "options": [
+      "Un élu local choisi par les citoyens du département",
+      "Le représentant de l'État dans le département",
+      "Le président du conseil régional",
+      "Un magistrat nommé par le ministre de la Justice"
+    ],
+    "correct": 1,
+    "explanation": "Le préfet est un haut fonctionnaire nommé par le Président de la République qui représente l'État et le gouvernement dans le département.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 34,
+    "question": "Quel est le rôle du Parlement ?",
+    "options": [
+      "Juger les criminels",
+      "Voter les lois et contrôler l'action du gouvernement",
+      "Diriger l'armée",
+      "Nommer les préfets"
+    ],
+    "correct": 1,
+    "explanation": "Le Parlement vote les lois, vote le budget de l'État et contrôle l'action du gouvernement par divers moyens (questions, commissions d'enquête, motion de censure).",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 35,
+    "question": "Quel est le régime politique de la France aujourd'hui ?",
+    "options": [
+      "Une monarchie constitutionnelle",
+      "Une République",
+      "Une dictature",
+      "Un empire"
+    ],
+    "correct": 1,
+    "explanation": "La France est une République, actuellement la Cinquième République fondée en 1958. C'est un régime démocratique où le pouvoir appartient au peuple.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 36,
+    "question": "Combien d'États font partie de l'Union européenne au 1er janvier 2025 ?",
+    "options": [
+      "25 États membres",
+      "27 États membres",
+      "28 États membres",
+      "30 États membres"
+    ],
+    "correct": 1,
+    "explanation": "L'Union européenne compte 27 États membres depuis le retrait du Royaume-Uni en 2020 (Brexit).",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 37,
+    "question": "Quel État n'est pas membre de l'Union européenne ?",
+    "options": [
+      "L'Allemagne",
+      "La Suisse",
+      "L'Espagne",
+      "La Belgique"
+    ],
+    "correct": 1,
+    "explanation": "La Suisse n'est pas membre de l'Union européenne. Elle a choisi de rester en dehors tout en maintenant des accords bilatéraux avec l'UE.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 38,
+    "question": "Quelle condition est nécessaire pour voter aux élections européennes ?",
+    "options": [
+      "Avoir plus de 25 ans",
+      "Être citoyen de l'Union européenne et être inscrit sur les listes électorales",
+      "Être propriétaire d'un bien immobilier",
+      "Avoir un diplôme universitaire"
+    ],
+    "correct": 1,
+    "explanation": "Pour voter aux élections européennes en France, il faut être citoyen de l'Union européenne, avoir 18 ans et être inscrit sur les listes électorales.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 39,
+    "question": "À quelle fréquence les élections européennes sont-elles organisées ?",
+    "options": [
+      "Tous les 3 ans",
+      "Tous les 5 ans",
+      "Tous les 7 ans",
+      "Tous les 4 ans"
+    ],
+    "correct": 1,
+    "explanation": "Les élections européennes pour élire les députés du Parlement européen ont lieu tous les 5 ans dans tous les États membres de l'Union européenne.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 40,
+    "question": "Quel pays est un pays fondateur de l'Union européenne ?",
+    "options": [
+      "Le Royaume-Uni",
+      "La France",
+      "L'Espagne",
+      "La Suède"
+    ],
+    "correct": 1,
+    "explanation": "La France fait partie des six pays fondateurs de la Communauté européenne en 1957 avec l'Allemagne, l'Italie, la Belgique, les Pays-Bas et le Luxembourg.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 41,
+    "question": "Quelle est la monnaie utilisée en France ?",
+    "options": [
+      "Le franc français",
+      "L'euro",
+      "Le dollar européen",
+      "La livre sterling"
+    ],
+    "correct": 1,
+    "explanation": "La France utilise l'euro depuis 2002, la monnaie unique de la zone euro adoptée par 20 pays de l'Union européenne.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 42,
+    "question": "Qui élit les députés européens ?",
+    "options": [
+      "Les gouvernements des États membres",
+      "Le Président de la République",
+      "Les citoyens européens au suffrage universel direct",
+      "Le Parlement national de chaque pays"
+    ],
+    "correct": 2,
+    "explanation": "Les députés européens sont élus au suffrage universel direct par les citoyens de l'Union européenne tous les 5 ans.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 43,
+    "question": "Quand célèbre-t-on la journée de l'Europe ?",
+    "options": [
+      "Le 14 juillet",
+      "Le 1er mai",
+      "Le 9 mai",
+      "Le 8 mai"
+    ],
+    "correct": 2,
+    "explanation": "La journée de l'Europe est célébrée le 9 mai, en commémoration de la déclaration Schuman de 1950 qui marque le début de la construction européenne.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 44,
+    "question": "Comment s'appelle la Constitution actuelle de la France ?",
+    "options": [
+      "La Constitution de la IVe République",
+      "La Constitution de la Ve République",
+      "La Constitution de 1789",
+      "La Constitution européenne"
+    ],
+    "correct": 1,
+    "explanation": "La Constitution actuelle de la France est celle de la Ve République, adoptée en 1958 sous l'impulsion du général de Gaulle.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 45,
+    "question": "Comment s'appelle le texte qui énonce les droits et devoirs des personnes résidant en France ?",
+    "options": [
+      "Le Code pénal",
+      "La Constitution",
+      "Le Code de la nationalité",
+      "Le traité de Maastricht"
+    ],
+    "correct": 1,
+    "explanation": "La Constitution française, ainsi que les textes qui lui sont associés comme la Déclaration des droits de l'homme et du citoyen, énoncent les droits et devoirs des personnes en France.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 46,
+    "question": "Concernant les droits individuels, quelle proposition est correcte ?",
+    "options": [
+      "Ils peuvent être exercés sans aucune limite",
+      "Ils ne s'appliquent qu'aux citoyens français",
+      "Ils s'exercent dans le respect de la loi et des droits d'autrui",
+      "Ils sont définis par chaque région"
+    ],
+    "correct": 2,
+    "explanation": "Les droits individuels s'exercent dans le respect de la loi et des droits d'autrui, garantissant ainsi un équilibre entre liberté individuelle et vie en société.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 47,
+    "question": "De quelle année date la Déclaration des droits de l'homme et du citoyen ?",
+    "options": [
+      "1789",
+      "1848",
+      "1945",
+      "1958"
+    ],
+    "correct": 0,
+    "explanation": "La Déclaration des droits de l'homme et du citoyen a été adoptée le 26 août 1789, pendant la Révolution française.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 48,
+    "question": "Lequel de ces droits est un droit fondamental ?",
+    "options": [
+      "Le droit de conduire sans permis",
+      "Le droit de ne pas payer d'impôts",
+      "Le droit à l'éducation",
+      "Le droit de refuser toute loi"
+    ],
+    "correct": 2,
+    "explanation": "Le droit à l'éducation est un droit fondamental garanti par la Constitution, l'instruction étant obligatoire pour tous les enfants.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 49,
+    "question": "Parmi ces textes, lequel garantit les droits et libertés en France ?",
+    "options": [
+      "Le Code du travail",
+      "La Déclaration des droits de l'homme et du citoyen",
+      "Le règlement intérieur des écoles",
+      "Le Code de la route"
+    ],
+    "correct": 1,
+    "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 fait partie du bloc de constitutionnalité et garantit les droits et libertés fondamentaux en France.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 50,
+    "question": "Qu'est-ce que la liberté d'expression ?",
+    "options": [
+      "Le droit de dire tout ce qu'on veut sans conséquence",
+      "Le droit d'exprimer ses opinions dans le respect de la loi",
+      "Le droit réservé aux journalistes",
+      "Le droit de critiquer uniquement le gouvernement"
+    ],
+    "correct": 1,
+    "explanation": "La liberté d'expression est le droit d'exprimer ses opinions et idées dans le respect de la loi, notamment sans tenir de propos diffamatoires, injurieux ou incitant à la haine.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 51,
+    "question": "Quel droit permet à une personne de se défendre devant la justice ?",
+    "options": [
+      "Le droit de vote",
+      "Le droit d'asile",
+      "Le droit à un procès équitable",
+      "Le droit de propriété"
+    ],
+    "correct": 2,
+    "explanation": "Le droit à un procès équitable garantit à toute personne le droit de se défendre devant un tribunal impartial, avec l'assistance d'un avocat.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 52,
+    "question": "Quel est le texte fondateur établissant en France les droits et les devoirs de chaque citoyen ?",
+    "options": [
+      "Le Code civil",
+      "La Déclaration des droits de l'homme et du citoyen",
+      "Le traité de Rome",
+      "La Charte de l'environnement"
+    ],
+    "correct": 1,
+    "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 est le texte fondateur qui établit les droits et devoirs des citoyens français.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 53,
+    "question": "Quel texte a été adopté pendant la Révolution française ?",
+    "options": [
+      "La Constitution de la Ve République",
+      "Le Code Napoléon",
+      "La Déclaration des droits de l'homme et du citoyen",
+      "La Charte sociale européenne"
+    ],
+    "correct": 2,
+    "explanation": "La Déclaration des droits de l'homme et du citoyen a été adoptée le 26 août 1789, au début de la Révolution française.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 54,
+    "question": "Quelle liberté permet à une personne de ne pas avoir de religion ?",
+    "options": [
+      "La liberté d'association",
+      "La liberté de conscience et de culte",
+      "La liberté d'expression",
+      "La liberté de circulation"
+    ],
+    "correct": 1,
+    "explanation": "La liberté de conscience permet à chacun de choisir sa religion ou de n'en avoir aucune, principe fondamental de la laïcité française.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 55,
+    "question": "Une femme peut avorter :",
+    "options": [
+      "Jamais, c'est interdit en France",
+      "Uniquement avec l'autorisation de son conjoint",
+      "Librement jusqu'à 14 semaines de grossesse",
+      "Uniquement en cas de danger pour sa vie"
+    ],
+    "correct": 2,
+    "explanation": "En France, l'interruption volontaire de grossesse (IVG) est légale et peut être pratiquée jusqu'à 14 semaines de grossesse depuis la loi de 2022.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 56,
+    "question": "Est-il toujours possible de divorcer ?",
+    "options": [
+      "Non, il faut l'accord des deux époux",
+      "Oui, le divorce est toujours possible",
+      "Non, seulement en cas de faute grave",
+      "Oui, mais uniquement après 10 ans de mariage"
+    ],
+    "correct": 1,
+    "explanation": "Le divorce est toujours possible en France, soit par consentement mutuel, soit par acceptation du principe de la rupture, soit pour faute ou altération définitive du lien conjugal.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 57,
+    "question": "La peine de mort est :",
+    "options": [
+      "Appliquée pour les crimes les plus graves",
+      "Abolie en France depuis 1981",
+      "Autorisée uniquement en temps de guerre",
+      "Décidée par référendum au cas par cas"
+    ],
+    "correct": 1,
+    "explanation": "La peine de mort a été abolie en France en 1981 sous la présidence de François Mitterrand, avec la loi portée par Robert Badinter.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 58,
+    "question": "Concernant les limites aux libertés individuelles, quelle proposition est correcte ?",
+    "options": [
+      "Il n'y a aucune limite aux libertés individuelles",
+      "Les libertés sont limitées par le respect de l'ordre public et des droits d'autrui",
+      "Les libertés peuvent être suspendues à tout moment",
+      "Seul le Président peut limiter les libertés"
+    ],
+    "correct": 1,
+    "explanation": "Les libertés individuelles s'exercent dans le cadre de la loi et sont limitées par le respect de l'ordre public et des droits d'autrui.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 59,
+    "question": "En France, est-ce légal d'être marié à plusieurs personnes en même temps ?",
+    "options": [
+      "Oui, si toutes les parties sont consentantes",
+      "Oui, mais limité à deux époux",
+      "Non, la polygamie est interdite",
+      "Oui, pour certaines religions uniquement"
+    ],
+    "correct": 2,
+    "explanation": "La polygamie est strictement interdite en France. Le mariage ne peut unir que deux personnes et la bigamie est un délit pénal.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 60,
+    "question": "Faut-il réduire ses déchets ?",
+    "options": [
+      "Non, c'est uniquement la responsabilité des entreprises",
+      "Oui, c'est un devoir citoyen et environnemental",
+      "Non, le recyclage suffit",
+      "C'est une recommandation sans importance"
+    ],
+    "correct": 1,
+    "explanation": "Réduire ses déchets est un devoir citoyen et environnemental inscrit dans la Charte de l'environnement, partie intégrante de la Constitution française depuis 2005.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 61,
+    "question": "Jeter une bouteille dans la rue est :",
+    "options": [
+      "Autorisé si c'est biodégradable",
+      "Interdit et puni d'une amende",
+      "Permis la nuit uniquement",
+      "Toléré si c'est occasionnel"
+    ],
+    "correct": 1,
+    "explanation": "Jeter des déchets sur la voie publique constitue une infraction sanctionnée par une amende pouvant aller jusqu'à 68 euros selon le Code de la santé publique.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 62,
+    "question": "Pourquoi les libertés individuelles peuvent-elles être limitées ?",
+    "options": [
+      "Pour des raisons économiques",
+      "Pour protéger l'ordre public et les droits d'autrui",
+      "Selon la décision du maire uniquement",
+      "Pendant les périodes électorales"
+    ],
+    "correct": 1,
+    "explanation": "Les libertés individuelles peuvent être limitées pour préserver l'ordre public, la sécurité et les droits des autres citoyens, conformément à la Déclaration des droits de l'homme et du citoyen.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 63,
+    "question": "Que doit faire une personne en cas d'accident ?",
+    "options": [
+      "Quitter les lieux rapidement",
+      "Porter secours aux victimes et alerter les secours",
+      "Attendre l'arrivée spontanée de la police",
+      "Prendre des photos uniquement"
+    ],
+    "correct": 1,
+    "explanation": "Toute personne témoin d'un accident a l'obligation légale de porter assistance aux victimes et d'alerter les secours, sous peine de poursuites pour non-assistance à personne en danger.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 64,
+    "question": "Que permet la citoyenneté française ?",
+    "options": [
+      "D'être exempté d'impôts",
+      "De voter et d'être élu",
+      "De travailler sans contrat",
+      "D'ignorer certaines lois"
+    ],
+    "correct": 1,
+    "explanation": "La citoyenneté française confère des droits politiques essentiels, notamment le droit de voter et d'être élu aux élections, ainsi que l'accès à certains emplois publics.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 65,
+    "question": "Que risque une personne qui ne respecte pas la loi ?",
+    "options": [
+      "Un simple avertissement oral",
+      "Des sanctions pénales (amende, prison)",
+      "Une demande de déménagement",
+      "Rien si c'est la première fois"
+    ],
+    "correct": 1,
+    "explanation": "Le non-respect de la loi expose à des sanctions pénales proportionnées à la gravité de l'infraction, allant de l'amende à la peine d'emprisonnement.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 66,
+    "question": "Quel est le rôle de la gendarmerie ?",
+    "options": [
+      "Collecter les impôts",
+      "Assurer la sécurité publique et faire respecter la loi",
+      "Gérer les hôpitaux",
+      "Organiser les élections"
+    ],
+    "correct": 1,
+    "explanation": "La gendarmerie nationale est une force de sécurité militaire chargée de missions de police administrative et judiciaire, principalement dans les zones rurales et périurbaines.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 67,
+    "question": "Quel est le rôle de la police ?",
+    "options": [
+      "Défendre le territoire national",
+      "Maintenir l'ordre public et lutter contre la délinquance",
+      "Juger les infractions",
+      "Voter les lois"
+    ],
+    "correct": 1,
+    "explanation": "La police nationale assure le maintien de l'ordre public, la protection des personnes et des biens, et la lutte contre la criminalité, principalement en zones urbaines.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 68,
+    "question": "Qu'est-ce qu'une infraction ?",
+    "options": [
+      "Une demande administrative",
+      "Un acte contraire à la loi",
+      "Un droit du citoyen",
+      "Une procédure judiciaire"
+    ],
+    "correct": 1,
+    "explanation": "Une infraction est un comportement interdit par la loi et sanctionné pénalement. Elle se classe en trois catégories : contravention, délit et crime.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 69,
+    "question": "Comment peut-on réduire ses déchets ?",
+    "options": [
+      "En les jetant dans la nature",
+      "En triant, recyclant et réduisant sa consommation",
+      "En les brûlant chez soi",
+      "En les cachant"
+    ],
+    "correct": 1,
+    "explanation": "La réduction des déchets passe par le tri sélectif, le recyclage, le compostage et l'adoption de modes de consommation responsables pour limiter la production de déchets.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 70,
+    "question": "Déposer une machine à laver cassée sur le trottoir est :",
+    "options": [
+      "Autorisé les jours de collecte",
+      "Interdit, c'est un dépôt sauvage passible d'amende",
+      "Permis si on prévient la mairie",
+      "Toléré dans les grandes villes"
+    ],
+    "correct": 1,
+    "explanation": "Abandonner des déchets encombrants sur la voie publique constitue un dépôt sauvage sanctionné par une amende pouvant atteindre 1 500 euros. Il faut utiliser les déchetteries ou les services de collecte adaptés.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 71,
+    "question": "En quoi consiste la traite des êtres humains ?",
+    "options": [
+      "Le transport légal de personnes",
+      "L'exploitation de personnes par la force, la tromperie ou la contrainte",
+      "Un contrat de travail international",
+      "L'aide humanitaire aux migrants"
+    ],
+    "correct": 1,
+    "explanation": "La traite des êtres humains est un crime qui consiste à exploiter des personnes (travail forcé, prostitution, prélèvement d'organes) par la violence, la menace ou la tromperie.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 72,
+    "question": "Que doit faire une victime de violences ?",
+    "options": [
+      "Garder le silence par honte",
+      "Porter plainte et demander de l'aide",
+      "Se venger elle-même",
+      "Déménager sans rien dire"
+    ],
+    "correct": 1,
+    "explanation": "Une victime de violences doit porter plainte auprès de la police ou de la gendarmerie et peut contacter des associations d'aide aux victimes. Le numéro 3919 est disponible pour les violences conjugales.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 73,
+    "question": "Quelle est l'infraction la plus grave ?",
+    "options": [
+      "La contravention",
+      "Le crime",
+      "Le délit",
+      "L'avertissement"
+    ],
+    "correct": 1,
+    "explanation": "Le crime est l'infraction la plus grave, jugée par la cour d'assises et passible de peines pouvant aller jusqu'à la réclusion criminelle à perpétuité.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 74,
+    "question": "En quelle année a débuté la Révolution française ?",
+    "options": [
+      "1789",
+      "1799",
+      "1804",
+      "1815"
+    ],
+    "correct": 0,
+    "explanation": "La Révolution française a débuté en 1789 avec la prise de la Bastille le 14 juillet, marquant la fin de la monarchie absolue et l'avènement des idéaux de liberté, égalité et fraternité.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 75,
+    "question": "Qui était Napoléon Ier ?",
+    "options": [
+      "Un philosophe des Lumières",
+      "Un empereur français qui a régné de 1804 à 1815",
+      "Un roi de France du Moyen Âge",
+      "Un président de la République"
+    ],
+    "correct": 1,
+    "explanation": "Napoléon Bonaparte a été empereur des Français de 1804 à 1815. Il a marqué l'histoire par ses réformes (Code civil) et ses conquêtes militaires en Europe.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 76,
+    "question": "Lequel de ces personnages historiques est français ?",
+    "options": [
+      "Winston Churchill",
+      "Louis Pasteur",
+      "Leonardo da Vinci",
+      "William Shakespeare"
+    ],
+    "correct": 1,
+    "explanation": "Louis Pasteur était un scientifique français célèbre pour ses découvertes sur les vaccins et la pasteurisation, qui ont révolutionné la médecine et l'hygiène au XIXe siècle.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 77,
+    "question": "Dans quelle République est-on aujourd'hui ?",
+    "options": [
+      "IIIe République",
+      "IVe République",
+      "Ve République",
+      "VIe République"
+    ],
+    "correct": 2,
+    "explanation": "La France vit sous la Ve République depuis 1958, instaurée par le général de Gaulle. Cette République se caractérise par un régime semi-présidentiel.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 78,
+    "question": "Qu'est-ce que la Shoah ?",
+    "options": [
+      "Une bataille de la Première Guerre mondiale",
+      "Le génocide des Juifs par les nazis pendant la Seconde Guerre mondiale",
+      "Un traité de paix européen",
+      "Une révolution industrielle"
+    ],
+    "correct": 1,
+    "explanation": "La Shoah désigne le génocide systématique des Juifs d'Europe par le régime nazi pendant la Seconde Guerre mondiale, qui a causé la mort de six millions de personnes.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 79,
+    "question": "Quel pays ou région du monde a été colonisé par la France ?",
+    "options": [
+      "L'Inde",
+      "L'Algérie",
+      "Le Brésil",
+      "L'Australie"
+    ],
+    "correct": 1,
+    "explanation": "L'Algérie a été colonisée par la France de 1830 à 1962. La France a également colonisé d'autres territoires en Afrique, en Asie et dans les Caraïbes.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 80,
+    "question": "Qui a rendu l'école gratuite, laïque et obligatoire ?",
+    "options": [
+      "Napoléon Bonaparte",
+      "Jules Ferry",
+      "Victor Hugo",
+      "Jean Jaurès"
+    ],
+    "correct": 1,
+    "explanation": "Jules Ferry, ministre de l'Instruction publique, a instauré les lois de 1881-1882 rendant l'école primaire gratuite, laïque et obligatoire pour tous les enfants de 6 à 13 ans.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 81,
+    "question": "Quand a eu lieu la Seconde Guerre mondiale ?",
+    "options": [
+      "1914-1918",
+      "1939-1945",
+      "1870-1871",
+      "1950-1953"
+    ],
+    "correct": 1,
+    "explanation": "La Seconde Guerre mondiale s'est déroulée de 1939 à 1945, opposant les Alliés aux puissances de l'Axe, et s'est terminée par la capitulation de l'Allemagne en mai 1945 et du Japon en septembre 1945.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 82,
+    "question": "Quand a eu lieu la Première Guerre mondiale ?",
+    "options": [
+      "1870-1871",
+      "1914-1918",
+      "1939-1945",
+      "1905-1910"
+    ],
+    "correct": 1,
+    "explanation": "La Première Guerre mondiale s'est déroulée de 1914 à 1918, débutant après l'assassinat de l'archiduc François-Ferdinand et se terminant par l'armistice du 11 novembre 1918.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 83,
+    "question": "En quelle année a été créée la Communauté Économique Européenne (CEE) ?",
+    "options": [
+      "1945",
+      "1951",
+      "1957",
+      "1992"
+    ],
+    "correct": 2,
+    "explanation": "La CEE a été créée en 1957 par le traité de Rome, signé par six pays fondateurs dont la France, établissant un marché commun européen.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 84,
+    "question": "Le 11 novembre est un jour férié. À quoi correspond cette date ?",
+    "options": [
+      "La libération de Paris",
+      "L'armistice de la Première Guerre mondiale",
+      "La fin de la Seconde Guerre mondiale",
+      "La fête de la Victoire de 1945"
+    ],
+    "correct": 1,
+    "explanation": "Le 11 novembre commémore l'armistice de 1918 qui mit fin aux combats de la Première Guerre mondiale. C'est un jour de mémoire pour honorer tous les morts pour la France.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 85,
+    "question": "Qui a été le premier Président élu sous la Ve République ?",
+    "options": [
+      "Vincent Auriol",
+      "Charles de Gaulle",
+      "Georges Pompidou",
+      "François Mitterrand"
+    ],
+    "correct": 1,
+    "explanation": "Charles de Gaulle a été élu premier Président de la Ve République en décembre 1958, après avoir fondé cette nouvelle République la même année.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 86,
+    "question": "En quelle année l'esclavage a-t-il été aboli définitivement en France ?",
+    "options": [
+      "1789",
+      "1794",
+      "1848",
+      "1865"
+    ],
+    "correct": 2,
+    "explanation": "L'esclavage a été définitivement aboli en France en 1848 grâce au décret signé par Victor Schœlcher sous la Seconde République, après une première abolition en 1794 qui avait été annulée par Napoléon.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 87,
+    "question": "Depuis quelle année l'école publique est-elle gratuite ?",
+    "options": [
+      "1789",
+      "1848",
+      "1881",
+      "1905"
+    ],
+    "correct": 2,
+    "explanation": "L'école publique est devenue gratuite en 1881 grâce aux lois de Jules Ferry, qui ont également rendu l'instruction primaire obligatoire et laïque.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 88,
+    "question": "Combien y a-t-il eu de républiques en France ?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "correct": 2,
+    "explanation": "La France a connu cinq républiques depuis 1792 : la Première (1792-1804), la Deuxième (1848-1852), la Troisième (1870-1940), la Quatrième (1946-1958) et la Cinquième depuis 1958.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 89,
+    "question": "Qui était le roi de France au moment de la Révolution française ?",
+    "options": [
+      "Louis XIV",
+      "Louis XV",
+      "Louis XVI",
+      "Louis XVIII"
+    ],
+    "correct": 2,
+    "explanation": "Louis XVI était roi de France lorsque la Révolution française a éclaté en 1789. Il a été guillotiné en 1793 après la proclamation de la République.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 90,
+    "question": "Qui a fondé la Ve République ?",
+    "options": [
+      "François Mitterrand",
+      "Charles de Gaulle",
+      "Georges Pompidou",
+      "René Coty"
+    ],
+    "correct": 1,
+    "explanation": "Charles de Gaulle a fondé la Ve République en 1958, établissant une nouvelle Constitution qui renforçait les pouvoirs du Président de la République.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 91,
+    "question": "Que célèbre-t-on le 14 juillet ?",
+    "options": [
+      "La victoire de 1918",
+      "La libération de Paris",
+      "La prise de la Bastille",
+      "L'abolition de l'esclavage"
+    ],
+    "correct": 2,
+    "explanation": "Le 14 juillet commémore la prise de la Bastille en 1789, événement symbolique du début de la Révolution française et de la fin de l'absolutisme royal.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 92,
+    "question": "Quelle guerre a eu lieu entre 1914 et 1918 ?",
+    "options": [
+      "La guerre de Cent Ans",
+      "La Première Guerre mondiale",
+      "La Seconde Guerre mondiale",
+      "La guerre franco-prussienne"
+    ],
+    "correct": 1,
+    "explanation": "La Première Guerre mondiale s'est déroulée de 1914 à 1918, impliquant la France aux côtés des Alliés contre les Empires centraux.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 93,
+    "question": "Pourquoi l'année 1958 est importante pour la France ?",
+    "options": [
+      "Création de l'Union européenne",
+      "Fondation de la Ve République",
+      "Fin de la Seconde Guerre mondiale",
+      "Début de la IVe République"
+    ],
+    "correct": 1,
+    "explanation": "En 1958, la Ve République a été fondée par Charles de Gaulle avec l'adoption d'une nouvelle Constitution approuvée par référendum, remplaçant la IVe République.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 94,
+    "question": "Quel fleuve coule en France ?",
+    "options": [
+      "Le Danube",
+      "La Seine",
+      "Le Rhin",
+      "La Volga"
+    ],
+    "correct": 1,
+    "explanation": "La Seine est l'un des principaux fleuves français, traversant Paris et se jetant dans la Manche. D'autres fleuves français incluent la Loire, le Rhône, la Garonne et le Rhin (frontière).",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 95,
+    "question": "Quelle ville est française ?",
+    "options": [
+      "Bruxelles",
+      "Genève",
+      "Lyon",
+      "Luxembourg"
+    ],
+    "correct": 2,
+    "explanation": "Lyon est une grande ville française située au confluent du Rhône et de la Saône, et est la troisième plus grande ville de France après Paris et Marseille.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 96,
+    "question": "Quel océan borde la côte ouest française ?",
+    "options": [
+      "L'océan Indien",
+      "L'océan Arctique",
+      "L'océan Atlantique",
+      "L'océan Pacifique"
+    ],
+    "correct": 2,
+    "explanation": "L'océan Atlantique borde toute la côte ouest de la France métropolitaine, de la Bretagne jusqu'à la frontière espagnole au Pays basque.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 97,
+    "question": "Qu'est-ce que Paris ?",
+    "options": [
+      "Un département français",
+      "La capitale et plus grande ville de France",
+      "Une région française",
+      "Un fleuve français"
+    ],
+    "correct": 1,
+    "explanation": "Paris est la capitale de la France et sa plus grande ville avec environ 2,2 millions d'habitants intra-muros, située sur la Seine en région Île-de-France.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 98,
+    "question": "Quelle est la capitale de la France ?",
+    "options": [
+      "Marseille",
+      "Lyon",
+      "Paris",
+      "Bordeaux"
+    ],
+    "correct": 2,
+    "explanation": "Paris est la capitale de la France depuis plus de mille ans, siège du gouvernement et centre politique, économique et culturel du pays.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 99,
+    "question": "Sur quel continent se situe la France métropolitaine ?",
+    "options": [
+      "L'Asie",
+      "L'Afrique",
+      "L'Europe",
+      "L'Amérique"
+    ],
+    "correct": 2,
+    "explanation": "La France métropolitaine est située en Europe occidentale, bordée par l'océan Atlantique, la mer Méditerranée et plusieurs pays européens.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 100,
+    "question": "Quelle île est un département d'outre-mer français ?",
+    "options": [
+      "La Corse",
+      "La Martinique",
+      "La Sicile",
+      "Malte"
+    ],
+    "correct": 1,
+    "explanation": "La Martinique est un département et région d'outre-mer français situé dans les Caraïbes. D'autres DOM incluent la Guadeloupe, la Guyane, La Réunion et Mayotte.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 101,
+    "question": "Combien y a-t-il de régions en France métropolitaine ?",
+    "options": [
+      "13 régions",
+      "18 régions",
+      "22 régions",
+      "27 régions"
+    ],
+    "correct": 0,
+    "explanation": "Depuis la réforme territoriale de 2016, la France métropolitaine compte 13 régions administratives.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 102,
+    "question": "Quelle ville est un grand port maritime ?",
+    "options": [
+      "Lyon",
+      "Marseille",
+      "Toulouse",
+      "Strasbourg"
+    ],
+    "correct": 1,
+    "explanation": "Marseille est le plus grand port maritime de France, situé sur la mer Méditerranée.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 103,
+    "question": "Quelle est la mer au sud de la France métropolitaine ?",
+    "options": [
+      "La mer du Nord",
+      "L'océan Atlantique",
+      "La mer Méditerranée",
+      "La Manche"
+    ],
+    "correct": 2,
+    "explanation": "La mer Méditerranée borde le sud de la France métropolitaine, du Languedoc-Roussillon à la Côte d'Azur.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 104,
+    "question": "Quelle ville est située au bord de la mer Méditerranée ?",
+    "options": [
+      "Bordeaux",
+      "Nantes",
+      "Nice",
+      "La Rochelle"
+    ],
+    "correct": 2,
+    "explanation": "Nice est une ville majeure de la Côte d'Azur, située sur le littoral méditerranéen.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 105,
+    "question": "Où se situe la Corse ?",
+    "options": [
+      "Dans l'océan Atlantique",
+      "Dans la mer Méditerranée",
+      "Dans la Manche",
+      "Dans la mer du Nord"
+    ],
+    "correct": 1,
+    "explanation": "La Corse est une île française située dans la mer Méditerranée, au sud-est de la France métropolitaine.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 106,
+    "question": "Quelle chaîne de montagnes est située entre la France et l'Italie ?",
+    "options": [
+      "Les Pyrénées",
+      "Le Massif central",
+      "Les Alpes",
+      "Les Vosges"
+    ],
+    "correct": 2,
+    "explanation": "Les Alpes forment une frontière naturelle entre la France et l'Italie, avec le Mont Blanc comme point culminant.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 107,
+    "question": "Qui était Molière ?",
+    "options": [
+      "Un peintre",
+      "Un dramaturge et comédien",
+      "Un compositeur",
+      "Un sculpteur"
+    ],
+    "correct": 1,
+    "explanation": "Molière (1622-1673) était un dramaturge et comédien français, auteur de comédies célèbres comme 'Le Malade imaginaire' et 'L'Avare'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 108,
+    "question": "Qui était Charles Baudelaire ?",
+    "options": [
+      "Un architecte",
+      "Un poète",
+      "Un homme politique",
+      "Un scientifique"
+    ],
+    "correct": 1,
+    "explanation": "Charles Baudelaire (1821-1867) était un poète français majeur, auteur du recueil 'Les Fleurs du mal'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 109,
+    "question": "Qui était George Sand ?",
+    "options": [
+      "Une danseuse",
+      "Une femme écrivain",
+      "Une chanteuse",
+      "Une actrice"
+    ],
+    "correct": 1,
+    "explanation": "George Sand (1804-1876), de son vrai nom Amantine Aurore Dupin, était une femme écrivain française célèbre pour ses romans et sa vie libre.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 110,
+    "question": "Qui était Simone de Beauvoir ?",
+    "options": [
+      "Une philosophe et écrivain féministe",
+      "Une actrice",
+      "Une chanteuse",
+      "Une peintre"
+    ],
+    "correct": 0,
+    "explanation": "Simone de Beauvoir (1908-1986) était une philosophe, écrivain et féministe française, auteure du 'Deuxième Sexe'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 111,
+    "question": "Qui était Albert Camus ?",
+    "options": [
+      "Un musicien",
+      "Un écrivain et philosophe",
+      "Un réalisateur",
+      "Un architecte"
+    ],
+    "correct": 1,
+    "explanation": "Albert Camus (1913-1960) était un écrivain, philosophe et journaliste français, prix Nobel de littérature en 1957, auteur de 'L'Étranger'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 112,
+    "question": "Qui était Paul Cézanne ?",
+    "options": [
+      "Un écrivain",
+      "Un peintre",
+      "Un compositeur",
+      "Un sculpteur"
+    ],
+    "correct": 1,
+    "explanation": "Paul Cézanne (1839-1906) était un peintre français post-impressionniste, considéré comme un précurseur de l'art moderne.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 113,
+    "question": "Qui était Marc Chagall ?",
+    "options": [
+      "Un peintre",
+      "Un écrivain",
+      "Un musicien",
+      "Un architecte"
+    ],
+    "correct": 0,
+    "explanation": "Marc Chagall (1887-1985) était un peintre et artiste d'origine russe naturalisé français, célèbre pour ses œuvres colorées et poétiques.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 114,
+    "question": "Qui était Joséphine Baker ?",
+    "options": [
+      "Une femme politique",
+      "Une chanteuse et danseuse",
+      "Une écrivain",
+      "Une scientifique"
+    ],
+    "correct": 1,
+    "explanation": "Joséphine Baker (1906-1975) était une chanteuse, danseuse et résistante franco-américaine, première femme noire au Panthéon en 2021.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 115,
+    "question": "Qui était une chanteuse française célèbre ?",
+    "options": [
+      "Marie Curie",
+      "Édith Piaf",
+      "Simone Veil",
+      "George Sand"
+    ],
+    "correct": 1,
+    "explanation": "Édith Piaf (1915-1963) était une chanteuse française légendaire, surnommée 'La Môme', célèbre pour 'La Vie en rose'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 116,
+    "question": "Qu'est-ce que le Louvre ?",
+    "options": [
+      "Une cathédrale",
+      "Un musée",
+      "Un palais présidentiel",
+      "Une université"
+    ],
+    "correct": 1,
+    "explanation": "Le Louvre est le plus grand musée d'art du monde, situé à Paris, abritant notamment la Joconde de Léonard de Vinci.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 117,
+    "question": "Qui était Jean de la Fontaine ?",
+    "options": [
+      "Un poète et fabuliste",
+      "Un peintre",
+      "Un scientifique",
+      "Un homme politique"
+    ],
+    "correct": 0,
+    "explanation": "Jean de la Fontaine (1621-1695) était un poète français célèbre pour ses Fables mettant en scène des animaux.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 118,
+    "question": "Quel écrivain est français ?",
+    "options": [
+      "William Shakespeare",
+      "Victor Hugo",
+      "Miguel de Cervantes",
+      "Johann Wolfgang von Goethe"
+    ],
+    "correct": 1,
+    "explanation": "Victor Hugo (1802-1885) était un écrivain français majeur, auteur des 'Misérables' et de 'Notre-Dame de Paris'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 119,
+    "question": "Dans quelle ville se trouve la tour Eiffel ?",
+    "options": [
+      "Lyon",
+      "Marseille",
+      "Paris",
+      "Bordeaux"
+    ],
+    "correct": 2,
+    "explanation": "La tour Eiffel, construite en 1889 pour l'Exposition universelle, est située à Paris et est le monument le plus visité au monde.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 120,
+    "question": "Quand célèbre-t-on Noël ?",
+    "options": [
+      "Le 1er janvier",
+      "Le 14 juillet",
+      "Le 25 décembre",
+      "Le 11 novembre"
+    ],
+    "correct": 2,
+    "explanation": "Noël est célébré le 25 décembre en France, c'est une fête chrétienne devenue tradition culturelle nationale.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 121,
+    "question": "Quel numéro d'urgence permet d'appeler le SAMU ?",
+    "options": [
+      "17",
+      "15",
+      "18",
+      "112"
+    ],
+    "correct": 1,
+    "explanation": "Le 15 est le numéro du SAMU (Service d'Aide Médicale Urgente) pour toutes les urgences médicales en France.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 122,
+    "question": "Quel numéro d'urgence permet d'appeler les pompiers ?",
+    "options": [
+      "15",
+      "17",
+      "18",
+      "112"
+    ],
+    "correct": 2,
+    "explanation": "Le 18 est le numéro des sapeurs-pompiers en France pour les incendies, accidents et autres situations d'urgence.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 123,
+    "question": "Après avoir obtenu le permis de conduire, que faut-il faire pour pouvoir conduire sa voiture ?",
+    "options": [
+      "Acheter une vignette automobile",
+      "Souscrire une assurance obligatoire",
+      "S'inscrire à la préfecture",
+      "Faire une déclaration en mairie"
+    ],
+    "correct": 1,
+    "explanation": "L'assurance automobile est obligatoire en France pour tout véhicule en circulation. Sans assurance, il est interdit de conduire.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 124,
+    "question": "À quelles conditions un mariage est-il reconnu juridiquement ?",
+    "options": [
+      "Uniquement s'il est célébré à l'église",
+      "S'il est célébré à la mairie par un officier d'état civil",
+      "S'il est célébré dans le pays d'origine",
+      "S'il est approuvé par la préfecture"
+    ],
+    "correct": 1,
+    "explanation": "En France, seul le mariage civil célébré à la mairie par un officier d'état civil a une valeur juridique. Le mariage religieux est facultatif.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 125,
+    "question": "Quand faut-il déclarer son enfant au service d'état civil de la mairie ?",
+    "options": [
+      "Dans le mois suivant la naissance",
+      "Dans les 5 jours suivant la naissance",
+      "Dans les 3 mois suivant la naissance",
+      "Avant la naissance"
+    ],
+    "correct": 1,
+    "explanation": "La déclaration de naissance doit être faite dans les 5 jours suivant l'accouchement auprès de la mairie du lieu de naissance.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 126,
+    "question": "Le travail non déclaré est :",
+    "options": [
+      "Autorisé pour les petits emplois",
+      "Interdit et sanctionné par la loi",
+      "Autorisé si l'employeur est d'accord",
+      "Permis pour les étudiants"
+    ],
+    "correct": 1,
+    "explanation": "Le travail non déclaré (travail au noir) est illégal en France et expose l'employeur et le salarié à des sanctions pénales et financières.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 127,
+    "question": "Que doit faire un employeur pour fixer un salaire ?",
+    "options": [
+      "Le négocier librement avec le salarié",
+      "Respecter au minimum le SMIC",
+      "Demander l'autorisation à la préfecture",
+      "Consulter le conseil municipal"
+    ],
+    "correct": 1,
+    "explanation": "L'employeur doit respecter le SMIC (Salaire Minimum Interprofessionnel de Croissance) qui est le salaire horaire minimum légal en France.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 128,
+    "question": "Qu'est-ce que le SMIC ?",
+    "options": [
+      "Le Système Minimum d'Intégration Civique",
+      "Le Salaire Minimum Interprofessionnel de Croissance",
+      "Le Service Municipal d'Information Citoyenne",
+      "Le Statut Minimum des Indépendants et Commerçants"
+    ],
+    "correct": 1,
+    "explanation": "Le SMIC est le Salaire Minimum Interprofessionnel de Croissance, c'est le salaire horaire minimum en dessous duquel aucun salarié ne peut être payé.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 129,
+    "question": "Quelle est la première démarche à réaliser pour chercher un emploi ?",
+    "options": [
+      "Contacter directement les entreprises",
+      "S'inscrire auprès de France Travail",
+      "Publier une annonce dans le journal",
+      "Se présenter à la mairie"
+    ],
+    "correct": 1,
+    "explanation": "L'inscription à France Travail (anciennement Pôle emploi) est la première démarche recommandée pour bénéficier d'un accompagnement dans la recherche d'emploi.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 130,
+    "question": "Quelle est la durée légale du temps de travail par semaine ?",
+    "options": [
+      "40 heures",
+      "35 heures",
+      "39 heures",
+      "32 heures"
+    ],
+    "correct": 1,
+    "explanation": "La durée légale du travail en France est fixée à 35 heures par semaine pour un temps plein, au-delà ce sont des heures supplémentaires.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 131,
+    "question": "Qui est aidé par France Travail ?",
+    "options": [
+      "Uniquement les chômeurs français",
+      "Toute personne en recherche d'emploi ou de formation",
+      "Uniquement les jeunes de moins de 25 ans",
+      "Uniquement les personnes sans diplôme"
+    ],
+    "correct": 1,
+    "explanation": "France Travail accompagne toute personne en recherche d'emploi ou souhaitant une formation professionnelle, quelle que soit sa situation.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 132,
+    "question": "Une personne étrangère en situation régulière peut créer son entreprise :",
+    "options": [
+      "Non, c'est interdit aux étrangers",
+      "Oui, sans aucune condition particulière",
+      "Oui, si elle possède un titre de séjour l'autorisant",
+      "Seulement après 10 ans de résidence"
+    ],
+    "correct": 2,
+    "explanation": "Une personne étrangère peut créer une entreprise en France si son titre de séjour l'y autorise (carte de résident, vie privée et familiale avec mention entrepreneur, etc.).",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 133,
+    "question": "Une femme peut-elle créer son entreprise ?",
+    "options": [
+      "Non, elle doit avoir l'autorisation de son mari",
+      "Oui, elle a les mêmes droits que les hommes",
+      "Seulement si elle est célibataire",
+      "Seulement avec un associé masculin"
+    ],
+    "correct": 1,
+    "explanation": "En France, l'égalité entre hommes et femmes est garantie par la loi. Une femme peut créer son entreprise librement, comme un homme.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 134,
+    "question": "À partir de quel âge un mineur peut-il travailler ?",
+    "options": [
+      "14 ans",
+      "16 ans",
+      "15 ans",
+      "18 ans"
+    ],
+    "correct": 1,
+    "explanation": "Un mineur peut travailler à partir de 16 ans en France, avec certaines restrictions. Entre 14 et 16 ans, seuls des travaux légers pendant les vacances sont autorisés.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 135,
+    "question": "Auprès de quel organisme faut-il demander le remboursement des frais de santé ?",
+    "options": [
+      "La mairie",
+      "L'Assurance Maladie (Sécurité sociale)",
+      "La préfecture",
+      "France Travail"
+    ],
+    "correct": 1,
+    "explanation": "L'Assurance Maladie, qui fait partie de la Sécurité sociale, est l'organisme qui rembourse les frais de santé en France.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 136,
+    "question": "Qu'est-ce qu'un numéro d'urgence ?",
+    "options": [
+      "Un numéro pour prendre rendez-vous rapidement",
+      "Un numéro gratuit accessible 24h/24 en cas de danger",
+      "Un numéro réservé aux étrangers",
+      "Un numéro pour les démarches administratives"
+    ],
+    "correct": 1,
+    "explanation": "Un numéro d'urgence est un numéro de téléphone gratuit, accessible 24h/24 et 7j/7, pour signaler une situation de danger nécessitant une intervention rapide.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 137,
+    "question": "Concernant l'accès aux soins, quelle proposition est correcte ?",
+    "options": [
+      "Seuls les Français peuvent consulter un médecin",
+      "Toute personne résidant en France a droit à des soins",
+      "Les étrangers doivent payer plus cher",
+      "Il faut attendre 5 ans pour avoir accès aux soins"
+    ],
+    "correct": 1,
+    "explanation": "Toute personne résidant en France de manière stable et régulière a droit à la protection maladie et peut accéder aux soins.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP",
+      "CR"
+    ]
+  },
+  {
+    "id": 138,
+    "question": "En cas de problème de santé non urgent, à qui faut-il s'adresser en premier ?",
+    "options": [
+      "Les urgences de l'hôpital",
+      "Son médecin traitant",
+      "La pharmacie",
+      "Le SAMU (15)"
+    ],
+    "correct": 1,
+    "explanation": "Pour un problème de santé non urgent, il faut consulter en priorité son médecin traitant qui assure le suivi médical régulier.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 139,
+    "question": "Quel est le rôle du médecin traitant ?",
+    "options": [
+      "Traiter uniquement les urgences",
+      "Assurer le suivi médical régulier et coordonner les soins",
+      "Délivrer les médicaments",
+      "Faire les vaccinations obligatoires uniquement"
+    ],
+    "correct": 1,
+    "explanation": "Le médecin traitant assure le suivi médical régulier du patient, coordonne son parcours de soins et oriente vers des spécialistes si nécessaire.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 140,
+    "question": "Dans quelles situations doit-on se rendre aux urgences de l'hôpital ?",
+    "options": [
+      "Pour un simple rhume",
+      "En cas de danger vital ou de problème grave nécessitant des soins immédiats",
+      "Pour tout problème de santé",
+      "Pour renouveler une ordonnance"
+    ],
+    "correct": 1,
+    "explanation": "Les urgences hospitalières sont réservées aux situations graves mettant en danger la vie ou nécessitant des soins médicaux immédiats (accident, malaise sévère, etc.).",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 141,
+    "question": "Quel est l'objectif des vaccinations obligatoires ?",
+    "options": [
+      "Réduire les coûts de la Sécurité sociale",
+      "Protéger la population contre certaines maladies graves",
+      "Permettre l'accès aux services publics",
+      "Contrôler les déplacements des citoyens"
+    ],
+    "correct": 1,
+    "explanation": "Les vaccinations obligatoires visent à protéger la population, notamment les plus vulnérables, contre des maladies infectieuses graves et à éviter les épidémies grâce à l'immunité collective.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 142,
+    "question": "À quoi sert la carte Vitale ?",
+    "options": [
+      "À prouver sa nationalité française",
+      "À attester de son identité lors des contrôles",
+      "À faciliter le remboursement des soins médicaux par l'Assurance Maladie",
+      "À voter lors des élections"
+    ],
+    "correct": 2,
+    "explanation": "La carte Vitale est la carte d'assuré social qui permet de bénéficier du remboursement des soins par l'Assurance Maladie de manière simplifiée et rapide.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 143,
+    "question": "À quoi sert une mutuelle santé ?",
+    "options": [
+      "À remplacer complètement la Sécurité sociale",
+      "À compléter les remboursements de la Sécurité sociale",
+      "À permettre l'accès gratuit aux hôpitaux privés",
+      "À fournir une assurance habitation"
+    ],
+    "correct": 1,
+    "explanation": "La mutuelle santé est une assurance complémentaire qui rembourse tout ou partie des frais de santé non pris en charge par la Sécurité sociale.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 144,
+    "question": "Jusqu'à quel âge l'école est-elle obligatoire ?",
+    "options": [
+      "14 ans",
+      "15 ans",
+      "16 ans",
+      "18 ans"
+    ],
+    "correct": 2,
+    "explanation": "En France, l'instruction est obligatoire pour tous les enfants de 3 à 16 ans, conformément au Code de l'éducation.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 145,
+    "question": "L'autorité parentale prévoit l'obligation :",
+    "options": [
+      "De scolariser son enfant uniquement dans une école publique",
+      "De protéger, éduquer et assurer la sécurité de l'enfant",
+      "D'inscrire son enfant à des activités sportives",
+      "De choisir le métier futur de l'enfant"
+    ],
+    "correct": 1,
+    "explanation": "L'autorité parentale implique des droits et devoirs ayant pour finalité l'intérêt de l'enfant, notamment le protéger dans sa santé, sa sécurité et sa moralité, assurer son éducation et permettre son développement.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 146,
+    "question": "Pour qui l'école est-elle obligatoire ?",
+    "options": [
+      "Uniquement pour les enfants de nationalité française",
+      "Pour tous les enfants résidant en France de 3 à 16 ans",
+      "Uniquement pour les enfants dont les parents travaillent",
+      "Pour tous les enfants de 6 à 14 ans seulement"
+    ],
+    "correct": 1,
+    "explanation": "L'instruction est obligatoire pour tous les enfants, français et étrangers, résidant sur le territoire français, de 3 à 16 ans.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 147,
+    "question": "Quel diplôme obtient-on à la fin du lycée ?",
+    "options": [
+      "Le brevet des collèges",
+      "Le baccalauréat",
+      "Le certificat d'études",
+      "La licence"
+    ],
+    "correct": 1,
+    "explanation": "Le baccalauréat est le diplôme national qui sanctionne la fin des études secondaires et ouvre l'accès à l'enseignement supérieur.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 148,
+    "question": "Dans quels établissements scolaires vont les élèves après l'école élémentaire ?",
+    "options": [
+      "Au lycée",
+      "À l'université",
+      "Au collège",
+      "En école maternelle"
+    ],
+    "correct": 2,
+    "explanation": "Après l'école élémentaire (du CP au CM2), les élèves poursuivent leur scolarité au collège pendant quatre ans (de la 6e à la 3e).",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 149,
+    "question": "Un enfant inscrit à l'école :",
+    "options": [
+      "Peut être absent sans justification",
+      "Doit obligatoirement être présent et assidu",
+      "Peut choisir librement ses horaires de présence",
+      "N'est pas tenu d'assister aux cours de sport"
+    ],
+    "correct": 1,
+    "explanation": "L'assiduité scolaire est obligatoire : tout enfant inscrit à l'école doit fréquenter régulièrement les cours et toute absence doit être justifiée auprès de l'établissement.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 150,
+    "question": "Les enfants qui ne parlent pas français :",
+    "options": [
+      "Ne peuvent pas être scolarisés en France",
+      "Doivent attendre de parler français pour être inscrits",
+      "Ont le droit d'être scolarisés et bénéficient d'un accompagnement adapté",
+      "Sont automatiquement placés dans des écoles spécialisées"
+    ],
+    "correct": 2,
+    "explanation": "Tous les enfants ont le droit d'être scolarisés en France quelle que soit leur maîtrise du français, et des dispositifs spécifiques d'accompagnement linguistique sont mis en place pour faciliter leur intégration.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CSP"
+    ]
+  },
+  {
+    "id": 151,
+    "question": "Parmi les propositions suivantes, laquelle constitue une participation citoyenne ?",
+    "options": [
+      "Payer ses impôts",
+      "Voter aux élections",
+      "Respecter le code de la route",
+      "Avoir une carte d'identité"
+    ],
+    "correct": 1,
+    "explanation": "Voter aux élections est un acte de participation citoyenne directe permettant d'exercer sa souveraineté. Les autres sont des obligations ou des droits, mais pas des formes de participation active à la vie démocratique.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 152,
+    "question": "Que garantit la liberté d'expression ?",
+    "options": [
+      "Le droit de tout dire sans limites",
+      "Le droit d'exprimer ses opinions dans le respect de la loi",
+      "Le droit de critiquer uniquement le gouvernement",
+      "Le droit de publier anonymement sur internet"
+    ],
+    "correct": 1,
+    "explanation": "La liberté d'expression garantit le droit d'exprimer ses opinions, mais dans le respect des lois qui interdisent notamment la diffamation, l'injure et l'incitation à la haine.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 153,
+    "question": "À quoi sert un titre de séjour ?",
+    "options": [
+      "À prouver son identité en France",
+      "À autoriser un étranger à résider légalement en France",
+      "À obtenir la nationalité française",
+      "À voyager dans l'espace Schengen"
+    ],
+    "correct": 1,
+    "explanation": "Le titre de séjour est un document officiel qui autorise un ressortissant étranger à résider sur le territoire français de manière régulière pour une durée déterminée.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 154,
+    "question": "La liberté de circulation permet à toute personne de :",
+    "options": [
+      "Se déplacer librement dans toute l'Union européenne",
+      "Circuler et s'installer librement sur le territoire français",
+      "Traverser les frontières sans contrôle",
+      "Conduire sans permis sur les routes françaises"
+    ],
+    "correct": 1,
+    "explanation": "La liberté de circulation garantit à toute personne le droit de circuler librement et de choisir son lieu de résidence sur le territoire français, sous réserve du respect des lois.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 155,
+    "question": "Sur quel site internet peut-on retrouver le symbole de la République française ?",
+    "options": [
+      "www.france.fr",
+      "www.gouvernement.fr",
+      "www.republique-francaise.fr",
+      "www.service-public.fr"
+    ],
+    "correct": 1,
+    "explanation": "Le site www.gouvernement.fr est le portail officiel du gouvernement français où l'on retrouve les symboles de la République, dont Marianne, le drapeau tricolore et la devise.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 156,
+    "question": "Complétez ces paroles de la Marseillaise : \"Aux armes […] ! Formez vos bataillons\"",
+    "options": [
+      "soldats",
+      "citoyens",
+      "patriots",
+      "Français"
+    ],
+    "correct": 1,
+    "explanation": "Le refrain de la Marseillaise dit \"Aux armes citoyens ! Formez vos bataillons\", rappelant l'appel aux citoyens à défendre la patrie pendant la Révolution française.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 157,
+    "question": "Complétez les paroles de la Marseillaise : \"Allons enfants de la patrie […]\"",
+    "options": [
+      "La victoire est arrivée",
+      "Le jour de gloire est arrivé",
+      "L'heure de gloire a sonné",
+      "Le moment de combattre est venu"
+    ],
+    "correct": 1,
+    "explanation": "Le premier vers de la Marseillaise est \"Allons enfants de la patrie, le jour de gloire est arrivé\". C'est l'hymne national français composé par Rouget de Lisle en 1792.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 158,
+    "question": "En application de la liberté individuelle, quelle proposition est correcte ? Une personne peut :",
+    "options": [
+      "Imposer ses convictions religieuses à autrui",
+      "Choisir librement son mode de vie dans le respect de la loi",
+      "Refuser de respecter les lois qui contredisent ses croyances",
+      "S'habiller uniquement selon les normes de sa communauté"
+    ],
+    "correct": 1,
+    "explanation": "La liberté individuelle garantit à chacun le droit de choisir son mode de vie, ses opinions et ses croyances, dans le respect des lois et des libertés d'autrui.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 159,
+    "question": "Concernant la pratique de la religion, quelle proposition est correcte ?",
+    "options": [
+      "La religion doit être pratiquée uniquement dans les lieux de culte",
+      "Chacun est libre de pratiquer la religion de son choix ou de n'en avoir aucune",
+      "L'État impose une religion officielle en France",
+      "Les enfants doivent suivre obligatoirement la religion de leurs parents"
+    ],
+    "correct": 1,
+    "explanation": "La laïcité garantit la liberté de conscience : chacun peut pratiquer la religion de son choix ou n'en avoir aucune. L'État est neutre et ne favorise aucune religion.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 160,
+    "question": "En tant que parent, peut-on refuser que son enfant participe aux cours de sport à l'école car ils sont mixtes ?",
+    "options": [
+      "Oui, c'est un droit parental",
+      "Non, l'instruction est obligatoire et comprend tous les enseignements",
+      "Oui, si c'est pour des raisons religieuses",
+      "Non, sauf avec un certificat médical"
+    ],
+    "correct": 1,
+    "explanation": "L'instruction est obligatoire et les parents ne peuvent refuser la participation de leur enfant aux activités scolaires pour des motifs religieux ou personnels. L'école républicaine est laïque et mixte.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 161,
+    "question": "Quelle est la devise de la France ?",
+    "options": [
+      "Liberté, Égalité, Solidarité",
+      "Liberté, Égalité, Fraternité",
+      "Liberté, Justice, Fraternité",
+      "Unité, Égalité, Fraternité"
+    ],
+    "correct": 1,
+    "explanation": "La devise de la République française est \"Liberté, Égalité, Fraternité\". Elle est inscrite sur les frontons des bâtiments publics et figure dans la Constitution.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 162,
+    "question": "La répudiation de sa femme est :",
+    "options": [
+      "Autorisée si les deux époux sont d'accord",
+      "Interdite en France",
+      "Autorisée pour des motifs religieux",
+      "Autorisée par un juge aux affaires familiales"
+    ],
+    "correct": 1,
+    "explanation": "La répudiation est strictement interdite en France. Le divorce doit obligatoirement être prononcé par un juge, garantissant ainsi l'égalité entre les époux et la protection des droits de chacun.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 163,
+    "question": "Les impôts permettent de financer les dépenses publiques. Quelle proposition est correcte ?",
+    "options": [
+      "Seuls les salariés paient des impôts",
+      "Chacun contribue selon ses ressources",
+      "Les impôts sont facultatifs",
+      "Seuls les propriétaires paient des impôts"
+    ],
+    "correct": 1,
+    "explanation": "Le système fiscal français repose sur le principe de progressivité : chacun contribue aux charges publiques selon ses capacités financières, conformément à l'article 13 de la Déclaration des droits de l'homme.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 164,
+    "question": "Peut-on brûler publiquement un drapeau français ?",
+    "options": [
+      "Oui, c'est une forme de liberté d'expression",
+      "Non, c'est un délit puni par la loi",
+      "Oui, si c'est lors d'une manifestation autorisée",
+      "Non, sauf si c'est son propre drapeau"
+    ],
+    "correct": 1,
+    "explanation": "Brûler publiquement le drapeau tricolore constitue une outrage à un symbole de la République, puni par l'article 433-5-1 du Code pénal d'une amende de 1 500 euros.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 165,
+    "question": "Que fait l'État pour lutter contre les discriminations ?",
+    "options": [
+      "Il laisse les citoyens régler leurs différends",
+      "Il adopte des lois et sanctionne les comportements discriminatoires",
+      "Il recommande simplement de ne pas discriminer",
+      "Il intervient uniquement dans les entreprises publiques"
+    ],
+    "correct": 1,
+    "explanation": "L'État français lutte activement contre les discriminations par des lois qui interdisent et sanctionnent pénalement toute discrimination fondée sur l'origine, le sexe, la religion ou tout autre critère prohibé.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 166,
+    "question": "Que représente Marianne ?",
+    "options": [
+      "La première femme présidente de la République",
+      "La République française et ses valeurs",
+      "La liberté uniquement",
+      "Une héroïne de la Révolution française"
+    ],
+    "correct": 1,
+    "explanation": "Marianne est la représentation symbolique de la République française et de ses valeurs de liberté, d'égalité et de fraternité. Son buste figure dans les mairies.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 167,
+    "question": "Qu'est-ce que la liberté d'association ?",
+    "options": [
+      "Le droit de se réunir en famille",
+      "Le droit de créer ou adhérer à une association",
+      "Le droit de manifester dans la rue",
+      "Le droit de créer un parti politique"
+    ],
+    "correct": 1,
+    "explanation": "La liberté d'association, garantie par la loi de 1901, permet à toute personne de créer ou d'adhérer librement à une association pour défendre des intérêts communs, dans le respect de la loi.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 168,
+    "question": "Qu'est-ce que la liberté ?",
+    "options": [
+      "Faire tout ce que l'on veut",
+      "Pouvoir agir dans le respect des lois et des droits d'autrui",
+      "Ne pas avoir de contraintes professionnelles",
+      "Vivre selon ses propres règles uniquement"
+    ],
+    "correct": 1,
+    "explanation": "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui, dans le respect des lois. Elle s'exerce dans le cadre défini par la loi qui garantit l'ordre public et les droits de tous.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 169,
+    "question": "Sur quel document peut-on voir Marianne ?",
+    "options": [
+      "Sur les passeports uniquement",
+      "Sur les timbres-poste et dans les mairies",
+      "Sur les cartes d'identité seulement",
+      "Sur les billets de banque en euros"
+    ],
+    "correct": 1,
+    "explanation": "Marianne figure sur les timbres-poste français et son buste est présent dans toutes les mairies de France. Elle est le symbole de la République française.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 170,
+    "question": "Un employeur refuse d'embaucher des femmes dans son entreprise. Que dit la loi ?",
+    "options": [
+      "C'est autorisé si c'est précisé dans l'annonce",
+      "C'est interdit, c'est une discrimination punissable",
+      "C'est autorisé pour certains métiers difficiles",
+      "C'est autorisé si l'entreprise est privée"
+    ],
+    "correct": 1,
+    "explanation": "Refuser d'embaucher une personne en raison de son sexe constitue une discrimination interdite et punissable par la loi. Le principe d'égalité entre les femmes et les hommes est garanti.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 171,
+    "question": "Une des valeurs de la devise républicaine est l'égalité. Qu'est-ce que cela signifie ?",
+    "options": [
+      "Tous les citoyens ont les mêmes droits et devoirs sans distinction",
+      "Tous les citoyens doivent avoir le même salaire",
+      "Tous les citoyens doivent penser de la même manière",
+      "Tous les citoyens doivent exercer le même métier"
+    ],
+    "correct": 0,
+    "explanation": "L'égalité républicaine signifie que tous les citoyens ont les mêmes droits et les mêmes devoirs devant la loi, sans distinction d'origine, de religion ou de condition sociale.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 172,
+    "question": "En quelle année la loi de séparation des Églises et de l'Etat a-t-elle été votée ?",
+    "options": [
+      "1789",
+      "1881",
+      "1905",
+      "1946"
+    ],
+    "correct": 2,
+    "explanation": "La loi de séparation des Églises et de l'État a été votée le 9 décembre 1905. Elle établit la laïcité de la République et garantit la liberté de conscience.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 173,
+    "question": "À l'école publique, qui peut porter des signes religieux très visibles ?",
+    "options": [
+      "Les élèves uniquement",
+      "Les enseignants uniquement",
+      "Personne, c'est interdit pour tous",
+      "Ni les élèves ni les enseignants"
+    ],
+    "correct": 3,
+    "explanation": "Depuis la loi de 2004, le port de signes religieux ostensibles est interdit aux élèves dans les écoles publiques. Les enseignants, en tant qu'agents publics, doivent également respecter la neutralité religieuse.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 174,
+    "question": "Selon le principe de laïcité, que signifie la neutralité de l'État ?",
+    "options": [
+      "L'État interdit toutes les religions",
+      "L'État ne reconnaît, ne salarie ni ne subventionne aucun culte",
+      "L'État oblige tous les citoyens à être athées",
+      "L'État favorise une religion majoritaire"
+    ],
+    "correct": 1,
+    "explanation": "La neutralité de l'État signifie qu'il ne reconnaît, ne salarie ni ne subventionne aucun culte. L'État garantit la liberté de conscience et le libre exercice des cultes.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 175,
+    "question": "Que peut faire un usager du service public dans une mairie ?",
+    "options": [
+      "Il doit retirer ses signes religieux avant d'entrer",
+      "Il peut porter des signes religieux visibles",
+      "Il doit cacher son identité religieuse",
+      "Il doit déclarer sa religion à l'accueil"
+    ],
+    "correct": 1,
+    "explanation": "Les usagers du service public conservent leur liberté de conscience et d'expression religieuse. Ils peuvent donc porter des signes religieux visibles dans les services publics.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 176,
+    "question": "Qui doit respecter le principe de neutralité religieuse dans une préfecture ?",
+    "options": [
+      "Uniquement le préfet",
+      "Tous les usagers du service",
+      "Tous les agents publics travaillant dans la préfecture",
+      "Uniquement les visiteurs étrangers"
+    ],
+    "correct": 2,
+    "explanation": "Tous les agents publics doivent respecter le principe de neutralité religieuse dans l'exercice de leurs fonctions. Ils ne doivent manifester aucune préférence religieuse.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 177,
+    "question": "La laïcité impose-t-elle aux agents publics d'être neutres vis-à-vis des usagers ?",
+    "options": [
+      "Non, ils peuvent exprimer leurs convictions religieuses librement",
+      "Oui, ils doivent être neutres dans l'exercice de leurs fonctions",
+      "Oui, mais seulement le vendredi",
+      "Non, sauf s'ils travaillent dans une école"
+    ],
+    "correct": 1,
+    "explanation": "Oui, les agents publics doivent être neutres dans l'exercice de leurs fonctions et traiter tous les usagers de manière égale, sans distinction de religion.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 178,
+    "question": "Que garantit le principe de laïcité ?",
+    "options": [
+      "L'interdiction de toutes les religions",
+      "La liberté de conscience et l'égalité de tous devant la loi",
+      "L'obligation d'être athée pour travailler dans le service public",
+      "Le financement des lieux de culte par l'État"
+    ],
+    "correct": 1,
+    "explanation": "Le principe de laïcité garantit la liberté de conscience, le libre exercice des cultes et l'égalité de tous les citoyens devant la loi sans distinction de religion.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 179,
+    "question": "A-t-on le droit de changer de religion ?",
+    "options": [
+      "Non, c'est interdit par la loi française",
+      "Oui, c'est une liberté fondamentale garantie par la République",
+      "Oui, mais seulement avec l'autorisation de la préfecture",
+      "Non, sauf autorisation du maire"
+    ],
+    "correct": 1,
+    "explanation": "La liberté de conscience garantie par la République permet à chacun de choisir, de changer ou de ne pas avoir de religion. C'est un droit fondamental.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 180,
+    "question": "Que représente la laïcité ?",
+    "options": [
+      "L'interdiction de pratiquer une religion en France",
+      "La séparation entre l'État et les religions, et la liberté de conscience",
+      "L'obligation pour tous les Français d'être athées",
+      "Le contrôle des religions par l'État"
+    ],
+    "correct": 1,
+    "explanation": "La laïcité représente la séparation entre l'État et les religions, garantissant la liberté de conscience et l'égalité de tous devant la loi sans distinction religieuse.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 181,
+    "question": "Qu'est ce qui est interdit par la Charte de la laïcité à l'école ?",
+    "options": [
+      "Le port de signes religieux ostensibles par les élèves",
+      "L'étude des religions dans les cours d'histoire",
+      "Les repas sans porc à la cantine",
+      "La présence d'élèves de différentes religions"
+    ],
+    "correct": 0,
+    "explanation": "La Charte de la laïcité à l'école interdit le port de signes ou de tenues manifestant ostensiblement une appartenance religieuse par les élèves, conformément à la loi de 2004.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 182,
+    "question": "Que dit l'article 1er de la Constitution française ?",
+    "options": [
+      "La France est une monarchie constitutionnelle",
+      "La France est une République indivisible, laïque, démocratique et sociale",
+      "La France est un État fédéral",
+      "La France est une théocratie républicaine"
+    ],
+    "correct": 1,
+    "explanation": "L'article 1er de la Constitution de 1958 proclame que la France est une République indivisible, laïque, démocratique et sociale qui assure l'égalité devant la loi de tous les citoyens.",
+    "category": "Principes et valeurs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 183,
+    "question": "Qu'est-ce que l'État de droit ?",
+    "options": [
+      "Un État où seul le gouvernement fait les lois",
+      "Un État où tous, y compris les gouvernants, sont soumis au respect de la loi",
+      "Un État où il n'y a pas de Constitution",
+      "Un État où seuls les citoyens doivent respecter les lois"
+    ],
+    "correct": 1,
+    "explanation": "L'État de droit est un système où tous, y compris les gouvernants et les institutions, sont soumis au respect de la loi et où les droits fondamentaux sont garantis.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 184,
+    "question": "Le président de la République a commis un crime. Quelle proposition est correcte ?",
+    "options": [
+      "Il ne peut pas être poursuivi car il est chef de l'État",
+      "Il peut être destitué par le Parlement réuni en Haute Cour",
+      "Seul le peuple peut le juger par référendum",
+      "Il doit attendre la fin de son mandat pour être jugé"
+    ],
+    "correct": 1,
+    "explanation": "En cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat, le président peut être destitué par le Parlement constitué en Haute Cour.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 185,
+    "question": "La loi est l'expression de :",
+    "options": [
+      "La volonté du président de la République",
+      "La volonté générale",
+      "La volonté du Premier ministre",
+      "La volonté des juges"
+    ],
+    "correct": 1,
+    "explanation": "Selon l'article 6 de la Déclaration des droits de l'homme et du citoyen de 1789, la loi est l'expression de la volonté générale, votée par les représentants du peuple.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 186,
+    "question": "Quelle est la durée du mandat du conseil municipal et du maire ?",
+    "options": [
+      "4 ans",
+      "5 ans",
+      "6 ans",
+      "7 ans"
+    ],
+    "correct": 2,
+    "explanation": "Le mandat du conseil municipal et du maire est de 6 ans. Les conseillers municipaux sont élus au suffrage universel direct et élisent ensuite le maire parmi eux.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 187,
+    "question": "Que garantit l'État de droit ?",
+    "options": [
+      "Que seuls les riches ont accès à la justice",
+      "Que tous les citoyens et les pouvoirs publics sont soumis aux mêmes lois",
+      "Que le gouvernement peut faire ce qu'il veut",
+      "Que seul le président fait respecter la loi"
+    ],
+    "correct": 1,
+    "explanation": "L'État de droit garantit que tous les citoyens et les pouvoirs publics sont soumis aux mêmes lois, et que chacun peut faire valoir ses droits devant la justice.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 188,
+    "question": "Une personne peut-elle voter à la place d'une autre ?",
+    "options": [
+      "Oui, si elle a une procuration valide",
+      "Oui, si c'est un membre de la famille",
+      "Non, c'est strictement interdit dans tous les cas",
+      "Oui, si l'autre personne est malade"
+    ],
+    "correct": 0,
+    "explanation": "Une personne peut voter à la place d'une autre uniquement si elle dispose d'une procuration en bonne et due forme, établie préalablement devant les autorités compétentes.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 189,
+    "question": "Est-ce que le vote est obligatoire ?",
+    "options": [
+      "Oui, sous peine d'amende",
+      "Oui, mais seulement pour les élections présidentielles",
+      "Non, le vote est un droit mais pas une obligation",
+      "Oui, pour tous les citoyens majeurs"
+    ],
+    "correct": 2,
+    "explanation": "En France, le vote est un droit citoyen mais pas une obligation légale. Chaque citoyen est libre de participer ou non aux élections.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 190,
+    "question": "À la fin de son mandat, le président de la République peut-il décider de rester au pouvoir ?",
+    "options": [
+      "Oui, s'il le souhaite",
+      "Oui, avec l'accord du Premier ministre",
+      "Non, il doit respecter la durée de son mandat fixée par la Constitution",
+      "Oui, si la situation du pays l'exige"
+    ],
+    "correct": 2,
+    "explanation": "Non, le président doit respecter la durée de son mandat fixée à 5 ans par la Constitution. Il ne peut se maintenir au pouvoir et doit organiser de nouvelles élections.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 191,
+    "question": "Qui dirige l'action du Gouvernement ?",
+    "options": [
+      "Le Président de la République",
+      "Le Premier ministre",
+      "Le Ministre de l'Intérieur",
+      "Le Président de l'Assemblée nationale"
+    ],
+    "correct": 1,
+    "explanation": "Selon l'article 21 de la Constitution, le Premier ministre dirige l'action du Gouvernement et est responsable de la défense nationale.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 192,
+    "question": "Quelle est l'organisation administrative de la France ?",
+    "options": [
+      "Centralisée uniquement",
+      "Décentralisée avec des collectivités territoriales",
+      "Fédérale comme l'Allemagne",
+      "Régionale sans communes"
+    ],
+    "correct": 1,
+    "explanation": "La France est organisée de manière décentralisée avec trois niveaux de collectivités territoriales : les communes, les départements et les régions.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 193,
+    "question": "Qu'est-ce que le pouvoir législatif ? Le pouvoir :",
+    "options": [
+      "d'appliquer les lois",
+      "de faire respecter les lois",
+      "de faire les lois",
+      "de juger l'application des lois"
+    ],
+    "correct": 2,
+    "explanation": "Le pouvoir législatif est le pouvoir de voter et d'adopter les lois. En France, il est exercé par le Parlement (Assemblée nationale et Sénat).",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 194,
+    "question": "Pourquoi séparer les trois pouvoirs dans une démocratie ?",
+    "options": [
+      "Pour répartir le travail entre plusieurs personnes",
+      "Pour empêcher les abus de pouvoir et garantir les libertés",
+      "Pour créer plus d'emplois dans l'administration",
+      "Pour respecter les traditions historiques"
+    ],
+    "correct": 1,
+    "explanation": "La séparation des pouvoirs (exécutif, législatif, judiciaire) permet d'éviter la concentration du pouvoir et protège contre l'arbitraire et les abus.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 195,
+    "question": "Quel est le rôle du gouvernement ?",
+    "options": [
+      "Voter les lois",
+      "Déterminer et conduire la politique de la nation",
+      "Juger les citoyens",
+      "Élire le Président de la République"
+    ],
+    "correct": 1,
+    "explanation": "Le Gouvernement, dirigé par le Premier ministre, détermine et conduit la politique de la nation et dispose de l'administration et de la force armée.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 196,
+    "question": "Qu'est-ce que l'Hôtel de Matignon ?",
+    "options": [
+      "La résidence du Président de la République",
+      "La résidence du Premier ministre",
+      "Le siège de l'Assemblée nationale",
+      "Le siège du Conseil constitutionnel"
+    ],
+    "correct": 1,
+    "explanation": "L'Hôtel de Matignon, situé rue de Varenne à Paris, est la résidence officielle et le lieu de travail du Premier ministre français.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 197,
+    "question": "Quel est le rôle du président de la République ?",
+    "options": [
+      "Diriger l'action du Gouvernement",
+      "Veiller au respect de la Constitution et assurer la continuité de l'État",
+      "Voter les lois",
+      "Présider l'Assemblée nationale"
+    ],
+    "correct": 1,
+    "explanation": "Le Président de la République est le garant de la Constitution, de l'indépendance nationale et de l'intégrité du territoire. Il arbitre et assure le fonctionnement régulier des pouvoirs publics.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 198,
+    "question": "Quel est le rôle du Premier ministre ?",
+    "options": [
+      "Nommer les ministres",
+      "Diriger l'action du Gouvernement",
+      "Dissoudre l'Assemblée nationale",
+      "Promulguer les lois"
+    ],
+    "correct": 1,
+    "explanation": "Le Premier ministre dirige l'action du Gouvernement, assure l'exécution des lois et exerce le pouvoir réglementaire.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 199,
+    "question": "Qui est le chef du Gouvernement ?",
+    "options": [
+      "Le Président de la République",
+      "Le Premier ministre",
+      "Le Ministre de l'Intérieur",
+      "Le Président du Sénat"
+    ],
+    "correct": 1,
+    "explanation": "Le Premier ministre est le chef du Gouvernement. Il dirige l'action gouvernementale et coordonne le travail des ministres.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 200,
+    "question": "Combien y a-t-il de régions en France ?",
+    "options": [
+      "13 régions",
+      "18 régions",
+      "22 régions",
+      "27 régions"
+    ],
+    "correct": 1,
+    "explanation": "La France compte 18 régions au total : 13 régions en France métropolitaine et 5 régions d'outre-mer (Guadeloupe, Martinique, Guyane, La Réunion, Mayotte).",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 201,
+    "question": "Quel est le rôle du Défenseur des droits ?",
+    "options": [
+      "Défendre la France contre les agressions",
+      "Défendre les droits et libertés des citoyens face aux administrations",
+      "Représenter la France à l'ONU",
+      "Diriger la police nationale"
+    ],
+    "correct": 1,
+    "explanation": "Le Défenseur des droits est une autorité constitutionnelle indépendante qui défend les droits des citoyens face aux administrations et lutte contre les discriminations.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 202,
+    "question": "Depuis quand l'euro est-elle la monnaie unique ?",
+    "options": [
+      "1995",
+      "1999",
+      "2002",
+      "2005"
+    ],
+    "correct": 2,
+    "explanation": "L'euro est devenu la monnaie fiduciaire (pièces et billets) en France et dans la zone euro le 1er janvier 2002, bien que sa création monétaire date de 1999.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 203,
+    "question": "Quel est le rôle principal du département ?",
+    "options": [
+      "Gérer les écoles primaires",
+      "Gérer l'action sociale et les collèges",
+      "Gérer les lycées",
+      "Gérer les universités"
+    ],
+    "correct": 1,
+    "explanation": "Le département a principalement en charge l'action sociale (aide aux personnes âgées, handicapées, à l'enfance), la gestion des collèges et l'entretien des routes départementales.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 204,
+    "question": "Quel est le rôle principal des communes ?",
+    "options": [
+      "Gérer les hôpitaux",
+      "Gérer les services de proximité comme l'état civil et l'urbanisme",
+      "Gérer les universités",
+      "Gérer les autoroutes"
+    ],
+    "correct": 1,
+    "explanation": "Les communes gèrent les services de proximité : état civil, urbanisme, écoles maternelles et primaires, voirie communale, action sociale locale.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 205,
+    "question": "Combien de communes environ existe-t-il en France ?",
+    "options": [
+      "5 000 communes",
+      "15 000 communes",
+      "35 000 communes",
+      "50 000 communes"
+    ],
+    "correct": 2,
+    "explanation": "La France compte environ 35 000 communes, ce qui en fait le pays d'Europe avec le plus grand nombre de communes.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 206,
+    "question": "Quel traité concerne la construction de l'Union européenne ?",
+    "options": [
+      "Le traité de Versailles",
+      "Le traité de Maastricht",
+      "Le traité de l'Atlantique Nord",
+      "Le traité de Genève"
+    ],
+    "correct": 1,
+    "explanation": "Le traité de Maastricht, signé en 1992, a créé l'Union européenne et établi les fondements de l'union économique et monétaire.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 207,
+    "question": "Quel État a quitté l'Union européenne en 2020 ?",
+    "options": [
+      "La Norvège",
+      "La Suisse",
+      "Le Royaume-Uni",
+      "L'Islande"
+    ],
+    "correct": 2,
+    "explanation": "Le Royaume-Uni a officiellement quitté l'Union européenne le 31 janvier 2020, suite au référendum du Brexit de 2016.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 208,
+    "question": "Quelle est la devise de l'Union européenne ?",
+    "options": [
+      "Liberté, Égalité, Fraternité",
+      "Unie dans la diversité",
+      "Paix et Prospérité",
+      "Force et Union"
+    ],
+    "correct": 1,
+    "explanation": "La devise de l'Union européenne est « Unie dans la diversité », soulignant que les Européens œuvrent ensemble pour la paix et la prospérité tout en conservant leurs cultures diverses.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 209,
+    "question": "Quel est l'hymne de l'Union européenne ?",
+    "options": [
+      "La Marseillaise",
+      "L'Ode à la joie",
+      "L'hymne à la paix",
+      "Ode à l'Europe"
+    ],
+    "correct": 1,
+    "explanation": "L'hymne de l'Union européenne est l'Ode à la joie, tirée de la 9e symphonie de Beethoven, symbolisant l'idéal de fraternité et d'unité.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 210,
+    "question": "De quoi est composé le drapeau européen ?",
+    "options": [
+      "12 étoiles jaunes sur fond bleu",
+      "15 étoiles blanches sur fond bleu",
+      "12 étoiles blanches sur fond rouge",
+      "27 étoiles jaunes sur fond bleu"
+    ],
+    "correct": 0,
+    "explanation": "Le drapeau européen est composé de 12 étoiles dorées (jaunes) disposées en cercle sur fond bleu. Le nombre 12 symbolise la perfection et l'unité.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 211,
+    "question": "De quelle couleur est le drapeau européen ?",
+    "options": [
+      "Rouge avec des étoiles jaunes",
+      "Bleu avec des étoiles dorées",
+      "Blanc avec des étoiles argentées",
+      "Vert avec des étoiles blanches"
+    ],
+    "correct": 1,
+    "explanation": "Le drapeau européen est bleu avec un cercle de douze étoiles dorées représentant l'union et la solidarité entre les peuples d'Europe.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 212,
+    "question": "En quelle année le traité de Maastricht, qui marque la fondation de l'Union européenne, a-t-il été signé ?",
+    "options": [
+      "1989",
+      "1992",
+      "1995",
+      "2000"
+    ],
+    "correct": 1,
+    "explanation": "Le traité de Maastricht a été signé le 7 février 1992 et est entré en vigueur en 1993, créant officiellement l'Union européenne.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 213,
+    "question": "Où est le siège du Parlement européen ?",
+    "options": [
+      "Bruxelles",
+      "Luxembourg",
+      "Strasbourg",
+      "Paris"
+    ],
+    "correct": 2,
+    "explanation": "Le siège officiel du Parlement européen est à Strasbourg, en France, où se tiennent les sessions plénières mensuelles.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 214,
+    "question": "Où est le siège de la Commission européenne ?",
+    "options": [
+      "Strasbourg",
+      "Bruxelles",
+      "Luxembourg",
+      "Francfort"
+    ],
+    "correct": 1,
+    "explanation": "La Commission européenne a son siège à Bruxelles, en Belgique, où se trouvent ses principaux services administratifs.",
+    "category": "Système institutionnel",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 215,
+    "question": "À quelle liberté la PMA fait-elle référence ?",
+    "options": [
+      "La liberté de circulation",
+      "La liberté de fonder une famille",
+      "La liberté d'expression",
+      "La liberté de réunion"
+    ],
+    "correct": 1,
+    "explanation": "La PMA (Procréation Médicalement Assistée) se rattache à la liberté de fonder une famille et au droit à la vie privée et familiale.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 216,
+    "question": "Au nom de quoi l'État justifie-t-il la restriction des droits ?",
+    "options": [
+      "De l'efficacité économique",
+      "De l'ordre public",
+      "De la tradition historique",
+      "De la volonté majoritaire"
+    ],
+    "correct": 1,
+    "explanation": "L'État peut restreindre certaines libertés au nom de l'ordre public, qui comprend la sécurité publique, la santé publique et la moralité publique.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 217,
+    "question": "Concernant le droit de se marier, quelle proposition est correcte ?",
+    "options": [
+      "Seuls les couples de sexe différent peuvent se marier",
+      "Le mariage est ouvert à tous les couples majeurs sans distinction de sexe",
+      "Le mariage nécessite l'autorisation de l'État",
+      "Le mariage religieux a valeur légale"
+    ],
+    "correct": 1,
+    "explanation": "Depuis la loi du 17 mai 2013, le mariage est ouvert à tous les couples, sans distinction de sexe, conformément au principe d'égalité.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 218,
+    "question": "Laquelle de ces citations est inscrite dans la Déclaration des Droits de l'homme et du Citoyen de 1789 ?",
+    "options": [
+      "Liberté, Égalité, Fraternité",
+      "Les hommes naissent et demeurent libres et égaux en droits",
+      "Tous pour un, un pour tous",
+      "Le peuple français proclame solennellement son attachement aux Droits de l'Homme"
+    ],
+    "correct": 1,
+    "explanation": "L'article 1er de la Déclaration de 1789 énonce : \"Les hommes naissent et demeurent libres et égaux en droits\", principe fondamental de la République.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 219,
+    "question": "Le recours à l'avortement est-il autorisé ?",
+    "options": [
+      "Non, il est totalement interdit",
+      "Oui, sans aucune condition",
+      "Oui, dans les conditions prévues par la loi",
+      "Uniquement sur autorisation médicale"
+    ],
+    "correct": 2,
+    "explanation": "Depuis la loi Veil de 1975, l'avortement est autorisé en France dans les conditions prévues par la loi, notamment avant la fin de la 14e semaine de grossesse.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 220,
+    "question": "Que contient la Constitution ?",
+    "options": [
+      "Les lois fiscales et budgétaires",
+      "Les règles d'organisation des pouvoirs publics et les droits fondamentaux",
+      "Le code pénal et civil",
+      "Les traités internationaux"
+    ],
+    "correct": 1,
+    "explanation": "La Constitution définit l'organisation des pouvoirs publics (exécutif, législatif, judiciaire) et garantit les droits et libertés fondamentaux des citoyens.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 221,
+    "question": "Que garantit la liberté de la presse ?",
+    "options": [
+      "Le droit de publier sans aucune limite",
+      "Le droit d'informer et d'être informé librement",
+      "Le monopole des journalistes sur l'information",
+      "L'interdiction de toute censure préalable uniquement"
+    ],
+    "correct": 1,
+    "explanation": "La liberté de la presse garantit le droit d'informer et d'être informé librement, élément essentiel de la démocratie, tout en respectant certaines limites légales.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 222,
+    "question": "Que prévoit la Charte de l'environnement ?",
+    "options": [
+      "L'interdiction de toute pollution",
+      "Les droits et devoirs relatifs à la protection de l'environnement",
+      "La taxation des entreprises polluantes",
+      "La création de parcs naturels"
+    ],
+    "correct": 1,
+    "explanation": "La Charte de l'environnement, intégrée à la Constitution en 2005, consacre les droits et devoirs fondamentaux relatifs à la protection de l'environnement.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 223,
+    "question": "Que signifie la dignité humaine ?",
+    "options": [
+      "Le droit à un niveau de vie décent",
+      "Le respect absolu de la personne humaine qui ne peut être traitée comme un objet",
+      "Le droit à l'honneur et à la réputation",
+      "L'égalité de traitement entre tous"
+    ],
+    "correct": 1,
+    "explanation": "La dignité humaine est un principe selon lequel tout être humain mérite un respect absolu et ne peut être instrumentalisé ou traité de manière dégradante.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 224,
+    "question": "Que signifie le droit de manifester ?",
+    "options": [
+      "Le droit de bloquer la circulation",
+      "Le droit d'exprimer collectivement et publiquement une opinion",
+      "Le droit de s'opposer aux forces de l'ordre",
+      "Le droit de faire grève"
+    ],
+    "correct": 1,
+    "explanation": "Le droit de manifester permet d'exprimer collectivement et publiquement une opinion dans le respect de l'ordre public, souvent avec déclaration préalable.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 225,
+    "question": "Que signifie PMA ?",
+    "options": [
+      "Protection Médicale Anticipée",
+      "Procréation Médicalement Assistée",
+      "Programme Maternel Adapté",
+      "Prévention Médicale Active"
+    ],
+    "correct": 1,
+    "explanation": "PMA signifie Procréation Médicalement Assistée, ensemble de techniques médicales permettant d'aider à la conception d'un enfant.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 226,
+    "question": "Quel texte est le plus difficile à modifier ?",
+    "options": [
+      "Une loi ordinaire",
+      "Un décret",
+      "La Constitution",
+      "Un règlement"
+    ],
+    "correct": 2,
+    "explanation": "La Constitution est le texte le plus difficile à modifier car sa révision nécessite une procédure spéciale, souvent avec référendum ou vote du Congrès à la majorité des 3/5.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 227,
+    "question": "Quelle liberté permet à une personne de croire en la religion de son choix ?",
+    "options": [
+      "La liberté d'expression",
+      "La liberté de conscience et de culte",
+      "La liberté de réunion",
+      "La liberté d'association"
+    ],
+    "correct": 1,
+    "explanation": "La liberté de conscience et de culte garantit à chacun le droit de choisir sa religion ou de n'en avoir aucune, et de pratiquer son culte.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 228,
+    "question": "Qu'est-ce que le droit de grève ?",
+    "options": [
+      "Le droit de refuser tout travail",
+      "Le droit de cesser collectivement le travail pour défendre des revendications professionnelles",
+      "Le droit de manifester dans la rue",
+      "Le droit de s'opposer à son employeur"
+    ],
+    "correct": 1,
+    "explanation": "Le droit de grève, reconnu par la Constitution, permet aux salariés de cesser collectivement le travail pour défendre leurs intérêts professionnels.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 229,
+    "question": "Qu'est-ce que la Constitution ?",
+    "options": [
+      "L'ensemble des lois d'un pays",
+      "La loi fondamentale qui organise les pouvoirs publics et garantit les droits fondamentaux",
+      "Le code civil et pénal",
+      "Les décisions du Conseil constitutionnel"
+    ],
+    "correct": 1,
+    "explanation": "La Constitution est la loi fondamentale et suprême d'un État qui organise les pouvoirs publics et garantit les droits et libertés fondamentaux.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 230,
+    "question": "Qui peut demander à avorter ?",
+    "options": [
+      "Toute femme majeure uniquement",
+      "Toute femme enceinte qui le souhaite, dans les conditions légales",
+      "Uniquement les femmes en danger médical",
+      "Toute personne avec autorisation médicale"
+    ],
+    "correct": 1,
+    "explanation": "Toute femme enceinte, majeure ou mineure, qui estime être en situation de détresse peut demander à avorter dans les délais et conditions prévus par la loi.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 231,
+    "question": "Une femme majeure de nationalité française a-t-elle le droit de voter aux élections ?",
+    "options": [
+      "Non, elle doit attendre d'avoir 21 ans",
+      "Oui, sans aucune condition supplémentaire",
+      "Oui, si elle est mariée",
+      "Non, seulement aux élections locales"
+    ],
+    "correct": 1,
+    "explanation": "Toute personne majeure de nationalité française jouit du droit de vote sans distinction de sexe, conformément aux principes d'égalité républicaine établis en 1944.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 232,
+    "question": "Concernant l'utilisation des réseaux sociaux, quelle proposition est correcte ?",
+    "options": [
+      "On peut tout dire car c'est un espace privé",
+      "Les mêmes lois s'appliquent que dans la vie réelle",
+      "On est anonyme donc sans responsabilité",
+      "La diffamation y est autorisée"
+    ],
+    "correct": 1,
+    "explanation": "Les réseaux sociaux sont soumis aux mêmes règles juridiques que les autres espaces publics : diffamation, injures, harcèlement et incitation à la haine y sont interdits et punissables.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 233,
+    "question": "Jeter un mégot par terre est :",
+    "options": [
+      "Autorisé dans les espaces publics",
+      "Interdit et passible d'une amende",
+      "Permis seulement en zone rurale",
+      "Toléré si on n'est pas vu"
+    ],
+    "correct": 1,
+    "explanation": "Jeter un mégot par terre est une infraction sanctionnée par une amende forfaitaire pouvant atteindre 135 euros, car il s'agit d'un abandon de déchets sur la voie publique.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 234,
+    "question": "L'État peut-il limiter les droits et libertés ?",
+    "options": [
+      "Non, jamais en aucun cas",
+      "Oui, pour protéger l'ordre public et l'intérêt général",
+      "Oui, sans aucune justification nécessaire",
+      "Seulement en période de guerre"
+    ],
+    "correct": 1,
+    "explanation": "L'État peut limiter certains droits et libertés de manière proportionnée et justifiée pour protéger l'ordre public, la sécurité et l'intérêt général, conformément au principe de conciliation des libertés.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 235,
+    "question": "Parmi ces actions, laquelle permet d'adopter une attitude respectueuse de l'environnement ?",
+    "options": [
+      "Utiliser systématiquement sa voiture pour les courts trajets",
+      "Privilégier les transports en commun ou le vélo",
+      "Laisser les appareils électriques en veille",
+      "Jeter tous ses déchets ensemble"
+    ],
+    "correct": 1,
+    "explanation": "Privilégier les transports en commun ou le vélo réduit les émissions de CO2 et la pollution, contribuant ainsi à la protection de l'environnement et à la lutte contre le réchauffement climatique.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 236,
+    "question": "Quelle proposition constitue une obligation ?",
+    "options": [
+      "S'inscrire sur les listes électorales",
+      "Respecter les lois de la République",
+      "Participer à des associations",
+      "Voter à toutes les élections"
+    ],
+    "correct": 1,
+    "explanation": "Respecter les lois de la République est une obligation pour toute personne vivant sur le territoire français, alors que le vote est un droit mais non une obligation en France.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 237,
+    "question": "Pour quel motif peut-on limiter la liberté d'expression ?",
+    "options": [
+      "Pour empêcher toute critique du gouvernement",
+      "Pour sanctionner les propos racistes ou incitant à la haine",
+      "Pour interdire les opinions politiques minoritaires",
+      "Pour contrôler toute information publique"
+    ],
+    "correct": 1,
+    "explanation": "La liberté d'expression peut être limitée légalement pour sanctionner les propos racistes, antisémites, homophobes ou incitant à la haine et à la violence, conformément aux lois sur la presse et le racisme.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 238,
+    "question": "Pourquoi doit-on trier ses déchets ?",
+    "options": [
+      "C'est uniquement une recommandation facultative",
+      "Pour permettre leur recyclage et protéger l'environnement",
+      "Pour faciliter le travail des éboueurs seulement",
+      "C'est une tradition française"
+    ],
+    "correct": 1,
+    "explanation": "Le tri des déchets est obligatoire et permet leur recyclage, réduisant ainsi la pollution, la consommation de ressources naturelles et contribuant à la protection de l'environnement.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 239,
+    "question": "Que doit-on faire face aux ordres des policiers ou gendarmes ?",
+    "options": [
+      "Les ignorer si on n'est pas d'accord",
+      "Les respecter et obtempérer",
+      "Les discuter longuement avant d'obéir",
+      "Les suivre uniquement si on le souhaite"
+    ],
+    "correct": 1,
+    "explanation": "Il faut obtempérer aux ordres légitimes des forces de l'ordre qui représentent l'autorité publique. Le refus d'obtempérer constitue une infraction passible de sanctions pénales.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 240,
+    "question": "Quel est un exemple d'assistance à personne en danger ?",
+    "options": [
+      "Filmer la scène pour les réseaux sociaux",
+      "Appeler les secours (15, 17 ou 18)",
+      "Passer son chemin pour éviter les problèmes",
+      "Attendre que quelqu'un d'autre intervienne"
+    ],
+    "correct": 1,
+    "explanation": "Appeler les secours est une forme d'assistance à personne en danger, obligation légale en France. La non-assistance à personne en danger est un délit puni par la loi.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 241,
+    "question": "Quel exemple illustre une limitation de liberté pour protéger l'intérêt général ?",
+    "options": [
+      "L'interdiction totale de manifester",
+      "L'obligation de respecter les limitations de vitesse",
+      "L'interdiction de lire certains journaux",
+      "L'obligation d'avoir une opinion politique"
+    ],
+    "correct": 1,
+    "explanation": "Les limitations de vitesse restreignent la liberté de circuler comme on veut, mais protègent l'intérêt général en assurant la sécurité routière et en réduisant les accidents mortels.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 242,
+    "question": "Quelle est l'attitude à avoir lorsque qu'on est témoin de violences ?",
+    "options": [
+      "Ne rien faire pour ne pas s'impliquer",
+      "Alerter les autorités et porter secours si possible",
+      "Filmer uniquement pour garder une preuve",
+      "Partir immédiatement sans prévenir personne"
+    ],
+    "correct": 1,
+    "explanation": "Face à des violences, il faut alerter les autorités (police, gendarmes) et porter secours à la victime si possible sans se mettre en danger. C'est une obligation légale d'assistance à personne en danger.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 243,
+    "question": "Quelle obligation concerne toutes les personnes résidant en France quelle que soit leur nationalité ?",
+    "options": [
+      "Voter aux élections municipales",
+      "Respecter les lois françaises",
+      "Effectuer le service national",
+      "Adhérer à un parti politique"
+    ],
+    "correct": 1,
+    "explanation": "Toute personne résidant sur le territoire français, quelle que soit sa nationalité, doit respecter les lois françaises. C'est un principe fondamental de la souveraineté nationale.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 244,
+    "question": "Quelle proposition représente un exemple de crime ?",
+    "options": [
+      "Un excès de vitesse",
+      "Un meurtre",
+      "Une insulte publique",
+      "Un stationnement interdit"
+    ],
+    "correct": 1,
+    "explanation": "Le meurtre est un crime, l'infraction la plus grave du droit pénal français, jugé par la cour d'assises et passible de la réclusion criminelle, contrairement aux délits et contraventions.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 245,
+    "question": "Quelle proposition représente un exemple de délit ?",
+    "options": [
+      "Un meurtre avec préméditation",
+      "Le vol ou l'escroquerie",
+      "Un stationnement gênant",
+      "Un excès de vitesse de 10 km/h"
+    ],
+    "correct": 1,
+    "explanation": "Le vol et l'escroquerie sont des délits, infractions de gravité intermédiaire jugées par le tribunal correctionnel, passibles d'amendes et/ou de peines d'emprisonnement jusqu'à 10 ans.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 246,
+    "question": "Qui veille au maintien de l'ordre public ?",
+    "options": [
+      "Uniquement l'armée",
+      "La police et la gendarmerie nationales",
+      "Les services sociaux",
+      "Les élus locaux uniquement"
+    ],
+    "correct": 1,
+    "explanation": "La police et la gendarmerie nationales sont les forces de l'ordre chargées de maintenir l'ordre public et la sécurité, sous l'autorité du ministère de l'Intérieur et du maire au niveau local.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 247,
+    "question": "S'agissant des déchets, quelle proposition est correcte ?",
+    "options": [
+      "On peut les jeter n'importe où",
+      "Le tri sélectif est obligatoire",
+      "Seuls les déchets verts doivent être triés",
+      "Le tri est facultatif en zone urbaine"
+    ],
+    "correct": 1,
+    "explanation": "Le tri sélectif des déchets est obligatoire en France depuis 1992 pour permettre le recyclage et réduire l'impact environnemental. Les communes doivent mettre en place des systèmes de collecte adaptés.",
+    "category": "Droits et devoirs",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 248,
+    "question": "Quel était le surnom de Louis XIV ?",
+    "options": [
+      "Le Roi Chevalier",
+      "Le Roi Soleil",
+      "Le Roi Sage",
+      "Le Roi Bâtisseur"
+    ],
+    "correct": 1,
+    "explanation": "Louis XIV était surnommé le Roi Soleil, symbole de son pouvoir absolu et de la splendeur de son règne (1643-1715), le plus long de l'histoire de France.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 249,
+    "question": "Quel roi de France a été exécuté pendant la Révolution française ?",
+    "options": [
+      "Louis XIV",
+      "Louis XVI",
+      "Henri IV",
+      "Charles X"
+    ],
+    "correct": 1,
+    "explanation": "Louis XVI a été guillotiné le 21 janvier 1793 place de la Révolution (actuelle place de la Concorde) après avoir été jugé et condamné par la Convention nationale pour trahison.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 250,
+    "question": "En quelle année Napoléon Ier est-il devenu empereur ?",
+    "options": [
+      "1799",
+      "1804",
+      "1815",
+      "1789"
+    ],
+    "correct": 1,
+    "explanation": "Napoléon Bonaparte est devenu Napoléon Ier, empereur des Français, le 2 décembre 1804 lors de son sacre à Notre-Dame de Paris en présence du pape Pie VII.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 251,
+    "question": "Lequel de ces personnages a un lien avec la République française ?",
+    "options": [
+      "Charlemagne",
+      "Marianne",
+      "Jeanne d'Arc",
+      "Louis XIV"
+    ],
+    "correct": 1,
+    "explanation": "Marianne est le symbole de la République française depuis la Révolution. Elle incarne la liberté et la République et figure dans toutes les mairies.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 252,
+    "question": "De quand date l'appel à la résistance du général de Gaulle ?",
+    "options": [
+      "18 juin 1940",
+      "8 mai 1945",
+      "14 juillet 1939",
+      "11 novembre 1918"
+    ],
+    "correct": 0,
+    "explanation": "L'appel du 18 juin 1940 a été lancé par le général de Gaulle depuis Londres pour appeler les Français à résister face à l'occupation allemande.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 253,
+    "question": "Pourquoi la Shoah est-elle étudiée à l'école ?",
+    "options": [
+      "Pour apprendre l'histoire allemande",
+      "Pour comprendre les dangers du racisme et de l'antisémitisme",
+      "Pour étudier la géographie européenne",
+      "Pour connaître l'histoire militaire"
+    ],
+    "correct": 1,
+    "explanation": "L'étude de la Shoah permet de transmettre la mémoire du génocide des Juifs et d'éduquer contre le racisme, l'antisémitisme et toutes les formes de discrimination.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 254,
+    "question": "Quel pays a été colonisé par la France ?",
+    "options": [
+      "Le Brésil",
+      "L'Inde",
+      "L'Algérie",
+      "L'Égypte"
+    ],
+    "correct": 2,
+    "explanation": "L'Algérie a été colonisée par la France de 1830 à 1962. Elle a obtenu son indépendance après une guerre de libération qui s'est terminée en 1962.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 255,
+    "question": "Depuis quand les Français élisent-ils le président de la République au suffrage universel direct ?",
+    "options": [
+      "1789",
+      "1848",
+      "1962",
+      "1981"
+    ],
+    "correct": 2,
+    "explanation": "Depuis le référendum de 1962, voulu par le général de Gaulle, le président de la République est élu au suffrage universel direct par tous les citoyens français.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 256,
+    "question": "Quelle est la première étape de la construction européenne en 1951 ?",
+    "options": [
+      "L'Union européenne",
+      "La Communauté européenne du charbon et de l'acier (CECA)",
+      "L'espace Schengen",
+      "L'euro"
+    ],
+    "correct": 1,
+    "explanation": "La CECA, créée en 1951, est la première étape de la construction européenne. Elle réunissait six pays dont la France et l'Allemagne pour gérer le charbon et l'acier.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 257,
+    "question": "Durant le mandat de quel président la peine de mort a-t-elle été abolie ?",
+    "options": [
+      "Charles de Gaulle",
+      "Georges Pompidou",
+      "François Mitterrand",
+      "Jacques Chirac"
+    ],
+    "correct": 2,
+    "explanation": "La peine de mort a été abolie en France en 1981 sous la présidence de François Mitterrand, grâce à la loi portée par le ministre de la Justice Robert Badinter.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 258,
+    "question": "Quel régime politique a été mis en place pendant la Révolution française en 1792 ?",
+    "options": [
+      "La monarchie constitutionnelle",
+      "La Première République",
+      "Le Second Empire",
+      "La monarchie absolue"
+    ],
+    "correct": 1,
+    "explanation": "La Première République a été proclamée le 22 septembre 1792 après l'abolition de la royauté. C'est le premier régime républicain de l'histoire de France.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 259,
+    "question": "Qui était une figure de la Résistance française pendant la Seconde Guerre mondiale ?",
+    "options": [
+      "Philippe Pétain",
+      "Jean Moulin",
+      "Pierre Laval",
+      "Napoléon Bonaparte"
+    ],
+    "correct": 1,
+    "explanation": "Jean Moulin a unifié les mouvements de Résistance intérieure sous l'autorité du général de Gaulle. Il est mort en déportation en 1943 et repose au Panthéon.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 260,
+    "question": "En 1944, qu'est-ce qui a changé pour les femmes ?",
+    "options": [
+      "Le droit au travail",
+      "Le droit de vote",
+      "Le droit au divorce",
+      "Le droit à l'éducation"
+    ],
+    "correct": 1,
+    "explanation": "Le droit de vote a été accordé aux femmes françaises le 21 avril 1944 par ordonnance du général de Gaulle. Elles ont voté pour la première fois en 1945.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 261,
+    "question": "Quelle organisation internationale a été créée en 1945 après la Seconde Guerre mondiale ?",
+    "options": [
+      "L'Union européenne",
+      "L'Organisation des Nations unies (ONU)",
+      "L'OTAN",
+      "Le G7"
+    ],
+    "correct": 1,
+    "explanation": "L'ONU a été créée en 1945 pour maintenir la paix et la sécurité internationales après la Seconde Guerre mondiale. La France est l'un des cinq membres permanents du Conseil de sécurité.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 262,
+    "question": "Quelle peine a été supprimée en 1981 ?",
+    "options": [
+      "La prison à perpétuité",
+      "Les travaux forcés",
+      "La peine de mort",
+      "L'exil"
+    ],
+    "correct": 2,
+    "explanation": "La peine de mort a été abolie en France le 9 octobre 1981 grâce à la loi défendue par Robert Badinter, alors ministre de la Justice.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 263,
+    "question": "En quelle année l'euro est-elle devenue la monnaie utilisée en France ?",
+    "options": [
+      "1995",
+      "1999",
+      "2002",
+      "2008"
+    ],
+    "correct": 2,
+    "explanation": "L'euro est devenu la monnaie fiduciaire utilisée en France le 1er janvier 2002, remplaçant le franc français. L'euro existait sous forme scripturale depuis 1999.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 264,
+    "question": "En quelle année a commencé la Première Guerre mondiale ?",
+    "options": [
+      "1912",
+      "1914",
+      "1918",
+      "1939"
+    ],
+    "correct": 1,
+    "explanation": "La Première Guerre mondiale a commencé en 1914 et s'est terminée en 1918. Elle a opposé les Alliés aux Empires centraux et causé des millions de morts.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 265,
+    "question": "Où a eu lieu le débarquement en 1944 ?",
+    "options": [
+      "En Provence",
+      "En Normandie",
+      "En Bretagne",
+      "Dans le Nord"
+    ],
+    "correct": 1,
+    "explanation": "Le débarquement du 6 juin 1944, appelé le Jour J, a eu lieu sur les plages de Normandie. Il marque le début de la libération de la France de l'occupation allemande.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 266,
+    "question": "Quel continent a été le plus concerné par la décolonisation française après la Seconde Guerre mondiale ?",
+    "options": [
+      "L'Amérique du Sud",
+      "L'Asie",
+      "L'Afrique",
+      "L'Océanie"
+    ],
+    "correct": 2,
+    "explanation": "L'Afrique a été le continent le plus concerné par la décolonisation française, avec l'indépendance de nombreux pays dans les années 1950-1960, notamment l'Algérie en 1962.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 267,
+    "question": "Que fête-t-on le 8 mai ?",
+    "options": [
+      "L'armistice de 1918",
+      "La victoire des Alliés en 1945",
+      "La libération de Paris",
+      "La fête du travail"
+    ],
+    "correct": 1,
+    "explanation": "Le 8 mai est un jour férié qui commémore la victoire des Alliés sur l'Allemagne nazie et la fin de la Seconde Guerre mondiale en Europe en 1945.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 268,
+    "question": "Quelle mer ou océan borde la France métropolitaine ?",
+    "options": [
+      "L'océan Indien",
+      "La mer Baltique",
+      "La Méditerranée",
+      "La mer Noire"
+    ],
+    "correct": 2,
+    "explanation": "La France métropolitaine est bordée par la mer Méditerranée au sud, l'océan Atlantique à l'ouest et la Manche au nord.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 269,
+    "question": "Quel pays a une frontière terrestre avec la France métropolitaine ?",
+    "options": [
+      "Le Portugal",
+      "L'Espagne",
+      "La Pologne",
+      "L'Autriche"
+    ],
+    "correct": 1,
+    "explanation": "L'Espagne partage une frontière terrestre avec la France au niveau des Pyrénées. La France a également des frontières avec la Belgique, le Luxembourg, l'Allemagne, la Suisse, l'Italie et Monaco.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 270,
+    "question": "Quelle ville française est un port maritime ?",
+    "options": [
+      "Lyon",
+      "Marseille",
+      "Strasbourg",
+      "Toulouse"
+    ],
+    "correct": 1,
+    "explanation": "Marseille est le premier port maritime de France et de la Méditerranée. C'est une ville portuaire importante depuis l'Antiquité située sur la côte méditerranéenne.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 271,
+    "question": "Quelle mer se situe entre la France et l'Angleterre ?",
+    "options": [
+      "La mer du Nord",
+      "La Manche",
+      "La mer Méditerranée",
+      "L'océan Atlantique"
+    ],
+    "correct": 1,
+    "explanation": "La Manche est le bras de mer qui sépare la France de l'Angleterre, avec une largeur minimale de 33 km au Pas-de-Calais.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 272,
+    "question": "Qu'est ce que la France d'outre-mer ?",
+    "options": [
+      "Les anciennes colonies françaises devenues indépendantes",
+      "Les territoires français situés en dehors de l'Europe",
+      "Les ambassades françaises à l'étranger",
+      "Les territoires français au-delà de la Loire"
+    ],
+    "correct": 1,
+    "explanation": "La France d'outre-mer désigne l'ensemble des territoires de la République française situés en dehors de l'Europe, comme la Guadeloupe, la Martinique, la Réunion, la Guyane et la Polynésie française.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 273,
+    "question": "Quelle chaîne de montagnes est située entre la France et l'Espagne ?",
+    "options": [
+      "Les Alpes",
+      "Les Vosges",
+      "Les Pyrénées",
+      "Le Massif central"
+    ],
+    "correct": 2,
+    "explanation": "Les Pyrénées forment une frontière naturelle de 430 km entre la France et l'Espagne, s'étendant de l'océan Atlantique à la mer Méditerranée.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 274,
+    "question": "Quelle île française se trouve dans l'océan Indien ?",
+    "options": [
+      "La Corse",
+      "La Guadeloupe",
+      "La Réunion",
+      "La Martinique"
+    ],
+    "correct": 2,
+    "explanation": "La Réunion est un département français d'outre-mer situé dans l'océan Indien, à l'est de Madagascar. La Guadeloupe et la Martinique se trouvent dans les Caraïbes, et la Corse en Méditerranée.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 275,
+    "question": "Quelle est la population approximative de la France en 2025 ?",
+    "options": [
+      "58 millions d'habitants",
+      "68 millions d'habitants",
+      "78 millions d'habitants",
+      "48 millions d'habitants"
+    ],
+    "correct": 1,
+    "explanation": "La France compte environ 68 millions d'habitants en 2025, incluant la France métropolitaine et les territoires d'outre-mer.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 276,
+    "question": "Quel fleuve traverse Paris ?",
+    "options": [
+      "La Loire",
+      "La Seine",
+      "Le Rhône",
+      "La Garonne"
+    ],
+    "correct": 1,
+    "explanation": "La Seine traverse Paris d'est en ouest sur environ 13 km, divisant la ville en rive droite et rive gauche.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 277,
+    "question": "Lequel de ces pays partage des frontières terrestres avec la France ?",
+    "options": [
+      "Le Portugal",
+      "Les Pays-Bas",
+      "La Suisse",
+      "L'Autriche"
+    ],
+    "correct": 2,
+    "explanation": "La Suisse partage une frontière de 573 km avec la France à l'est. La France a huit pays frontaliers : Belgique, Luxembourg, Allemagne, Suisse, Italie, Monaco, Espagne et Andorre.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 278,
+    "question": "Quel pays a une frontière avec la France métropolitaine au nord-est ?",
+    "options": [
+      "La Pologne",
+      "Le Luxembourg",
+      "La République tchèque",
+      "Les Pays-Bas"
+    ],
+    "correct": 1,
+    "explanation": "Le Luxembourg partage une frontière de 73 km avec la France au nord-est, aux côtés de la Belgique et de l'Allemagne dans cette région.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 279,
+    "question": "Où se trouvent les principales activités économiques en France ?",
+    "options": [
+      "Dans les zones rurales",
+      "Dans les grandes villes et métropoles",
+      "Dans les zones montagneuses",
+      "Uniquement à Paris"
+    ],
+    "correct": 1,
+    "explanation": "Les principales activités économiques se concentrent dans les grandes villes et métropoles comme Paris, Lyon, Marseille, Toulouse et Lille, qui regroupent entreprises, industries et services.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 280,
+    "question": "Parmi ces pays, lequel attire le plus de visiteurs chaque année ?",
+    "options": [
+      "L'Espagne",
+      "La France",
+      "L'Italie",
+      "Les États-Unis"
+    ],
+    "correct": 1,
+    "explanation": "La France est le pays le plus visité au monde avec environ 90 millions de touristes étrangers par an, grâce à son patrimoine culturel, sa gastronomie et ses paysages variés.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 281,
+    "question": "Où habite la majorité des Français ?",
+    "options": [
+      "À la campagne",
+      "En zones urbaines",
+      "En montagne",
+      "Dans les départements d'outre-mer"
+    ],
+    "correct": 1,
+    "explanation": "Environ 80% des Français vivent en zones urbaines, avec une concentration importante dans les grandes métropoles et leurs agglomérations.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 282,
+    "question": "Quelle région est la plus peuplée ?",
+    "options": [
+      "La Bretagne",
+      "L'Île-de-France",
+      "La Provence-Alpes-Côte d'Azur",
+      "L'Occitanie"
+    ],
+    "correct": 1,
+    "explanation": "L'Île-de-France est la région la plus peuplée avec plus de 12 millions d'habitants, soit environ 18% de la population française totale.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 283,
+    "question": "Quelle ville française fait partie des 10 plus grandes métropoles du pays ?",
+    "options": [
+      "Dijon",
+      "Toulouse",
+      "Reims",
+      "Limoges"
+    ],
+    "correct": 1,
+    "explanation": "Toulouse est la quatrième plus grande métropole de France avec environ 1 million d'habitants dans son aire urbaine, reconnue pour son industrie aéronautique.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 284,
+    "question": "Lequel de ces départements de France est le plus touristique ?",
+    "options": [
+      "Le Cantal",
+      "Paris (75)",
+      "La Creuse",
+      "Le Gers"
+    ],
+    "correct": 1,
+    "explanation": "Paris est le département le plus touristique de France, attirant des dizaines de millions de visiteurs chaque année pour ses monuments, musées et patrimoine culturel.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 285,
+    "question": "Quand peut-on visiter gratuitement des lieux culturels en France ?",
+    "options": [
+      "Tous les lundis",
+      "Le premier dimanche de chaque mois",
+      "Uniquement pendant les vacances scolaires",
+      "Seulement pour les résidents français"
+    ],
+    "correct": 1,
+    "explanation": "De nombreux musées et monuments nationaux sont gratuits le premier dimanche de chaque mois, permettant à tous d'accéder à la culture.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 286,
+    "question": "Combien de personnes parlent français dans le monde ?",
+    "options": [
+      "Environ 100 millions",
+      "Environ 300 millions",
+      "Environ 500 millions",
+      "Environ 1 milliard"
+    ],
+    "correct": 1,
+    "explanation": "Environ 300 millions de personnes parlent français dans le monde, faisant du français la cinquième langue la plus parlée et une langue officielle dans 29 pays.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 287,
+    "question": "Qui était Marguerite Yourcenar ?",
+    "options": [
+      "Une femme politique française",
+      "Une écrivaine, première femme élue à l'Académie française",
+      "Une actrice de cinéma",
+      "Une scientifique française"
+    ],
+    "correct": 1,
+    "explanation": "Marguerite Yourcenar (1903-1987) était une écrivaine française, auteure notamment des 'Mémoires d'Hadrien', et la première femme élue à l'Académie française en 1980.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 288,
+    "question": "Quel peintre est français ?",
+    "options": [
+      "Pablo Picasso",
+      "Claude Monet",
+      "Vincent Van Gogh",
+      "Salvador Dalí"
+    ],
+    "correct": 1,
+    "explanation": "Claude Monet (1840-1926) était un peintre français, fondateur de l'impressionnisme, célèbre pour ses séries des Nymphéas et de la cathédrale de Rouen.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 289,
+    "question": "Quel musée est situé à Paris ?",
+    "options": [
+      "Le musée du Prado",
+      "Le Louvre",
+      "Les Offices",
+      "Le British Museum"
+    ],
+    "correct": 1,
+    "explanation": "Le Louvre est le plus grand musée de Paris et du monde, situé dans le 1er arrondissement, abritant la Joconde et des milliers d'œuvres d'art.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 290,
+    "question": "Qui était Auguste Rodin ?",
+    "options": [
+      "Un architecte célèbre",
+      "Un sculpteur français renommé",
+      "Un compositeur de musique classique",
+      "Un philosophe du XIXe siècle"
+    ],
+    "correct": 1,
+    "explanation": "Auguste Rodin (1840-1917) était un sculpteur français majeur, créateur d'œuvres emblématiques comme 'Le Penseur', 'Le Baiser' et 'Les Bourgeois de Calais'.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 291,
+    "question": "Quel est le classement de la langue française parmi les langues les plus parlées dans le monde ?",
+    "options": [
+      "3ème langue",
+      "5ème langue",
+      "7ème langue",
+      "10ème langue"
+    ],
+    "correct": 1,
+    "explanation": "Le français est la 5ème langue la plus parlée dans le monde avec environ 300 millions de locuteurs répartis sur les cinq continents.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 292,
+    "question": "Quelle cathédrale célèbre a été en partie détruite par un incendie en 2019 ?",
+    "options": [
+      "La cathédrale de Reims",
+      "La cathédrale Notre-Dame de Paris",
+      "La cathédrale de Chartres",
+      "La cathédrale de Strasbourg"
+    ],
+    "correct": 1,
+    "explanation": "La cathédrale Notre-Dame de Paris a subi un incendie majeur le 15 avril 2019, détruisant sa flèche et sa toiture, mais préservant sa structure principale.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 293,
+    "question": "Qui était une écrivaine française célèbre ?",
+    "options": [
+      "Simone de Beauvoir",
+      "Marie Curie",
+      "Édith Piaf",
+      "Coco Chanel"
+    ],
+    "correct": 0,
+    "explanation": "Simone de Beauvoir était une écrivaine, philosophe et féministe française célèbre, auteure notamment du 'Deuxième Sexe' publié en 1949.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 294,
+    "question": "Qui était un célèbre musicien français ?",
+    "options": [
+      "Auguste Rodin",
+      "Claude Debussy",
+      "Victor Hugo",
+      "Paul Cézanne"
+    ],
+    "correct": 1,
+    "explanation": "Claude Debussy était un compositeur français majeur de la fin du XIXe et du début du XXe siècle, considéré comme l'un des fondateurs de la musique impressionniste.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 295,
+    "question": "Qui était Auguste Renoir ?",
+    "options": [
+      "Un scientifique",
+      "Un peintre impressionniste",
+      "Un homme politique",
+      "Un écrivain"
+    ],
+    "correct": 1,
+    "explanation": "Auguste Renoir était un peintre impressionniste français célèbre, connu pour ses scènes de la vie parisienne et ses portraits lumineux.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 296,
+    "question": "Quelle fête est française ?",
+    "options": [
+      "Thanksgiving",
+      "Le 14 juillet",
+      "Le jour de l'An chinois",
+      "Halloween"
+    ],
+    "correct": 1,
+    "explanation": "Le 14 juillet est la fête nationale française commémorant la prise de la Bastille en 1789 et la Fête de la Fédération de 1790.",
+    "category": "Histoire et culture",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 297,
+    "question": "Quel mariage est reconnu par l'État ?",
+    "options": [
+      "Le mariage religieux uniquement",
+      "Le mariage civil à la mairie",
+      "Le mariage traditionnel en famille",
+      "Le mariage symbolique"
+    ],
+    "correct": 1,
+    "explanation": "Seul le mariage civil célébré à la mairie par un officier d'état civil a une valeur juridique en France et est reconnu par l'État.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 298,
+    "question": "Auprès de quelle institution les parents peuvent-ils inscrire leur enfant à l'école publique ?",
+    "options": [
+      "La préfecture",
+      "La mairie",
+      "Le conseil départemental",
+      "Le rectorat"
+    ],
+    "correct": 1,
+    "explanation": "L'inscription à l'école publique se fait auprès de la mairie de la commune de résidence, qui délivre un certificat d'inscription pour l'école de secteur.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 299,
+    "question": "En cas de divorce, qui exerce l'autorité parentale ?",
+    "options": [
+      "Uniquement la mère",
+      "Uniquement le père",
+      "Les deux parents ensemble",
+      "Le parent qui a la garde"
+    ],
+    "correct": 2,
+    "explanation": "L'autorité parentale reste conjointe après le divorce, les deux parents continuent à exercer ensemble l'autorité parentale, sauf décision contraire du juge.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 300,
+    "question": "Quelle aide permet aux personnes qui ont des difficultés financières d'avoir un avocat ?",
+    "options": [
+      "L'aide personnalisée au logement",
+      "L'aide juridictionnelle",
+      "Le revenu de solidarité active",
+      "L'allocation chômage"
+    ],
+    "correct": 1,
+    "explanation": "L'aide juridictionnelle permet aux personnes ayant des ressources insuffisantes de bénéficier d'une prise en charge totale ou partielle des frais d'avocat.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 301,
+    "question": "Où faut-il déclarer la naissance d'un enfant ?",
+    "options": [
+      "À la préfecture",
+      "À la mairie",
+      "Au commissariat de police",
+      "À l'hôpital"
+    ],
+    "correct": 1,
+    "explanation": "La naissance d'un enfant doit être déclarée à la mairie du lieu de naissance dans les 5 jours suivant l'accouchement pour établir l'acte de naissance.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 302,
+    "question": "Quelle est l'une des conditions pour passer l'examen du permis de conduire ?",
+    "options": [
+      "Avoir 21 ans minimum",
+      "Avoir réussi le code de la route",
+      "Être de nationalité française",
+      "Avoir un véhicule personnel"
+    ],
+    "correct": 1,
+    "explanation": "Pour passer l'examen pratique du permis de conduire, il faut d'abord avoir réussi l'examen théorique du code de la route.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 303,
+    "question": "Un bail locatif est valide s'il est :",
+    "options": [
+      "Oral uniquement",
+      "Écrit et signé par les deux parties",
+      "Validé par la police",
+      "Enregistré à la préfecture"
+    ],
+    "correct": 1,
+    "explanation": "Un bail locatif doit être écrit et signé par le propriétaire et le locataire pour être valide et avoir une valeur juridique.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 304,
+    "question": "Où peut-on déposer un lave-vaisselle cassé ?",
+    "options": [
+      "Dans la poubelle ordinaire",
+      "Sur le trottoir",
+      "En déchetterie",
+      "Dans un conteneur de recyclage du verre"
+    ],
+    "correct": 2,
+    "explanation": "Les gros électroménagers comme les lave-vaisselle doivent être déposés en déchetterie où ils seront recyclés selon la filière des déchets d'équipements électriques et électroniques.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 305,
+    "question": "Quel numéro d'urgence permet d'appeler la police ?",
+    "options": [
+      "15",
+      "17",
+      "18",
+      "112"
+    ],
+    "correct": 1,
+    "explanation": "Le 17 est le numéro d'urgence pour contacter la police ou la gendarmerie en France en cas d'accident, d'agression ou de situation dangereuse.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 306,
+    "question": "À qui est accessible la contraception ?",
+    "options": [
+      "Uniquement aux femmes majeures",
+      "Aux femmes et aux hommes",
+      "Uniquement sur prescription médicale",
+      "Uniquement aux personnes mariées"
+    ],
+    "correct": 1,
+    "explanation": "La contraception est accessible à toutes et tous, femmes et hommes, avec différentes méthodes disponibles selon les besoins de chacun.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 307,
+    "question": "Qu'est-ce que le principe de confidentialité dans le domaine de la santé ?",
+    "options": [
+      "L'obligation de payer les soins",
+      "Le secret médical protégeant les informations personnelles",
+      "Le droit de choisir son médecin",
+      "L'accès gratuit aux soins"
+    ],
+    "correct": 1,
+    "explanation": "Le principe de confidentialité ou secret médical oblige les professionnels de santé à ne pas divulguer les informations concernant leurs patients sans leur consentement.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 308,
+    "question": "L'inscription à l'Assurance maladie est :",
+    "options": [
+      "Obligatoire pour tous les résidents",
+      "Facultative",
+      "Réservée aux citoyens français",
+      "Payante selon les revenus"
+    ],
+    "correct": 0,
+    "explanation": "L'inscription à l'Assurance maladie est obligatoire pour toutes les personnes résidant en France de manière stable et régulière, quelle que soit leur nationalité.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 309,
+    "question": "Qui peut demander un congé parental d'éducation ?",
+    "options": [
+      "Uniquement la mère",
+      "Uniquement le père",
+      "La mère ou le père",
+      "Uniquement les fonctionnaires"
+    ],
+    "correct": 2,
+    "explanation": "Le congé parental d'éducation peut être demandé par la mère ou le père salarié pour s'occuper de leur enfant, après sa naissance ou son adoption.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 310,
+    "question": "Quelles sont les affaires traitées par le conseil de prud'hommes ?",
+    "options": [
+      "Les affaires pénales",
+      "Les litiges entre employeurs et salariés",
+      "Les divorces",
+      "Les conflits de voisinage"
+    ],
+    "correct": 1,
+    "explanation": "Le conseil de prud'hommes est une juridiction spécialisée qui règle les conflits individuels du travail entre employeurs et salariés.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 311,
+    "question": "Travailler sans être déclaré est :",
+    "options": [
+      "Autorisé si le salaire est inférieur au SMIC",
+      "Interdit et puni par la loi",
+      "Autorisé pour les jobs d'été",
+      "Autorisé si l'employeur est d'accord"
+    ],
+    "correct": 1,
+    "explanation": "Le travail dissimulé (au noir) est strictement interdit en France et constitue une infraction pénale passible de sanctions pour l'employeur comme pour le salarié.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 312,
+    "question": "Lorsqu'un employeur veut qu'un salarié travaille plus longtemps que la durée prévue dans le contrat de travail :",
+    "options": [
+      "Le salarié doit obligatoirement accepter",
+      "Le salarié peut refuser et ces heures doivent être payées en heures supplémentaires",
+      "Le salarié perd son emploi s'il refuse",
+      "L'employeur peut modifier le contrat sans accord"
+    ],
+    "correct": 1,
+    "explanation": "Les heures supplémentaires doivent être rémunérées avec une majoration et le salarié a des droits encadrés par le Code du travail pour les accepter ou les refuser selon les cas.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 313,
+    "question": "Quelle est la mission de France Travail ?",
+    "options": [
+      "Contrôler les entreprises",
+      "Accompagner les demandeurs d'emploi et les aider à trouver un travail",
+      "Fixer les salaires minimums",
+      "Gérer les retraites"
+    ],
+    "correct": 1,
+    "explanation": "France Travail (anciennement Pôle emploi) accompagne les demandeurs d'emploi dans leur recherche, les inscrit, leur verse des allocations et les aide dans leur parcours professionnel.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 314,
+    "question": "Dans une entreprise, le droit syndical permet :",
+    "options": [
+      "D'être payé sans travailler",
+      "De s'organiser collectivement pour défendre les droits des salariés",
+      "De choisir son salaire",
+      "De ne pas respecter le règlement intérieur"
+    ],
+    "correct": 1,
+    "explanation": "Le droit syndical garantit aux salariés la liberté de se syndiquer et permet aux syndicats de défendre collectivement les intérêts professionnels des travailleurs.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 315,
+    "question": "Dans une entreprise, le droit de grève autorise :",
+    "options": [
+      "L'arrêt collectif du travail pour défendre des revendications professionnelles",
+      "L'absence individuelle sans préavis",
+      "Le refus de travailler de manière permanente",
+      "La destruction du matériel de l'entreprise"
+    ],
+    "correct": 0,
+    "explanation": "Le droit de grève, reconnu par la Constitution, permet aux salariés de cesser collectivement le travail pour défendre des revendications professionnelles, sans rupture du contrat de travail.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 316,
+    "question": "Quelles sont les conditions pour toucher les allocations chômage ?",
+    "options": [
+      "Avoir démissionné volontairement",
+      "Avoir travaillé et cotisé suffisamment et être involontairement privé d'emploi",
+      "Avoir plus de 60 ans",
+      "Ne jamais avoir travaillé"
+    ],
+    "correct": 1,
+    "explanation": "Pour bénéficier des allocations chômage, il faut avoir travaillé et cotisé une durée minimale, être involontairement privé d'emploi et être en recherche active d'un emploi.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 317,
+    "question": "Qu'est-ce que l'école maternelle ?",
+    "options": [
+      "L'école pour les enfants de 6 à 11 ans",
+      "L'école pour les enfants de 3 à 6 ans",
+      "L'école pour les enfants de 11 à 15 ans",
+      "L'école pour apprendre un métier"
+    ],
+    "correct": 1,
+    "explanation": "L'école maternelle accueille les enfants de 3 à 6 ans et constitue la première étape de la scolarité, devenue obligatoire à partir de 3 ans.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 318,
+    "question": "Comment s'appelle le diplôme passé par les élèves à la fin du collège ?",
+    "options": [
+      "Le baccalauréat",
+      "Le certificat d'études",
+      "Le diplôme national du brevet (DNB)",
+      "Le CAP"
+    ],
+    "correct": 2,
+    "explanation": "Le diplôme national du brevet (DNB) est obtenu à la fin de la classe de troisième et valide les connaissances et compétences acquises au collège.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 319,
+    "question": "Les parents d'élève ont le droit de :",
+    "options": [
+      "Choisir les enseignants de leurs enfants",
+      "Être informés et participer à la vie scolaire par l'intermédiaire de leurs représentants",
+      "Assister à tous les cours",
+      "Décider du contenu des programmes"
+    ],
+    "correct": 1,
+    "explanation": "Les parents d'élèves ont le droit d'être informés du parcours scolaire de leur enfant et peuvent participer à la vie de l'école notamment via leurs représentants élus.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 320,
+    "question": "Qui peut manger à la cantine scolaire ?",
+    "options": [
+      "Seulement les élèves français",
+      "Tous les élèves inscrits à l'école, sans discrimination",
+      "Seulement les élèves dont les parents travaillent",
+      "Seulement les élèves de nationalité européenne"
+    ],
+    "correct": 1,
+    "explanation": "La cantine scolaire est un service public accessible à tous les élèves scolarisés sans discrimination, selon les places disponibles et les modalités définies par la collectivité.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 321,
+    "question": "À quel âge commence l'instruction obligatoire des enfants ?",
+    "options": [
+      "À 6 ans",
+      "À 5 ans",
+      "À 3 ans",
+      "À 4 ans"
+    ],
+    "correct": 2,
+    "explanation": "Depuis la loi de 2019, l'instruction est obligatoire dès 3 ans (âge d'entrée en maternelle) et jusqu'à 16 ans en France.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 322,
+    "question": "Quel est l'âge de la majorité ?",
+    "options": [
+      "16 ans",
+      "17 ans",
+      "18 ans",
+      "21 ans"
+    ],
+    "correct": 2,
+    "explanation": "En France, la majorité civile est fixée à 18 ans. À cet âge, une personne devient juridiquement capable et dispose de tous ses droits civiques.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 323,
+    "question": "À l'école, il est interdit aux parents de :",
+    "options": [
+      "Rencontrer les enseignants",
+      "Participer aux sorties scolaires",
+      "Porter atteinte à la laïcité et au bon fonctionnement de l'école",
+      "Consulter le carnet de notes"
+    ],
+    "correct": 2,
+    "explanation": "Les parents doivent respecter les principes de laïcité et le bon fonctionnement du service public d'éducation, notamment en s'abstenant de tout prosélytisme.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 324,
+    "question": "Quel motif d'absence est accepté par l'école ?",
+    "options": [
+      "Un voyage familial pendant les cours",
+      "Une maladie de l'enfant justifiée par certificat médical",
+      "Des courses à faire",
+      "Un rendez-vous non urgent"
+    ],
+    "correct": 1,
+    "explanation": "Seuls certains motifs sont légitimes pour justifier une absence scolaire : maladie de l'enfant, réunion solennelle de famille, empêchement résultant de difficultés de transport.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 325,
+    "question": "Des parents ne respectent pas l'obligation d'instruction pour leurs enfants. Quelle sanction maximale risquent-ils ?",
+    "options": [
+      "Une simple avertissement",
+      "Une amende de 100 euros",
+      "Une peine pouvant aller jusqu'à 6 mois d'emprisonnement et 7 500 euros d'amende",
+      "Le retrait immédiat de l'enfant"
+    ],
+    "correct": 2,
+    "explanation": "Le non-respect de l'obligation d'instruction est sanctionné pénalement et peut entraîner jusqu'à 6 mois d'emprisonnement et 7 500 euros d'amende pour les parents.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 326,
+    "question": "Quand ont lieu les vacances scolaires de Noël ?",
+    "options": [
+      "En novembre",
+      "Fin décembre et début janvier",
+      "En février",
+      "Début décembre"
+    ],
+    "correct": 1,
+    "explanation": "Les vacances de Noël ont lieu fin décembre et début janvier, généralement pendant deux semaines incluant les fêtes de fin d'année.",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  },
+  {
+    "id": 327,
+    "question": "À l'école, un enfant en situation de handicap :",
+    "options": [
+      "Ne peut pas être scolarisé en école ordinaire",
+      "A le droit d'être scolarisé et peut bénéficier d'aménagements adaptés",
+      "Doit obligatoirement aller dans un établissement spécialisé",
+      "Ne peut pas passer d'examens"
+    ],
+    "correct": 1,
+    "explanation": "Tout enfant en situation de handicap a le droit d'être scolarisé en milieu ordinaire avec, si nécessaire, un accompagnement et des aménagements adaptés (AVS, matériel spécifique, etc.).",
+    "category": "Vivre dans la société française",
+    "tags": [
+      "CR"
+    ]
+  }
+];
 
-    // DROITS ET DEVOIRS (10 câu)
-    {
-      id: 25,
-      category: "Droits et devoirs",
-      question: "La peine de mort en France est :",
-      options: [
-        "Autorisée pour les crimes graves",
-        "Abolie depuis 1981",
-        "Utilisée rarement",
-        "Réservée aux terroristes"
-      ],
-      correct: 1,
-      explanation: "La peine de mort a été abolie en France en 1981 sous la présidence de François Mitterrand, à l'initiative de Robert Badinter."
-    },
-    {
-      id: 26,
-      category: "Droits et devoirs",
-      question: "Que risque une personne qui ne respecte pas la loi ?",
-      options: [
-        "Rien du tout",
-        "Une sanction pénale ou civile",
-        "Un simple avertissement toujours",
-        "Seulement une amende"
-      ],
-      correct: 1,
-      explanation: "Une personne qui ne respecte pas la loi s'expose à des sanctions pénales (amendes, prison) ou civiles selon la gravité."
-    },
-    {
-      id: 27,
-      category: "Droits et devoirs",
-      question: "Quel est un devoir du citoyen français ?",
-      options: [
-        "Aller à l'église",
-        "Payer ses impôts",
-        "Avoir des enfants",
-        "Acheter français"
-      ],
-      correct: 1,
-      explanation: "Payer ses impôts est un devoir citoyen qui permet de financer les services publics."
-    },
-    {
-      id: 28,
-      category: "Droits et devoirs",
-      question: "Le vote en France est-il obligatoire ?",
-      options: [
-        "Oui, sous peine d'amende",
-        "Non, c'est un droit et non une obligation",
-        "Oui pour les élections présidentielles",
-        "Seulement pour les hommes"
-      ],
-      correct: 1,
-      explanation: "Le vote est un droit mais pas une obligation en France, contrairement à certains pays."
-    },
-    {
-      id: 29,
-      category: "Droits et devoirs",
-      question: "À partir de quel âge est-on majeur en France ?",
-      options: [
-        "16 ans",
-        "18 ans",
-        "21 ans",
-        "25 ans"
-      ],
-      correct: 1,
-      explanation: "La majorité légale est fixée à 18 ans en France depuis 1974."
-    },
-    {
-      id: 30,
-      category: "Droits et devoirs",
-      question: "La liberté d'expression permet-elle de tout dire ?",
-      options: [
-        "Oui, absolument tout",
-        "Non, elle a des limites (diffamation, injure, incitation à la haine)",
-        "Seulement en privé",
-        "Uniquement sur internet"
-      ],
-      correct: 1,
-      explanation: "La liberté d'expression a des limites : elle ne permet pas la diffamation, l'injure, l'incitation à la haine ou la violence."
-    },
-    {
-      id: 31,
-      category: "Droits et devoirs",
-      question: "Qu'est-ce que la présomption d'innocence ?",
-      options: [
-        "Tout le monde est coupable",
-        "Toute personne est présumée innocente jusqu'à preuve du contraire",
-        "Seuls les riches sont innocents",
-        "Les avocats décident de la culpabilité"
-      ],
-      correct: 1,
-      explanation: "La présomption d'innocence garantit que toute personne accusée est considérée innocente tant que sa culpabilité n'est pas établie."
-    },
-    {
-      id: 32,
-      category: "Droits et devoirs",
-      question: "Peut-on être discriminé à l'embauche en France ?",
-      options: [
-        "Oui, l'employeur est libre",
-        "Non, c'est interdit par la loi",
-        "Seulement pour l'âge",
-        "Oui si c'est justifié"
-      ],
-      correct: 1,
-      explanation: "La discrimination à l'embauche (origine, sexe, religion, âge, etc.) est strictement interdite et punie par la loi."
-    },
-    {
-      id: 33,
-      category: "Droits et devoirs",
-      question: "Quel organisme assure la Sécurité sociale en France ?",
-      options: [
-        "L'État uniquement",
-        "Les organismes de Sécurité sociale",
-        "Les banques",
-        "Les entreprises privées"
-      ],
-      correct: 1,
-      explanation: "La Sécurité sociale est gérée par des organismes spécialisés (CPAM, CAF, etc.) financés par les cotisations."
-    },
-    {
-      id: 34,
-      category: "Droits et devoirs",
-      question: "L'école est-elle obligatoire en France ?",
-      options: [
-        "Non, c'est un choix",
-        "Oui, de 3 à 16 ans",
-        "Seulement jusqu'à 12 ans",
-        "Uniquement l'école publique"
-      ],
-      correct: 1,
-      explanation: "L'instruction est obligatoire de 3 à 16 ans en France, que ce soit à l'école ou à domicile."
-    },
-
-    // HISTOIRE ET CULTURE (8 câu)
-    {
-      id: 35,
-      category: "Histoire et culture",
-      question: "En quelle année a débuté la Révolution française ?",
-      options: [
-        "1789",
-        "1799",
-        "1815",
-        "1848"
-      ],
-      correct: 0,
-      explanation: "La Révolution française a débuté en 1789 avec la prise de la Bastille le 14 juillet."
-    },
-    {
-      id: 36,
-      category: "Histoire et culture",
-      question: "Qui a fondé la Ve République ?",
-      options: [
-        "Napoléon Bonaparte",
-        "Charles de Gaulle",
-        "François Mitterrand",
-        "Jacques Chirac"
-      ],
-      correct: 1,
-      explanation: "La Ve République a été fondée par Charles de Gaulle en 1958 après la crise algérienne."
-    },
-    {
-      id: 37,
-      category: "Histoire et culture",
-      question: "Quelle est la capitale de la France ?",
-      options: [
-        "Lyon",
-        "Marseille",
-        "Paris",
-        "Bordeaux"
-      ],
-      correct: 2,
-      explanation: "Paris est la capitale de la France et sa plus grande ville."
-    },
-    {
-      id: 38,
-      category: "Histoire et culture",
-      question: "Quand la Seconde Guerre mondiale s'est-elle terminée en Europe ?",
-      options: [
-        "1943",
-        "1944",
-        "1945",
-        "1946"
-      ],
-      correct: 2,
-      explanation: "La Seconde Guerre mondiale s'est terminée en Europe le 8 mai 1945."
-    },
-    {
-      id: 39,
-      category: "Histoire et culture",
-      question: "Qui était le général de Gaulle ?",
-      options: [
-        "Un roi de France",
-        "Le chef de la Résistance et fondateur de la Ve République",
-        "Un empereur",
-        "Un ministre de Napoléon"
-      ],
-      correct: 1,
-      explanation: "Charles de Gaulle a dirigé la France libre pendant la Seconde Guerre mondiale et a fondé la Ve République."
-    },
-    {
-      id: 40,
-      category: "Histoire et culture",
-      question: "Qu'est-ce que la Résistance française ?",
-      options: [
-        "Un mouvement sportif",
-        "La lutte contre l'occupation nazie (1940-1944)",
-        "Un parti politique",
-        "Une guerre civile"
-      ],
-      correct: 1,
-      explanation: "La Résistance française désigne les mouvements qui luttaient contre l'occupation allemande pendant la Seconde Guerre mondiale."
-    },
-    {
-      id: 41,
-      category: "Histoire et culture",
-      question: "En quelle année les femmes ont-elles obtenu le droit de vote en France ?",
-      options: [
-        "1789",
-        "1905",
-        "1944",
-        "1968"
-      ],
-      correct: 2,
-      explanation: "Les femmes françaises ont obtenu le droit de vote en 1944, accordé par le général de Gaulle."
-    },
-    {
-      id: 42,
-      category: "Histoire et culture",
-      question: "Quel événement est commémoré le 11 novembre ?",
-      options: [
-        "La prise de la Bastille",
-        "L'armistice de 1918 (fin de la Première Guerre mondiale)",
-        "La libération de Paris",
-        "La Révolution française"
-      ],
-      correct: 1,
-      explanation: "Le 11 novembre commémore l'armistice de 1918 qui a mis fin à la Première Guerre mondiale."
-    },
-
-    // SOCIÉTÉ FRANÇAISE (8 câu)
-    {
-      id: 43,
-      category: "Société française",
-      question: "Quelle est la langue officielle de la République française ?",
-      options: [
-        "L'anglais",
-        "Le français",
-        "Le latin",
-        "Toutes les langues régionales"
-      ],
-      correct: 1,
-      explanation: "Le français est la langue officielle de la République depuis la Constitution de 1992."
-    },
-    {
-      id: 44,
-      category: "Société française",
-      question: "Qu'est-ce que la Sécurité sociale ?",
-      options: [
-        "La police nationale",
-        "Un système de protection sociale (santé, retraite, famille)",
-        "Une compagnie d'assurance",
-        "Un service de sécurité privé"
-      ],
-      correct: 1,
-      explanation: "La Sécurité sociale est un système de protection sociale qui couvre la santé, la retraite, la famille et les accidents du travail."
-    },
-    {
-      id: 45,
-      category: "Société française",
-      question: "Quel est le salaire minimum légal en France ?",
-      options: [
-        "Il n'existe pas",
-        "Le SMIC (Salaire Minimum Interprofessionnel de Croissance)",
-        "500 euros par mois",
-        "Il varie selon les régions"
-      ],
-      correct: 1,
-      explanation: "Le SMIC est le salaire minimum légal en France, réévalué régulièrement."
-    },
-    {
-      id: 46,
-      category: "Société française",
-      question: "Combien de jours de congés payés minimum par an ?",
-      options: [
-        "15 jours",
-        "30 jours ouvrables (5 semaines)",
-        "45 jours",
-        "60 jours"
-      ],
-      correct: 1,
-      explanation: "En France, tout salarié a droit à un minimum de 5 semaines de congés payés par an (30 jours ouvrables)."
-    },
-    {
-      id: 47,
-      category: "Société française",
-      question: "Qu'est-ce qu'un service public ?",
-      options: [
-        "Une entreprise privée",
-        "Un service assuré par l'État ou les collectivités pour l'intérêt général",
-        "Un magasin ouvert au public",
-        "Une administration payante"
-      ],
-      correct: 1,
-      explanation: "Un service public est une activité assurée par l'État ou les collectivités pour répondre à un besoin d'intérêt général (école, hôpital, etc.)."
-    },
-    {
-      id: 48,
-      category: "Société française",
-      question: "La France fait-elle partie de l'Union européenne ?",
-      options: [
-        "Non",
-        "Oui, membre fondateur",
-        "Seulement économiquement",
-        "Elle l'a quittée"
-      ],
-      correct: 1,
-      explanation: "La France est membre fondateur de l'Union européenne (ancienne CEE créée en 1957)."
-    },
-    {
-      id: 49,
-      category: "Société française",
-      question: "Quelle est la monnaie utilisée en France ?",
-      options: [
-        "Le franc",
-        "L'euro",
-        "La livre",
-        "Le dollar"
-      ],
-      correct: 1,
-      explanation: "L'euro est la monnaie officielle de la France depuis 2002."
-    },
-    {
-      id: 50,
-      category: "Société française",
-      question: "Que signifie 'assimilation' dans le contexte français ?",
-      options: [
-        "Rejeter les étrangers",
-        "Adopter les valeurs et la langue de la République tout en gardant sa culture d'origine",
-        "Interdire les religions",
-        "Créer des communautés séparées"
-      ],
-      correct: 1,
-      explanation: "L'assimilation (ou intégration républicaine) implique l'adoption des valeurs républicaines et de la langue française, dans le respect de la diversité culturelle."
-    }
-  ]
-};
-
-// Fonction helper để shuffle array
+// Helper functions
 const shuffleArray = (array) => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -672,12 +5269,11 @@ const shuffleArray = (array) => {
   return newArray;
 };
 
-// Fonction để shuffle options và update correct index
 const shuffleQuestion = (question) => {
   const correctAnswer = question.options[question.correct];
   const shuffledOptions = shuffleArray(question.options);
   const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
-  
+
   return {
     ...question,
     options: shuffledOptions,
@@ -685,17 +5281,32 @@ const shuffleQuestion = (question) => {
   };
 };
 
-// Fonction pour obtenir questions aléatoires AVEC options shuffled
-export const getRandomQuestions = (count = 15) => {
-  const allQuestions = [...questionsDB.CSP];
-  const shuffled = allQuestions.sort(() => Math.random() - 0.5);
-  const selectedQuestions = shuffled.slice(0, count);
-  
-  // Shuffle options cho mỗi câu hỏi
-  return selectedQuestions.map(q => shuffleQuestion(q));
+// Get questions by type (CSP or CR)
+export const getQuestionsByType = (type, count) => {
+  const filtered = questionsDB.filter(q => q.tags.includes(type));
+  const shuffled = filtered.sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, count);
+  return selected.map(q => shuffleQuestion(q));
 };
 
-// Fonction pour obtenir toutes les questions (pour mode examen) AVEC shuffle
-export const getAllQuestions = () => {
-  return questionsDB.CSP.map(q => shuffleQuestion(q));
+// Get random questions (old function for backward compatibility)
+export const getRandomQuestions = (count = 15) => {
+  return getQuestionsByType('CSP', count);
+};
+
+// Get all questions for a type
+export const getAllQuestions = (type = 'CSP') => {
+  const filtered = questionsDB.filter(q => q.tags.includes(type));
+  return filtered.map(q => shuffleQuestion(q));
+};
+
+// Get total count by type
+export const getTotalQuestionsByType = (type) => {
+  return questionsDB.filter(q => q.tags.includes(type)).length;
+};
+
+// Export for stats
+export const TOTAL_QUESTIONS = {
+  CSP: 150,
+  CR: 199
 };
