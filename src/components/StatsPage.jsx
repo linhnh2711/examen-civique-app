@@ -116,16 +116,16 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
           {/* CSP Progress */}
           <button
             onClick={() => onViewCategoryProgress('CSP')}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
           >
-            <h3 className="font-bold text-sm md:text-lg text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2">
+            <h3 className="font-bold text-sm md:text-base text-gray-900 dark:text-white mb-2 md:mb-3 flex items-center gap-2">
               <PieChart className="w-4 h-4 md:w-5 md:h-5 text-blue-600 dark:text-blue-400" />
               <span className="hidden md:inline">Progression CSP</span>
               <span className="md:hidden">CSP</span>
             </h3>
-            <div className="mb-3 md:mb-4">
-              <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-2">
-                <span className="text-2xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">{progressCSP.percentage}%</span>
+            <div className="mb-2 md:mb-3">
+              <div className="flex items-baseline gap-1.5 md:gap-2 mb-1">
+                <span className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 leading-none">{progressCSP.percentage}%</span>
                 <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">complété</span>
               </div>
               <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
@@ -143,16 +143,16 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
           {/* CR Progress */}
           <button
             onClick={() => onViewCategoryProgress('CR')}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
           >
-            <h3 className="font-bold text-sm md:text-lg text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2">
+            <h3 className="font-bold text-sm md:text-base text-gray-900 dark:text-white mb-2 md:mb-3 flex items-center gap-2">
               <PieChart className="w-4 h-4 md:w-5 md:h-5 text-purple-600 dark:text-purple-400" />
               <span className="hidden md:inline">Progression CR</span>
               <span className="md:hidden">CR</span>
             </h3>
-            <div className="mb-3 md:mb-4">
-              <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-2">
-                <span className="text-2xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">{progressCR.percentage}%</span>
+            <div className="mb-2 md:mb-3">
+              <div className="flex items-baseline gap-1.5 md:gap-2 mb-1">
+                <span className="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400 leading-none">{progressCR.percentage}%</span>
                 <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">complété</span>
               </div>
               <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
