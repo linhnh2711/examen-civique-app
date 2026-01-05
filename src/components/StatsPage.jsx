@@ -57,49 +57,57 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
         </div>
 
         {/* Overall Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
           {/* Total Questions */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-blue-600 dark:text-blue-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <BarChart3 className="w-5 h-5 md:w-6 md:h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Total réponses</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-tight">Total réponses</div>
+                <div className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight mt-0.5">{stats.total}</div>
+              </div>
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
           </div>
 
           {/* Accuracy */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
-                <Target className="w-4 h-4 md:w-5 md:h-5 text-green-600 dark:text-green-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-100 dark:bg-green-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Target className="w-5 h-5 md:w-6 md:h-6 text-green-600 dark:text-green-400" />
               </div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Précision</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-tight">Précision</div>
+                <div className="text-xl md:text-2xl font-bold text-green-600 dark:text-green-400 leading-tight mt-0.5">{accuracy}%</div>
+              </div>
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">{accuracy}%</div>
           </div>
 
           {/* Best Streak */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
-                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-orange-600 dark:text-orange-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Meilleure série</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-tight">Meilleure série</div>
+                <div className="text-xl md:text-2xl font-bold text-orange-600 dark:text-orange-400 leading-tight mt-0.5">{stats.bestStreak}</div>
+              </div>
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.bestStreak}</div>
           </div>
 
           {/* Correct Answers */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-2 md:mb-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
-                <Award className="w-4 h-4 md:w-5 md:h-5 text-purple-600 dark:text-purple-400" />
+          <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Award className="w-5 h-5 md:w-6 md:h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">Bonnes réponses</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-tight">Bonnes réponses</div>
+                <div className="text-xl md:text-2xl font-bold text-purple-600 dark:text-purple-400 leading-tight mt-0.5">{stats.correct}</div>
+              </div>
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.correct}</div>
           </div>
         </div>
 
