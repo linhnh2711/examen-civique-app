@@ -114,29 +114,29 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-4xl mx-auto p-4 md:p-6">
         {/* Header avec Timer */}
-        <div className="bg-white rounded-2xl shadow-lg p-4 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-4 md:mb-6">
+          <div className="flex items-center justify-between mb-3 md:mb-4">
             <button
               onClick={onBack}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center gap-1 md:gap-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
-              <Home className="w-5 h-5" />
-              <span className="font-medium">Abandonner</span>
+              <Home className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-medium text-sm md:text-base">Abandonner</span>
             </button>
-            
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+
+            <div className={`flex items-center gap-1 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full ${
               isTimeLow ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
             }`}>
-              <Clock className="w-5 h-5" />
-              <span className="font-bold text-lg">{formatTime(timeLeft)}</span>
+              <Clock className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-bold text-base md:text-lg">{formatTime(timeLeft)}</span>
             </div>
           </div>
 
           {/* Timer progress bar */}
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className={`h-2 rounded-full transition-all ${
                 isTimeLow ? 'bg-red-500' : 'bg-blue-500'
               }`}
@@ -146,17 +146,17 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
         </div>
 
         {/* Progress */}
-        <div className="bg-white rounded-2xl shadow-lg p-4 mb-6">
+        <div className="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-4 md:mb-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-600">
+            <span className="text-xs md:text-sm font-medium text-gray-600">
               Question {currentQuestion + 1} / {questions.length}
             </span>
-            <span className="text-sm font-medium text-gray-600">
+            <span className="text-xs md:text-sm font-medium text-gray-600">
               {answeredCount} / {questions.length} réponses
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all"
               style={{ width: `${progressPercentage}%` }}
             />
@@ -164,31 +164,31 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
         </div>
 
         {/* Question Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-          <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+        <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 mb-4 md:mb-6">
+          <div className="inline-block bg-purple-100 text-purple-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             {question.category}
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">
             {question.question}
           </h2>
 
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             {question.options.map((option, index) => {
               const isSelected = selectedAnswer === index;
-              
+
               return (
                 <button
                   key={index}
                   onClick={() => handleAnswerSelect(question.id, index)}
-                  className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                  className={`w-full p-3 md:p-4 rounded-xl border-2 text-left transition-all ${
                     isSelected
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 bg-white hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                  <div className="flex items-center gap-2 md:gap-3">
+                    <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center ${
                       isSelected
                         ? 'border-blue-500 bg-blue-500'
                         : 'border-gray-300'
@@ -197,7 +197,7 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
                         <div className="w-2 h-2 bg-white rounded-full" />
                       )}
                     </div>
-                    <span className="font-medium text-gray-900">{option}</span>
+                    <span className="font-medium text-sm md:text-base text-gray-900">{option}</span>
                   </div>
                 </button>
               );
@@ -206,28 +206,28 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
         </div>
 
         {/* Navigation */}
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           {currentQuestion > 0 && (
             <button
               onClick={() => setCurrentQuestion(currentQuestion - 1)}
-              className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-300 transition-all"
+              className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-200 text-gray-700 rounded-xl font-bold text-sm md:text-base hover:bg-gray-300 transition-all"
             >
               Précédent
             </button>
           )}
-          
+
           {currentQuestion < questions.length - 1 ? (
             <button
               onClick={() => setCurrentQuestion(currentQuestion + 1)}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all flex items-center justify-center gap-2"
             >
               Suivant
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           ) : (
             <button
               onClick={handleSubmit}
-              className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all"
+              className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all"
             >
               Terminer l'examen
             </button>
@@ -236,11 +236,11 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
 
         {/* Questions non répondues warning */}
         {answeredCount < questions.length && currentQuestion === questions.length - 1 && (
-          <div className="mt-4 bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4 flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+          <div className="mt-3 md:mt-4 bg-yellow-50 border-2 border-yellow-200 rounded-xl p-3 md:p-4 flex items-start gap-2 md:gap-3">
+            <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-medium text-yellow-900">Attention</p>
-              <p className="text-sm text-yellow-800">
+              <p className="font-medium text-sm md:text-base text-yellow-900">Attention</p>
+              <p className="text-xs md:text-sm text-yellow-800">
                 Vous n'avez répondu qu'à {answeredCount} questions sur {questions.length}.
                 Les questions non répondues seront comptées comme fausses.
               </p>
