@@ -40,6 +40,10 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
 
   const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
 
+  // Find last exam blanc result
+  const lastExam = recentHistory.find(entry => entry.mode === 'Examen Blanc');
+  const showExamResult = lastExam !== undefined;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-6xl mx-auto p-6">
@@ -113,15 +117,31 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
             </div>
           </div>
 
-          {/* Correct Answers */}
+          {/* Last Exam or Correct Answers */}
           <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
-                <Award className="w-5 h-5 md:w-6 md:h-6 text-purple-600 dark:text-purple-400" />
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 ${
+                showExamResult
+                  ? (lastExam.passed ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30')
+                  : 'bg-purple-100 dark:bg-purple-900/30'
+              }`}>
+                <Award className={`w-5 h-5 md:w-6 md:h-6 ${
+                  showExamResult
+                    ? (lastExam.passed ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400')
+                    : 'text-purple-600 dark:text-purple-400'
+                }`} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2 whitespace-nowrap overflow-hidden text-ellipsis">Bonnes réponses</div>
-                <div className="text-xl md:text-2xl font-bold text-purple-600 dark:text-purple-400">{stats.correct}</div>
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2 whitespace-nowrap overflow-hidden text-ellipsis">
+                  {showExamResult ? 'Dernier examen' : 'Bonnes réponses'}
+                </div>
+                <div className={`text-xl md:text-2xl font-bold ${
+                  showExamResult
+                    ? (lastExam.passed ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400')
+                    : 'text-purple-600 dark:text-purple-400'
+                }`}>
+                  {showExamResult ? `${lastExam.score}/${lastExam.total}` : stats.correct}
+                </div>
               </div>
             </div>
           </div>
