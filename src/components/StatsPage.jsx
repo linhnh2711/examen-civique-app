@@ -140,7 +140,7 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
                     ? (lastExam.passed ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400')
                     : 'text-purple-600 dark:text-purple-400'
                 }`}>
-                  {showExamResult ? `${lastExam.score}/${lastExam.total}` : stats.correct}
+                  {showExamResult ? `${lastExam.score}/${lastExam.total || 40}` : stats.correct}
                 </div>
               </div>
             </div>
@@ -274,10 +274,10 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
                     <div className={`text-2xl font-bold ${
                       entry.passed ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
                     }`}>
-                      {entry.score}/{entry.total}
+                      {entry.score}/{entry.total || (entry.mode === 'Examen Blanc' ? 40 : entry.score)}
                     </div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {Math.round((entry.score / entry.total) * 100)}%
+                      {entry.total ? Math.round((entry.score / entry.total) * 100) : (entry.mode === 'Examen Blanc' ? Math.round((entry.score / 40) * 100) : 100)}%
                     </div>
                   </div>
                 </div>
