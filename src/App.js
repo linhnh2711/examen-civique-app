@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import HomePage from './components/HomePage';
 import QuizPage from './components/QuizPage';
+import QuizSetupPage from './components/QuizSetupPage';
 import ResultPage from './components/ResultPage';
 import ExamenBlancPage from './components/ExamenBlancPage';
 import ExamenResultPage from './components/ExamenResultPage';
 import StatsPage from './components/StatsPage';
 import ReviewPage from './components/ReviewPage';
+import SavedQuestionsPage from './components/SavedQuestionsPage';
 import CategoryProgressPage from './components/CategoryProgressPage';
 import CategoryStatsPage from './components/CategoryStatsPage';
 import InstallPrompt from './components/InstallPrompt';
@@ -18,6 +20,7 @@ const App = () => {
   const [stats, setStats] = useState({ total: 0, correct: 0, streak: 0, bestStreak: 0 });
   const [currentStreak, setCurrentStreak] = useState(0);
   const [quizScore, setQuizScore] = useState(0);
+  const [quizQuestionCount, setQuizQuestionCount] = useState(15);
   const [examenResult, setExamenResult] = useState(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -71,8 +74,8 @@ const App = () => {
       type: quizType,
       mode: 'Practice',
       score: score,
-      total: 15,
-      passed: score >= 12
+      total: quizQuestionCount,
+      passed: score >= Math.ceil(quizQuestionCount * 0.8)
     });
     setMode('result');
   };
@@ -98,7 +101,7 @@ const App = () => {
           stats={stats}
           onStartQuiz={(type) => {
             setQuizType(type);
-            setMode('quiz');
+            setMode('quiz-setup');
           }}
           onStartExamen={(type) => {
             setQuizType(type);
@@ -106,10 +109,22 @@ const App = () => {
           }}
           onViewStats={() => setMode('stats')}
           onReviewWrong={() => setMode('review')}
+          onViewSavedQuestions={() => setMode('saved-questions')}
           onViewCategoryProgress={(type) => {
             setQuizType(type);
             setMode('category-progress');
           }}
+        />
+      )}
+
+      {mode === 'quiz-setup' && (
+        <QuizSetupPage
+          examType={quizType}
+          onStart={(count) => {
+            setQuizQuestionCount(count);
+            setMode('quiz');
+          }}
+          onBack={handleBackHome}
         />
       )}
       
@@ -118,6 +133,7 @@ const App = () => {
           stats={stats}
           currentStreak={currentStreak}
           quizType={quizType}
+          totalQuestions={quizQuestionCount}
           onUpdateStats={updateStats}
           onStreakUpdate={setCurrentStreak}
           onComplete={handleQuizComplete}
@@ -130,7 +146,7 @@ const App = () => {
           score={quizScore}
           currentStreak={currentStreak}
           onBackHome={handleBackHome}
-          totalQuestions={15}
+          totalQuestions={quizQuestionCount}
         />
       )}
 
@@ -162,6 +178,12 @@ const App = () => {
 
       {mode === 'review' && (
         <ReviewPage
+          onBack={handleBackHome}
+        />
+      )}
+
+      {mode === 'saved-questions' && (
+        <SavedQuestionsPage
           onBack={handleBackHome}
         />
       )}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, TrendingUp, Target, Award, Calendar, BarChart3, PieChart } from 'lucide-react';
+import { Home, TrendingUp, Target, Award, Calendar, BarChart3, PieChart, HandMetal, Flame, Star, Crown } from 'lucide-react';
 import { getProgress, loadQuizHistory } from '../utils/storage';
 import { questionsDB } from '../data/questions';
 
@@ -60,45 +60,69 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
           {/* Total Questions */}
           <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center mb-2">Total réponses</div>
-            <div className="flex items-center justify-center gap-2 md:gap-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
-                <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-blue-600 dark:text-blue-400" />
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <BarChart3 className="w-5 h-5 md:w-6 md:h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+              <div className="flex-1">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2">Total réponses</div>
+                <div className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+              </div>
             </div>
           </div>
 
           {/* Accuracy */}
           <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center mb-2">Précision</div>
-            <div className="flex items-center justify-center gap-2 md:gap-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-green-100 dark:bg-green-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
-                <Target className="w-4 h-4 md:w-5 md:h-5 text-green-600 dark:text-green-400" />
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-100 dark:bg-green-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Target className="w-5 h-5 md:w-6 md:h-6 text-green-600 dark:text-green-400" />
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">{accuracy}%</div>
+              <div className="flex-1">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2">Précision</div>
+                <div className={`text-xl md:text-2xl font-bold ${
+                  accuracy >= 80
+                    ? 'text-green-600 dark:text-green-400'
+                    : accuracy >= 60
+                      ? 'text-orange-600 dark:text-orange-400'
+                      : 'text-red-600 dark:text-red-400'
+                }`}>{accuracy}%</div>
+              </div>
             </div>
           </div>
 
           {/* Best Streak */}
           <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center mb-2">Meilleure série</div>
-            <div className="flex items-center justify-center gap-2 md:gap-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-orange-600 dark:text-orange-400" />
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                {stats.bestStreak >= 40 ? (
+                  <Crown className="w-5 h-5 md:w-6 md:h-6 text-yellow-600 dark:text-yellow-400" />
+                ) : stats.bestStreak >= 30 ? (
+                  <Star className="w-5 h-5 md:w-6 md:h-6 text-blue-600 dark:text-blue-400" />
+                ) : stats.bestStreak >= 20 ? (
+                  <Flame className="w-5 h-5 md:w-6 md:h-6 text-orange-600 dark:text-orange-400" />
+                ) : stats.bestStreak >= 10 ? (
+                  <HandMetal className="w-5 h-5 md:w-6 md:h-6 text-purple-600 dark:text-purple-400" />
+                ) : (
+                  <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-orange-600 dark:text-orange-400" />
+                )}
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">{stats.bestStreak}</div>
+              <div className="flex-1">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2">Meilleure série</div>
+                <div className="text-xl md:text-2xl font-bold text-orange-600 dark:text-orange-400">{stats.bestStreak}</div>
+              </div>
             </div>
           </div>
 
           {/* Correct Answers */}
           <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center mb-2">Bonnes réponses</div>
-            <div className="flex items-center justify-center gap-2 md:gap-3">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
-                <Award className="w-4 h-4 md:w-5 md:h-5 text-purple-600 dark:text-purple-400" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Award className="w-5 h-5 md:w-6 md:h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">{stats.correct}</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2 whitespace-nowrap overflow-hidden text-ellipsis">Bonnes réponses</div>
+                <div className="text-xl md:text-2xl font-bold text-purple-600 dark:text-purple-400">{stats.correct}</div>
+              </div>
             </div>
           </div>
         </div>

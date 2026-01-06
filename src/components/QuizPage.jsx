@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Flame, Check, X, ChevronRight } from 'lucide-react';
+import { Home, Flame, Check, X, ChevronRight, Star } from 'lucide-react';
 import { getQuestionsByType } from '../data/questions';
-import { markQuestionAsLearned, addWrongAnswer } from '../utils/storage';
+import { markQuestionAsLearned, addWrongAnswer, toggleSavedQuestion, isQuestionSaved } from '../utils/storage';
 
-const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onComplete, onBack, quizType = 'CSP' }) => {
+const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onComplete, onBack, quizType = 'CSP', totalQuestions = 15 }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
+  const [savedQuestions, setSavedQuestions] = useState(new Set());
 
   useEffect(() => {
-    const randomQuestions = getQuestionsByType(quizType, 15);
+    const randomQuestions = getQuestionsByType(quizType, totalQuestions);
     setQuestions(randomQuestions);
-  }, [quizType]);
+
+    // Load saved questions status
+    const saved = new Set();
+    randomQuestions.forEach(q => {
+      if (isQuestionSaved(q.id)) {
+        saved.add(q.id);
+      }
+    });
+    setSavedQuestions(saved);
+  }, [quizType, totalQuestions]);
 
   if (questions.length === 0) {
     return (
@@ -78,6 +88,19 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
     }
   };
 
+  const handleToggleSave = () => {
+    toggleSavedQuestion(question.id);
+    setSavedQuestions(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(question.id)) {
+        newSet.delete(question.id);
+      } else {
+        newSet.add(question.id);
+      }
+      return newSet;
+    });
+  };
+
   const isCorrect = showResult && selectedAnswer === question.correct;
 
   return (
@@ -116,9 +139,24 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
           />
         </div>
 
-        {/* Category */}
-        <div className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6">
-          {question.category}
+        {/* Category and Save Button */}
+        <div className="flex items-center justify-between mb-4 md:mb-6">
+          <div className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">
+            {question.category}
+          </div>
+          <button
+            onClick={handleToggleSave}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+            title={savedQuestions.has(question.id) ? "Retirer des favoris" : "Sauvegarder pour réviser"}
+          >
+            <Star
+              className={`w-5 h-5 md:w-6 md:h-6 ${
+                savedQuestions.has(question.id)
+                  ? 'fill-yellow-400 text-yellow-400'
+                  : 'text-gray-400 dark:text-gray-500'
+              }`}
+            />
+          </button>
         </div>
 
         {/* Question */}

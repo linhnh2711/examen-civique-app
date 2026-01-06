@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Home, Clock, AlertCircle, ChevronRight } from 'lucide-react';
+import { Home, Clock, AlertCircle, ChevronRight, Star } from 'lucide-react';
 import { getQuestionsByType } from '../data/questions';
-import { markQuestionAsLearned, addWrongAnswer } from '../utils/storage';
+import { markQuestionAsLearned, addWrongAnswer, toggleSavedQuestion, isQuestionSaved } from '../utils/storage';
 
 const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
   const [questions, setQuestions] = useState([]);
@@ -10,6 +10,7 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
   const [timeLeft, setTimeLeft] = useState(45 * 60); // 45 minutes en secondes
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [savedQuestions, setSavedQuestions] = useState(new Set());
 
   // Define callbacks first before useEffect
   const calculateAndSubmit = useCallback(() => {
@@ -45,6 +46,15 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
   useEffect(() => {
     const randomQuestions = getQuestionsByType(examType, 40);
     setQuestions(randomQuestions);
+
+    // Load saved questions status
+    const saved = new Set();
+    randomQuestions.forEach(q => {
+      if (isQuestionSaved(q.id)) {
+        saved.add(q.id);
+      }
+    });
+    setSavedQuestions(saved);
   }, [examType]);
 
   // Timer countdown
@@ -91,6 +101,19 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
   const confirmSubmit = () => {
     setIsSubmitting(true);
     calculateAndSubmit();
+  };
+
+  const handleToggleSave = () => {
+    toggleSavedQuestion(question.id);
+    setSavedQuestions(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(question.id)) {
+        newSet.delete(question.id);
+      } else {
+        newSet.add(question.id);
+      }
+      return newSet;
+    });
   };
 
   const answeredCount = Object.keys(answers).length;
@@ -165,8 +188,23 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
 
         {/* Question Card */}
         <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 mb-4 md:mb-6">
-          <div className="inline-block bg-purple-100 text-purple-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
-            {question.category}
+          <div className="flex items-center justify-between mb-3 md:mb-4">
+            <div className="inline-block bg-purple-100 text-purple-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">
+              {question.category}
+            </div>
+            <button
+              onClick={handleToggleSave}
+              className="p-2 rounded-full hover:bg-gray-100 transition-all"
+              title={savedQuestions.has(question.id) ? "Retirer des favoris" : "Sauvegarder pour réviser"}
+            >
+              <Star
+                className={`w-5 h-5 md:w-6 md:h-6 ${
+                  savedQuestions.has(question.id)
+                    ? 'fill-yellow-400 text-yellow-400'
+                    : 'text-gray-400'
+                }`}
+              />
+            </button>
           </div>
 
           <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">
@@ -206,32 +244,35 @@ const ExamenBlancPage = ({ onBack, onComplete, examType = 'CSP' }) => {
         </div>
 
         {/* Navigation */}
-        <div className="flex gap-2 md:gap-3">
-          {currentQuestion > 0 && (
-            <button
-              onClick={() => setCurrentQuestion(currentQuestion - 1)}
-              className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-200 text-gray-700 rounded-xl font-bold text-sm md:text-base hover:bg-gray-300 transition-all"
-            >
-              Précédent
-            </button>
-          )}
+        <div className="space-y-2 md:space-y-3">
+          <div className="flex gap-2 md:gap-3">
+            {currentQuestion > 0 && (
+              <button
+                onClick={() => setCurrentQuestion(currentQuestion - 1)}
+                className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-200 text-gray-700 rounded-xl font-bold text-sm md:text-base hover:bg-gray-300 transition-all"
+              >
+                Précédent
+              </button>
+            )}
 
-          {currentQuestion < questions.length - 1 ? (
-            <button
-              onClick={() => setCurrentQuestion(currentQuestion + 1)}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all flex items-center justify-center gap-2"
-            >
-              Suivant
-              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all"
-            >
-              Terminer l'examen
-            </button>
-          )}
+            {currentQuestion < questions.length - 1 && (
+              <button
+                onClick={() => setCurrentQuestion(currentQuestion + 1)}
+                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              >
+                Suivant
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+            )}
+          </div>
+
+          {/* Terminer button always available */}
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all"
+          >
+            Terminer l'examen
+          </button>
         </div>
 
         {/* Questions non répondues warning */}

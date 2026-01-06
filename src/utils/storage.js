@@ -53,10 +53,14 @@ export const markQuestionAsLearned = (questionId, questionTags) => {
 // Get progress for a type
 export const getProgress = (type) => {
   const learned = loadLearnedQuestions();
+  // Dynamically import questionsDB to get real total
+  const { questionsDB } = require('../data/questions');
+  const totalQuestions = questionsDB.filter(q => q.tags.includes(type)).length;
+
   return {
     learned: learned[type].length,
-    total: 180, // Total questions per type
-    percentage: Math.round((learned[type].length / 180) * 100)
+    total: totalQuestions,
+    percentage: totalQuestions > 0 ? Math.round((learned[type].length / totalQuestions) * 100) : 0
   };
 };
 
@@ -140,4 +144,44 @@ export const removeWrongAnswer = (questionId) => {
   const wrongAnswers = loadWrongAnswers();
   const filtered = wrongAnswers.filter(w => w.questionId !== questionId);
   saveWrongAnswers(filtered);
+};
+
+// Saved Questions Storage (Questions favorites/enregistrées)
+export const loadSavedQuestions = () => {
+  try {
+    const saved = localStorage.getItem('saved-questions');
+    return saved ? JSON.parse(saved) : [];
+  } catch (err) {
+    console.error('Load saved questions error:', err);
+    return [];
+  }
+};
+
+export const saveSavedQuestions = (savedQuestions) => {
+  try {
+    localStorage.setItem('saved-questions', JSON.stringify(savedQuestions));
+  } catch (err) {
+    console.error('Save saved questions error:', err);
+  }
+};
+
+export const toggleSavedQuestion = (questionId) => {
+  const savedQuestions = loadSavedQuestions();
+  const index = savedQuestions.indexOf(questionId);
+
+  if (index > -1) {
+    // Question already saved, remove it
+    savedQuestions.splice(index, 1);
+  } else {
+    // Add question to saved
+    savedQuestions.push(questionId);
+  }
+
+  saveSavedQuestions(savedQuestions);
+  return savedQuestions;
+};
+
+export const isQuestionSaved = (questionId) => {
+  const savedQuestions = loadSavedQuestions();
+  return savedQuestions.includes(questionId);
 };

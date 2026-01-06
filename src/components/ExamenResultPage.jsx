@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import { Trophy, XCircle, Home, ChevronDown, ChevronUp, Check, X, Clock } from 'lucide-react';
+import { Trophy, XCircle, Home, ChevronDown, ChevronUp, Check, X, Clock, Star } from 'lucide-react';
+import { toggleSavedQuestion, isQuestionSaved } from '../utils/storage';
 
 const ExamenResultPage = ({ result, onBackHome }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const [showNavigation, setShowNavigation] = useState(false);
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   const { score, total, answers, questions, timeSpent } = result;
+  const [savedQuestions, setSavedQuestions] = useState(() => {
+    const saved = new Set();
+    questions.forEach(q => {
+      if (isQuestionSaved(q.id)) {
+        saved.add(q.id);
+      }
+    });
+    return saved;
+  });
   
   const percentage = Math.round((score / total) * 100);
   const passed = percentage >= 80; // 80% requis (32/40)
@@ -12,6 +24,30 @@ const ExamenResultPage = ({ result, onBackHome }) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}min ${secs}s`;
+  };
+
+  const handleToggleSave = (questionId) => {
+    toggleSavedQuestion(questionId);
+    setSavedQuestions(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(questionId)) {
+        newSet.delete(questionId);
+      } else {
+        newSet.add(questionId);
+      }
+      return newSet;
+    });
+  };
+
+  const scrollToQuestion = (index) => {
+    setActiveQuestionIndex(index);
+    setShowNavigation(false); // Close menu after selection
+    const element = document.getElementById(`question-${index}`);
+    if (element) {
+      const yOffset = -80; // Offset for fixed header
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
 
   // Grouper par catégorie
@@ -27,8 +63,21 @@ const ExamenResultPage = ({ result, onBackHome }) => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6 pb-24">
+      {/* Fixed "Retour à l'accueil" button */}
+      <div className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-md z-50 p-4">
+        <div className="max-w-4xl mx-auto">
+          <button
+            onClick={onBackHome}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-bold transition-all"
+          >
+            <Home className="w-5 h-5" />
+            Retour à l'accueil
+          </button>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto pt-16">
         {/* Result Header */}
         <div className="bg-white rounded-3xl shadow-2xl p-8 text-center mb-6">
           <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
@@ -99,7 +148,7 @@ const ExamenResultPage = ({ result, onBackHome }) => {
           {/* Voir détails button */}
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 mb-4"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
           >
             {showDetails ? (
               <>
@@ -113,30 +162,78 @@ const ExamenResultPage = ({ result, onBackHome }) => {
               </>
             )}
           </button>
-
-          {/* Retour home */}
-          <button
-            onClick={onBackHome}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2"
-          >
-            <Home className="w-5 h-5" />
-            Retour à l'accueil
-          </button>
         </div>
 
         {/* Détails des réponses */}
         {showDetails && (
-          <div className="space-y-4">
-            {questions.map((q, index) => {
-              const userAnswer = answers[q.id];
-              const isCorrect = userAnswer === q.correct;
-              const wasAnswered = userAnswer !== undefined;
+          <div className="relative">
+            {/* Minimized navigation button */}
+            <div className="sticky top-20 z-40 mb-6">
+              <button
+                onClick={() => setShowNavigation(!showNavigation)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center gap-2 font-semibold text-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                Navigation ({activeQuestionIndex + 1}/40)
+                <svg className={`w-4 h-4 transition-transform ${showNavigation ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
 
-              return (
-                <div key={q.id} className={`bg-white rounded-2xl p-6 border-2 ${
-                  isCorrect ? 'border-green-200' : wasAnswered ? 'border-red-200' : 'border-gray-200'
-                }`}>
-                  <div className="flex items-start gap-4">
+              {/* Expanded navigation grid */}
+              {showNavigation && (
+                <div className="absolute top-12 left-0 right-0 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 border-2 border-blue-200">
+                  <div className="text-xs font-semibold text-gray-600 mb-3">Sélectionnez une question :</div>
+                  <div className="grid grid-cols-8 md:grid-cols-10 gap-2 max-h-64 overflow-y-auto">
+                    {questions.map((q, index) => {
+                      const userAnswer = answers[q.id];
+                      const isCorrect = userAnswer === q.correct;
+                      const wasAnswered = userAnswer !== undefined;
+
+                      return (
+                        <button
+                          key={q.id}
+                          onClick={() => scrollToQuestion(index)}
+                          className={`aspect-square rounded-lg text-xs font-bold transition-all ${
+                            activeQuestionIndex === index
+                              ? 'ring-2 ring-blue-500 scale-110'
+                              : ''
+                          } ${
+                            isCorrect
+                              ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                              : wasAnswered
+                                ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          }`}
+                          title={`Question ${index + 1}`}
+                        >
+                          {index + 1}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Questions list */}
+            <div className="space-y-4">
+              {questions.map((q, index) => {
+                const userAnswer = answers[q.id];
+                const isCorrect = userAnswer === q.correct;
+                const wasAnswered = userAnswer !== undefined;
+
+                return (
+                  <div
+                    key={q.id}
+                    id={`question-${index}`}
+                    className={`bg-white rounded-2xl p-6 border-2 ${
+                      isCorrect ? 'border-green-200' : wasAnswered ? 'border-red-200' : 'border-gray-200'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                       isCorrect ? 'bg-green-100' : wasAnswered ? 'bg-red-100' : 'bg-gray-100'
                     }`}>
@@ -148,9 +245,24 @@ const ExamenResultPage = ({ result, onBackHome }) => {
                         <span className="text-gray-500 text-sm">?</span>
                       )}
                     </div>
-                    
+
                     <div className="flex-1">
-                      <div className="text-sm text-gray-500 mb-1">Question {index + 1} - {q.category}</div>
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="text-sm text-gray-500">Question {index + 1} - {q.category}</div>
+                        <button
+                          onClick={() => handleToggleSave(q.id)}
+                          className="p-1 rounded-full hover:bg-gray-100 transition-all"
+                          title={savedQuestions.has(q.id) ? "Retirer des favoris" : "Sauvegarder pour réviser"}
+                        >
+                          <Star
+                            className={`w-5 h-5 ${
+                              savedQuestions.has(q.id)
+                                ? 'fill-yellow-400 text-yellow-400'
+                                : 'text-gray-400'
+                            }`}
+                          />
+                        </button>
+                      </div>
                       <h3 className="font-bold text-gray-900 mb-3">{q.question}</h3>
                       
                       <div className="space-y-2">
@@ -189,10 +301,11 @@ const ExamenResultPage = ({ result, onBackHome }) => {
                         </div>
                       )}
                     </div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
