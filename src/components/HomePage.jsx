@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, ChevronRight, Award, Target, BarChart3, RefreshCw, Moon, Sun, Star } from 'lucide-react';
+import { BookOpen, ChevronRight, Award, Target, BarChart3, RefreshCw, Moon, Sun, Star, LogIn, LogOut, User } from 'lucide-react';
 import { getProgress, loadWrongAnswers, loadSavedQuestions } from '../utils/storage';
 import { useTheme } from '../contexts/ThemeContext';
+import { logout } from '../services/authService';
 
-const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWrong, onViewCategoryProgress, onViewSavedQuestions }) => {
+const HomePage = ({ stats, user, userName, onStartQuiz, onStartExamen, onViewStats, onReviewWrong, onViewCategoryProgress, onViewSavedQuestions, onLogin, onViewProfile }) => {
   const { isDark, toggleTheme } = useTheme();
   const [progressCSP, setProgressCSP] = useState({ learned: 0, total: 180, percentage: 0 });
   const [progressCR, setProgressCR] = useState({ learned: 0, total: 180, percentage: 0 });
@@ -25,7 +26,47 @@ const HomePage = ({ stats, onStartQuiz, onStartExamen, onViewStats, onReviewWron
       <div className="max-w-4xl mx-auto p-4 md:p-6">
         {/* Header with Type Selector */}
         <div className="text-center mb-4 md:mb-6 pt-2 md:pt-4">
-          <div className="flex justify-end mb-3 md:mb-4">
+          <div className="flex justify-between items-center mb-3 md:mb-4">
+            {/* User Profile / Login Button */}
+            <div>
+              {user ? (
+                <div className="flex items-center gap-2 bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md">
+                  <button
+                    onClick={onViewProfile}
+                    className="flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg p-1 transition-all"
+                  >
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                        {userName && userName.trim() !== '' ? userName : 'Utilisateur'}
+                      </div>
+                    </div>
+                  </button>
+                  <button
+                    onClick={async () => {
+                      await logout();
+                      localStorage.removeItem('userName');
+                    }}
+                    className="ml-2 p-1.5 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-all"
+                    title="Se déconnecter"
+                  >
+                    <LogOut className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={onLogin}
+                  className="flex items-center gap-2 bg-white dark:bg-gray-700 rounded-lg px-3 py-2 shadow-md hover:shadow-lg transition-all"
+                >
+                  <LogIn className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  <span className="text-sm font-semibold text-gray-900 dark:text-white">Connexion</span>
+                </button>
+              )}
+            </div>
+
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-md hover:shadow-lg transition-all"

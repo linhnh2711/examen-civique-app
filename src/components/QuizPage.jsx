@@ -88,6 +88,50 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
     }
   };
 
+  const handleFinish = () => {
+    console.log('handleFinish called', { showResult, selectedAnswer, score });
+
+    // If current question is answered but not verified yet, verify it first
+    if (!showResult && selectedAnswer !== null) {
+      console.log('Verifying current answer before finishing');
+      const isCorrect = selectedAnswer === question.correct;
+
+      // Mark question as learned
+      markQuestionAsLearned(question.id, question.tags);
+
+      let finalScore = score;
+      if (isCorrect) {
+        finalScore = score + 1;
+        const newStreak = currentStreak + 1;
+        onStreakUpdate(newStreak);
+        const newStats = {
+          ...stats,
+          total: stats.total + 1,
+          correct: stats.correct + 1,
+          streak: newStreak,
+          bestStreak: Math.max(stats.bestStreak, newStreak)
+        };
+        onUpdateStats(newStats);
+      } else {
+        addWrongAnswer(question.id, selectedAnswer, question.correct);
+        onStreakUpdate(0);
+        const newStats = {
+          ...stats,
+          total: stats.total + 1,
+          streak: 0
+        };
+        onUpdateStats(newStats);
+      }
+
+      console.log('Calling onComplete with finalScore:', finalScore);
+      onComplete(finalScore);
+    } else {
+      // Question already verified or not answered, just finish
+      console.log('Calling onComplete with current score:', score);
+      onComplete(score);
+    }
+  };
+
   const handleToggleSave = () => {
     toggleSavedQuestion(question.id);
     setSavedQuestions(prev => {
@@ -220,28 +264,38 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
         )}
 
         {/* Action Buttons */}
-        <div className="flex gap-3">
-          {!showResult ? (
-            <button
-              onClick={handleSubmit}
-              disabled={selectedAnswer === null}
-              className={`flex-1 py-3 md:py-4 rounded-xl font-bold text-sm md:text-base transition-all ${
-                selectedAnswer === null
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-105'
-              }`}
-            >
-              Vérifier
-            </button>
-          ) : (
-            <button
-              onClick={handleNext}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 md:py-4 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all flex items-center justify-center gap-2"
-            >
-              {currentQuestion < questions.length - 1 ? 'Suivant' : 'Terminer'}
-              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-            </button>
-          )}
+        <div className="space-y-2 md:space-y-3">
+          <div className="flex gap-3">
+            {!showResult ? (
+              <button
+                onClick={handleSubmit}
+                disabled={selectedAnswer === null}
+                className={`flex-1 py-3 md:py-4 rounded-xl font-bold text-sm md:text-base transition-all ${
+                  selectedAnswer === null
+                    ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-105'
+                }`}
+              >
+                Vérifier
+              </button>
+            ) : (
+              <button
+                onClick={handleNext}
+                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 md:py-4 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              >
+                {currentQuestion < questions.length - 1 ? 'Suivant' : 'Terminer'}
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+            )}
+          </div>
+
+          {/* Terminer button - always available */}
+          <button
+            onClick={handleFinish}
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2.5 md:py-3 rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all"
+          >
+            Terminer maintenant
+          </button>
         </div>
       </div>
     </div>

@@ -11,8 +11,12 @@ import SavedQuestionsPage from './components/SavedQuestionsPage';
 import CategoryProgressPage from './components/CategoryProgressPage';
 import CategoryStatsPage from './components/CategoryStatsPage';
 import InstallPrompt from './components/InstallPrompt';
+import LoginPage from './components/LoginPage';
+import ProfilePage from './components/ProfilePage';
 import { loadStats, saveStats, addQuizResult } from './utils/storage';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { onAuthChange } from './services/authService';
+import { downloadAndMergeCloudData, syncDataToCloud, uploadLocalData } from './services/syncService';
 
 const App = () => {
   const [mode, setMode] = useState('home');
@@ -25,6 +29,56 @@ const App = () => {
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState('');
+
+  // Load userName from localStorage on mount
+  useEffect(() => {
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+      setUserName(savedName);
+      console.log('Loaded userName from localStorage:', savedName);
+    }
+  }, []);
+
+  // Auth state listener
+  useEffect(() => {
+    const unsubscribe = onAuthChange(async (authUser) => {
+      setUser(authUser);
+      if (authUser) {
+        console.log('Auth user:', authUser.email);
+        // Load user name from localStorage if available
+        const savedName = localStorage.getItem('userName');
+        console.log('Saved name in localStorage:', savedName);
+        if (savedName) {
+          setUserName(savedName);
+        } else if (authUser.displayName) {
+          setUserName(authUser.displayName);
+        }
+
+        // Sync data from Firestore on login
+        console.log('User authenticated, syncing data...');
+        const syncResult = await downloadAndMergeCloudData(authUser.uid);
+
+        if (syncResult.success) {
+          // Reload stats after merge
+          const updatedStats = loadStats();
+          if (updatedStats) setStats(updatedStats);
+
+          // Set userName from cloud data if available
+          if (syncResult.userName) {
+            console.log('Setting userName from Firebase:', syncResult.userName);
+            setUserName(syncResult.userName);
+            localStorage.setItem('userName', syncResult.userName);
+          } else {
+            console.log('No userName in syncResult');
+          }
+        }
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const savedStats = loadStats();
@@ -67,38 +121,91 @@ const App = () => {
     setCurrentStreak(0);
   };
 
-  const handleQuizComplete = (score) => {
+  const handleQuizComplete = async (score) => {
     setQuizScore(score);
     // Save to history
-    addQuizResult({
+    const quizResult = {
       type: quizType,
       mode: 'Practice',
       score: score,
       total: quizQuestionCount,
       passed: score >= Math.ceil(quizQuestionCount * 0.8)
-    });
+    };
+    addQuizResult(quizResult);
+
+    // Sync to cloud in background (don't block UI)
+    if (user) {
+      const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+      syncDataToCloud(user.uid, 'quizHistory', history).catch(err => {
+        console.error('Failed to sync quiz data:', err);
+      });
+    }
+
     setMode('result');
   };
 
-  const handleExamenComplete = (result) => {
+  const handleExamenComplete = async (result) => {
     setExamenResult(result);
     // Save to history
-    addQuizResult({
+    const quizResult = {
       type: quizType,
       mode: 'Examen Blanc',
       score: result.score,
       total: result.total,
       passed: result.passed,
       timeSpent: result.timeSpent
-    });
+    };
+    addQuizResult(quizResult);
+
+    // Sync to cloud in background (don't block UI)
+    if (user) {
+      const history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+      syncDataToCloud(user.uid, 'quizHistory', history).catch(err => {
+        console.error('Failed to sync exam data:', err);
+      });
+    }
+
     setMode('examen-result');
+  };
+
+  const handleLoginSuccess = async (authUser, displayName) => {
+    setUser(authUser);
+    if (displayName) {
+      setUserName(displayName);
+      localStorage.setItem('userName', displayName);
+      // Upload userName to Firestore
+      await uploadLocalData(authUser.uid, displayName);
+    } else if (authUser.displayName) {
+      setUserName(authUser.displayName);
+      localStorage.setItem('userName', authUser.displayName);
+      await uploadLocalData(authUser.uid, authUser.displayName);
+    }
+    setMode('home');
   };
 
   return (
     <ThemeProvider>
+      {mode === 'login' && (
+        <LoginPage
+          onBack={handleBackHome}
+          onLoginSuccess={handleLoginSuccess}
+        />
+      )}
+
+      {mode === 'profile' && (
+        <ProfilePage
+          user={user}
+          userName={userName}
+          onBack={handleBackHome}
+          onUpdateUserName={(newName) => setUserName(newName)}
+        />
+      )}
+
       {mode === 'home' && (
         <HomePage
           stats={stats}
+          user={user}
+          userName={userName}
           onStartQuiz={(type) => {
             setQuizType(type);
             setMode('quiz-setup');
@@ -114,6 +221,8 @@ const App = () => {
             setQuizType(type);
             setMode('category-progress');
           }}
+          onLogin={() => setMode('login')}
+          onViewProfile={() => setMode('profile')}
         />
       )}
 

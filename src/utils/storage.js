@@ -185,3 +185,12 @@ export const isQuestionSaved = (questionId) => {
   const savedQuestions = loadSavedQuestions();
   return savedQuestions.includes(questionId);
 };
+
+// Answered Questions Storage (alias for learned questions for Firebase sync)
+export const loadAnsweredQuestions = () => {
+  return loadLearnedQuestions();
+};
+
+export const saveAnsweredQuestions = (answeredQuestions) => {
+  saveLearnedQuestions(answeredQuestions);
+};
