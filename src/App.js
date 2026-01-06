@@ -87,7 +87,7 @@ const App = () => {
       type: quizType,
       mode: 'Examen Blanc',
       score: result.score,
-      total: result.totalQuestions,
+      total: result.total,
       passed: result.passed,
       timeSpent: result.timeSpent
     });
