@@ -75,14 +75,21 @@ Si le fichier n'existe pas:
 
 ### Étape 4: Ouvrir le projet dans Xcode
 
-**⚠️ IMPORTANT**: Ouvrir le fichier `.xcworkspace`, PAS `.xcodeproj`!
+**Deux options selon votre setup:**
 
+**Option A: Si vous N'AVEZ PAS installé CocoaPods** (Recommended)
+```bash
+cd ios/App
+open App.xcodeproj
+```
+
+**Option B: Si vous AVEZ installé CocoaPods et run `pod install`**
 ```bash
 cd ios/App
 open App.xcworkspace
 ```
 
-**Xcode va automatiquement installer les dépendances via Swift Package Manager!** Pas besoin de `pod install`.
+**Note**: Si `App.xcworkspace` n'existe pas, utilisez `App.xcodeproj`. Xcode va automatiquement installer les dépendances via Swift Package Manager!
 
 ### Étape 5: Configurer le projet dans Xcode
 
@@ -253,9 +260,11 @@ com.linhnh.examencivique.web
 npm run build
 npx cap sync ios
 
-# Ouvrir Xcode
+# Ouvrir Xcode (choisir selon votre setup)
 cd ios/App
-open App.xcworkspace
+open App.xcodeproj    # Si pas de CocoaPods
+# OU
+open App.xcworkspace  # Si vous avez run pod install
 
 # Nettoyer le build Xcode (si problèmes)
 # Dans Xcode: Product → Clean Build Folder (Shift+Cmd+K)
@@ -269,12 +278,12 @@ open App.xcworkspace
 ## Notes Importantes
 
 1. **GoogleService-Info.plist** doit être dans le projet Xcode
-2. Toujours ouvrir **App.xcworkspace**, pas App.xcodeproj
+2. **Ouvrir App.xcodeproj** si vous n'avez pas CocoaPods, ou **App.xcworkspace** si vous l'avez
 3. Sign in with Apple doit être testé sur un **vrai device**, pas simulator
 4. Le premier build peut prendre 10-15 minutes
 5. Apple Developer Account doit être **actif** ($99/an)
 6. **CocoaPods n'est PAS nécessaire** - Ce projet utilise Swift Package Manager (SPM)
-7. Si erreur SSL avec CocoaPods sur Mac d'entreprise, ignorez-le complètement
+7. Si erreur SSL avec CocoaPods sur Mac d'entreprise, ignorez-le et utilisez `.xcodeproj`
 
 ---
 
