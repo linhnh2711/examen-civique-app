@@ -13,6 +13,7 @@ import CategoryStatsPage from './components/CategoryStatsPage';
 import InstallPrompt from './components/InstallPrompt';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
+import FeedbackPage from './components/FeedbackPage';
 import { loadStats, saveStats, addQuizResult } from './utils/storage';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { onAuthChange } from './services/authService';
@@ -201,6 +202,14 @@ const App = () => {
         />
       )}
 
+      {mode === 'feedback' && (
+        <FeedbackPage
+          user={user}
+          userName={userName}
+          onBack={handleBackHome}
+        />
+      )}
+
       {mode === 'home' && (
         <HomePage
           stats={stats}
@@ -223,6 +232,7 @@ const App = () => {
           }}
           onLogin={() => setMode('login')}
           onViewProfile={() => setMode('profile')}
+          onFeedback={() => setMode('feedback')}
         />
       )}
 
