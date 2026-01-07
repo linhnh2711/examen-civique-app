@@ -20,10 +20,17 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### 4. Installer CocoaPods
+### 4. Installer CocoaPods (OPTIONNEL - pas nécessaire!)
 ```bash
+# CocoaPods n'est PAS requis pour ce projet
+# Capacitor 8 utilise Swift Package Manager (SPM)
+# Vous pouvez sauter cette étape!
+
+# Si vous voulez quand même l'installer (optional):
 sudo gem install cocoapods
 ```
+
+**Note**: Si vous rencontrez une erreur SSL lors de l'installation de CocoaPods (souvent sur Mac d'entreprise avec proxy), vous pouvez complètement ignorer CocoaPods. Ce projet utilise Swift Package Manager à la place.
 
 ---
 
@@ -66,24 +73,18 @@ Si le fichier n'existe pas:
 4. Download GoogleService-Info.plist
 5. Copier vers `ios/App/App/`
 
-### Étape 4: Installer Firebase SDK via CocoaPods
-
-```bash
-cd ios/App
-pod install
-```
-
-Cela va créer un fichier `App.xcworkspace`.
-
-### Étape 5: Ouvrir le projet dans Xcode
+### Étape 4: Ouvrir le projet dans Xcode
 
 **⚠️ IMPORTANT**: Ouvrir le fichier `.xcworkspace`, PAS `.xcodeproj`!
 
 ```bash
+cd ios/App
 open App.xcworkspace
 ```
 
-### Étape 6: Configurer le projet dans Xcode
+**Xcode va automatiquement installer les dépendances via Swift Package Manager!** Pas besoin de `pod install`.
+
+### Étape 5: Configurer le projet dans Xcode
 
 #### A. Vérifier Bundle Identifier
 1. Dans Xcode, sélectionner le projet "App" dans la sidebar gauche
@@ -108,7 +109,7 @@ open App.xcworkspace
 3. Sélectionner `GoogleService-Info.plist`
 4. **IMPORTANT**: Cocher "Copy items if needed" et "Add to targets: App"
 
-### Étape 7: Build et Run
+### Étape 6: Build et Run
 
 #### Option A: Tester sur Simulator (Plus facile)
 1. En haut de Xcode, sélectionner un simulateur (ex: "iPhone 15 Pro")
@@ -146,19 +147,15 @@ ls ios/App/App/GoogleService-Info.plist
 # Si non, re-download depuis Firebase et copier
 ```
 
-### Erreur: "pod: command not found"
-**Solution**:
-```bash
-sudo gem install cocoapods
-```
+### Erreur: "pod: command not found" ou SSL verification error
+**Solution**: Ignorez CocoaPods! Ce projet utilise Swift Package Manager.
+- Ouvrez directement `App.xcworkspace` dans Xcode
+- Xcode va automatiquement résoudre les dépendances via SPM
 
-### Erreur lors de pod install
-**Solution**:
-```bash
-cd ios/App
-pod repo update
-pod install
-```
+### Erreur SSL lors de l'installation de CocoaPods
+**Solution**: CocoaPods n'est pas nécessaire pour ce projet.
+- Souvent causé par proxy d'entreprise
+- Utilisez Swift Package Manager à la place (déjà configuré)
 
 ### Firebase ne fonctionne pas dans l'app
 **Solution**: Vérifier que GoogleService-Info.plist est bien ajouté au target:
@@ -260,13 +257,11 @@ npx cap sync ios
 cd ios/App
 open App.xcworkspace
 
-# Réinstaller pods
-cd ios/App
-pod deintegrate
-pod install
-
 # Nettoyer le build Xcode (si problèmes)
 # Dans Xcode: Product → Clean Build Folder (Shift+Cmd+K)
+
+# Reset SPM cache si problèmes de dépendances
+# Dans Xcode: File → Packages → Reset Package Caches
 ```
 
 ---
@@ -278,6 +273,8 @@ pod install
 3. Sign in with Apple doit être testé sur un **vrai device**, pas simulator
 4. Le premier build peut prendre 10-15 minutes
 5. Apple Developer Account doit être **actif** ($99/an)
+6. **CocoaPods n'est PAS nécessaire** - Ce projet utilise Swift Package Manager (SPM)
+7. Si erreur SSL avec CocoaPods sur Mac d'entreprise, ignorez-le complètement
 
 ---
 
