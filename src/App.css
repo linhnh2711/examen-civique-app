@@ -2,9 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   iOS SAFE AREA & VIEWPORT HEIGHT FIXES
+   ============================================ */
+
+/*
+ * CSS Custom Properties for safe viewport height
+ * --vh: Calculated by JS as 1% of actual viewport height (fallback to 1vh)
+ * --safe-area-top: iOS notch/Dynamic Island inset
+ * --safe-area-bottom: iOS home indicator inset
+ */
+:root {
+  --vh: 1vh;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
 * {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+}
+
+/*
+ * HTML/Body base setup for iOS
+ * - min-height uses dvh (dynamic viewport height) which accounts for iOS Safari URL bar
+ * - Fallback to 100vh for browsers that don't support dvh
+ */
+html {
+  /* Fallback for older browsers */
+  height: 100%;
 }
 
 body {
@@ -15,37 +43,121 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Fallback height */
+  min-height: 100%;
+  min-height: 100vh;
+  
+  /* Modern browsers: use dvh (dynamic viewport height) */
+  min-height: 100dvh;
 }
 
-/* iOS safe area */
+/*
+ * iOS Safe Area Padding on #root
+ * Applied to the root container instead of body for better compatibility
+ * with full-height flex layouts
+ */
+#root {
+  /* Fallback min-height */
+  min-height: 100vh;
+  
+  /* Use dvh for iOS Safari - automatically handles URL bar changes */
+  min-height: 100dvh;
+  
+  /* Fallback to JS-calculated height if dvh not supported */
+  min-height: calc(var(--vh, 1vh) * 100);
+  
+  /* Apply safe area padding */
+  padding-top: var(--safe-area-top);
+  padding-bottom: var(--safe-area-bottom);
+  padding-left: var(--safe-area-left);
+  padding-right: var(--safe-area-right);
+  
+  /* Ensure content fills available space */
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * Override Tailwind's min-h-screen for iOS compatibility
+ * min-h-screen uses 100vh which is broken on iOS Safari
+ * This makes it use dvh instead, with vh fallback
+ */
+@layer utilities {
+  .min-h-screen {
+    min-height: 100vh; /* Fallback */
+    min-height: 100dvh; /* iOS Safari fix */
+  }
+  
+  .h-screen {
+    height: 100vh; /* Fallback */
+    height: 100dvh; /* iOS Safari fix */
+  }
+  
+  /* Safe area aware padding utilities */
+  .pt-safe {
+    padding-top: var(--safe-area-top);
+  }
+  
+  .pb-safe {
+    padding-bottom: var(--safe-area-bottom);
+  }
+  
+  .pl-safe {
+    padding-left: var(--safe-area-left);
+  }
+  
+  .pr-safe {
+    padding-right: var(--safe-area-right);
+  }
+  
+  .p-safe {
+    padding-top: var(--safe-area-top);
+    padding-bottom: var(--safe-area-bottom);
+    padding-left: var(--safe-area-left);
+    padding-right: var(--safe-area-right);
+  }
+  
+  /* Margin utilities for safe areas */
+  .mt-safe {
+    margin-top: var(--safe-area-top);
+  }
+  
+  .mb-safe {
+    margin-bottom: var(--safe-area-bottom);
+  }
+}
+
+/*
+ * iOS-specific fixes using @supports
+ * Only applies when the browser supports safe-area-inset-*
+ */
 @supports (padding: max(0px)) {
-  body {
+  /* Ensure minimum padding even on devices with safe areas */
+  #root {
     padding-top: max(0px, env(safe-area-inset-top));
     padding-bottom: max(0px, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
   }
 }
 
-.install-prompt {
+/*
+ * Fix for fixed/sticky positioned elements at bottom
+ * Ensures buttons and navigation don't get hidden by home indicator
+ */
+.fixed-bottom-safe {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-  color: white;
-  padding: 16px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  animation: slideUp 0.3s ease-out;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: var(--safe-area-bottom);
+  padding-left: var(--safe-area-left);
+  padding-right: var(--safe-area-right);
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+/* ============================================
+   END iOS FIXES
+   ============================================ */
+
+/* Install prompt removed - not needed for native iOS app */

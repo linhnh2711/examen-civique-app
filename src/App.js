@@ -10,7 +10,7 @@ import ReviewPage from './components/ReviewPage';
 import SavedQuestionsPage from './components/SavedQuestionsPage';
 import CategoryProgressPage from './components/CategoryProgressPage';
 import CategoryStatsPage from './components/CategoryStatsPage';
-import InstallPrompt from './components/InstallPrompt';
+// InstallPrompt removed - not needed for native iOS app
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import FeedbackPage from './components/FeedbackPage';
@@ -31,8 +31,6 @@ const App = () => {
   const [quizScore, setQuizScore] = useState(0);
   const [quizQuestionCount, setQuizQuestionCount] = useState(15);
   const [examenResult, setExamenResult] = useState(null);
-  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState('');
@@ -88,37 +86,11 @@ const App = () => {
   useEffect(() => {
     const savedStats = loadStats();
     if (savedStats) setStats(savedStats);
-
-    const handleBeforeInstall = (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      setShowInstallPrompt(true);
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    
-    if (isIOS && !isStandalone) {
-      setTimeout(() => setShowInstallPrompt(true), 3000);
-    }
-
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
   }, []);
 
   const updateStats = (newStats) => {
     saveStats(newStats);
     setStats(newStats);
-  };
-
-  const handleInstall = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      setDeferredPrompt(null);
-    }
-    setShowInstallPrompt(false);
   };
 
   const handleBackHome = () => {
@@ -371,12 +343,6 @@ const App = () => {
         />
       )}
 
-      {showInstallPrompt && (
-        <InstallPrompt
-          onInstall={handleInstall}
-          onClose={() => setShowInstallPrompt(false)}
-        />
-      )}
     </ThemeProvider>
   );
 };

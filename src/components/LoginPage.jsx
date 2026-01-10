@@ -90,7 +90,8 @@ const LoginPage = ({ onBack, onLoginSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
+    // pt-2 instead of p-6 because safe-area padding is applied on #root
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-6 pb-6 pt-2">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="mb-8">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Flame, Check, X, ChevronRight, Star } from 'lucide-react';
+import { Home, Flame, Check, X, ChevronRight, Star, HelpCircle } from 'lucide-react';
 import { getQuestionsByType } from '../data/questions';
 import { markQuestionAsLearned, addWrongAnswer, toggleSavedQuestion, isQuestionSaved } from '../utils/storage';
 
@@ -10,6 +10,7 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [savedQuestions, setSavedQuestions] = useState(new Set());
+  const [showSaveTooltip, setShowSaveTooltip] = useState(false);
 
   useEffect(() => {
     const randomQuestions = getQuestionsByType(quizType, totalQuestions);
@@ -188,19 +189,42 @@ const QuizPage = ({ stats, currentStreak, onUpdateStats, onStreakUpdate, onCompl
           <div className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">
             {question.category}
           </div>
-          <button
-            onClick={handleToggleSave}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
-            title={savedQuestions.has(question.id) ? "Retirer des favoris" : "Sauvegarder pour réviser"}
-          >
-            <Star
-              className={`w-5 h-5 md:w-6 md:h-6 ${
-                savedQuestions.has(question.id)
-                  ? 'fill-yellow-400 text-yellow-400'
-                  : 'text-gray-400 dark:text-gray-500'
-              }`}
-            />
-          </button>
+          <div className="flex items-center gap-1">
+            {/* Help tooltip for save button */}
+            <div className="relative">
+              <button
+                onClick={() => setShowSaveTooltip(!showSaveTooltip)}
+                className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+              >
+                <HelpCircle className="w-4 h-4" />
+              </button>
+              {showSaveTooltip && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-40" 
+                    onClick={() => setShowSaveTooltip(false)}
+                  />
+                  <div className="absolute right-0 top-full mt-1 w-44 p-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg z-50">
+                    <div className="text-center">Enregistrer cette question</div>
+                  </div>
+                </>
+              )}
+            </div>
+            {/* Save button */}
+            <button
+              onClick={handleToggleSave}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              title={savedQuestions.has(question.id) ? "Retirer des favoris" : "Sauvegarder pour réviser"}
+            >
+              <Star
+                className={`w-5 h-5 md:w-6 md:h-6 ${
+                  savedQuestions.has(question.id)
+                    ? 'fill-yellow-400 text-yellow-400'
+                    : 'text-gray-400 dark:text-gray-500'
+                }`}
+              />
+            </button>
+          </div>
         </div>
 
         {/* Question */}

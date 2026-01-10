@@ -130,7 +130,7 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
               <div className="flex-1">
                 <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-1">
                   <span>{precision.isExamen ? "Précision d'examen" : "Précision"}</span>
-                  <div className="relative">
+                  <div className="relative inline-block">
                     <button
                       onMouseEnter={() => setShowPrecisionTooltip(true)}
                       onMouseLeave={() => setShowPrecisionTooltip(false)}
@@ -140,8 +140,8 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
                       <HelpCircle className="w-3 h-3" />
                     </button>
                     {showPrecisionTooltip && (
-                      <div className="absolute left-0 top-full mt-1 w-48 p-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg z-10">
-                        <div className="text-center">{precision.description}</div>
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-48 p-2 bg-gray-800 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg z-50 whitespace-normal">
+                        {precision.description}
                       </div>
                     )}
                   </div>
