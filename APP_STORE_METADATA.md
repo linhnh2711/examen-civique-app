@@ -118,16 +118,16 @@ examen civique,naturalisation,citoyenneté française,carte résident,CSP,CR,qui
 ---
 
 ## Support URL
-https://github.com/linhnh/examen-civique-app
+https://examen-civique-legal.netlify.app/terms-of-service
 
-(Note: Vous devrez créer un repo public ou un site web pour support)
+✅ Verified and accessible
 
 ---
 
 ## Privacy Policy URL
-https://[VOTRE-DOMAINE]/privacy-policy.html
+https://examen-civique-legal.netlify.app/privacy-policy
 
-(Note: Nous allons créer un fichier HTML statique que vous pourrez host sur GitHub Pages ou autre)
+✅ Verified and accessible - GDPR compliant
 
 ---
 

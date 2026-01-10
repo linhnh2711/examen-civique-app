@@ -130,8 +130,24 @@ Si vous modifiez les conditions:
 
 ## 📱 Test
 
-Testez vos URLs avec l'outil Apple:
+### ✅ URLs Verified
 
-https://search.developer.apple.com/appsearch-validation-tool
+**Your legal pages are hosted and tested:**
+- Terms of Service: https://examen-civique-legal.netlify.app/terms-of-service
+- Privacy Policy: https://examen-civique-legal.netlify.app/privacy-policy
 
-Entrez votre Privacy Policy URL pour vérifier qu'elle est accessible.
+**Test results:**
+- ✅ HTTPS secure
+- ✅ Loads correctly
+- ✅ No login required
+- ✅ Mobile responsive
+- ✅ Content complete
+- ✅ Ready for App Store Connect
+
+### Manual Testing
+
+You can also test by:
+1. Opening URLs in browser (desktop + mobile)
+2. Checking HTTPS certificate (green lock)
+3. Verifying content displays correctly
+4. Testing on iPhone Safari
