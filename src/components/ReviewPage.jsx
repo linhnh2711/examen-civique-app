@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Home, Check, X, ChevronRight, BookMarked } from 'lucide-react';
 import { loadWrongAnswers, removeWrongAnswer } from '../utils/storage';
 import { questionsDB } from '../data/questions';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const ReviewPage = ({ onBack }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);

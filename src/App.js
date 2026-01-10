@@ -14,6 +14,10 @@ import InstallPrompt from './components/InstallPrompt';
 import LoginPage from './components/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import FeedbackPage from './components/FeedbackPage';
+import ExamInfoPage from './components/ExamInfoPage';
+import FlashcardPage from './components/FlashcardPage';
+import TermsOfServicePage from './components/TermsOfServicePage';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import { loadStats, saveStats, addQuizResult } from './utils/storage';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { onAuthChange } from './services/authService';
@@ -210,6 +214,24 @@ const App = () => {
         />
       )}
 
+      {mode === 'exam-info' && (
+        <ExamInfoPage
+          onBack={handleBackHome}
+        />
+      )}
+
+      {mode === 'terms-of-service' && (
+        <TermsOfServicePage
+          onBack={handleBackHome}
+        />
+      )}
+
+      {mode === 'privacy-policy' && (
+        <PrivacyPolicyPage
+          onBack={handleBackHome}
+        />
+      )}
+
       {mode === 'home' && (
         <HomePage
           stats={stats}
@@ -233,6 +255,28 @@ const App = () => {
           onLogin={() => setMode('login')}
           onViewProfile={() => setMode('profile')}
           onFeedback={() => setMode('feedback')}
+          onViewExamInfo={() => setMode('exam-info')}
+          onStartFlashcard={(type) => {
+            setQuizType(type);
+            setMode('flashcard');
+          }}
+          onViewTermsOfService={() => setMode('terms-of-service')}
+          onViewPrivacyPolicy={() => setMode('privacy-policy')}
+        />
+      )}
+
+      {mode === 'flashcard' && (
+        <FlashcardPage
+          examType={quizType}
+          onBack={handleBackHome}
+          onViewSavedQuestions={() => setMode('saved-questions')}
+          onAnswer={(correct) => {
+            setStats(prevStats => ({
+              ...prevStats,
+              total: prevStats.total + 1,
+              correct: correct ? prevStats.correct + 1 : prevStats.correct
+            }));
+          }}
         />
       )}
 

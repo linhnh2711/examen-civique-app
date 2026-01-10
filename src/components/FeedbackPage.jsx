@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { ArrowLeft, MessageSquare, Send, CheckCircle, AlertCircle, Star } from 'lucide-react';
 import { submitFeedback } from '../services/feedbackService';
 import { APP_CONFIG } from '../config/appConfig';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const FeedbackPage = ({ onBack, user, userName }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
   const [feedbackType, setFeedbackType] = useState('suggestion');
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState('');

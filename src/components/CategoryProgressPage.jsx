@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Home, ChevronRight, BookOpen } from 'lucide-react';
 import { questionsDB } from '../data/questions';
 import { loadLearnedQuestions } from '../utils/storage';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
   const [categoryStats, setCategoryStats] = useState([]);
 
   useEffect(() => {
@@ -11,26 +15,26 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
     const learned = loadLearnedQuestions();
     const learnedSet = new Set(learned[examType] || []);
 
-    // Calculate category stats
-    const categories = {};
+    // Calculate theme stats
+    const themes = {};
     questionsDB.forEach(q => {
       // Only include questions for this exam type
       if (!q.tags.includes(examType)) return;
 
-      if (!categories[q.category]) {
-        categories[q.category] = {
+      if (!themes[q.theme]) {
+        themes[q.theme] = {
           total: 0,
           learned: 0
         };
       }
-      categories[q.category].total++;
+      themes[q.theme].total++;
       if (learnedSet.has(q.id)) {
-        categories[q.category].learned++;
+        themes[q.theme].learned++;
       }
     });
 
     // Sort alphabetically with French locale for consistency
-    const categoryArray = Object.entries(categories)
+    const themeArray = Object.entries(themes)
       .map(([name, data]) => ({
         name,
         total: data.total,
@@ -39,11 +43,11 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
       }))
       .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
 
-    setCategoryStats(categoryArray);
+    setCategoryStats(themeArray);
   }, [examType]);
 
-  const totalQuestions = categoryStats.reduce((sum, cat) => sum + cat.total, 0);
-  const totalLearned = categoryStats.reduce((sum, cat) => sum + cat.learned, 0);
+  const totalQuestions = categoryStats.reduce((sum, theme) => sum + theme.total, 0);
+  const totalLearned = categoryStats.reduce((sum, theme) => sum + theme.learned, 0);
   const overallPercentage = totalQuestions > 0 ? Math.round((totalLearned / totalQuestions) * 100) : 0;
 
   return (
@@ -93,14 +97,14 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
           </div>
         </div>
 
-        {/* Categories Title */}
+        {/* Themes Title */}
         <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4">
-          Progression par catégorie
+          Progression par thème
         </h2>
 
-        {/* Category Cards */}
+        {/* Theme Cards */}
         <div className="space-y-3 md:space-y-4">
-          {categoryStats.map((cat, idx) => (
+          {categoryStats.map((theme, idx) => (
             <div
               key={idx}
               className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all"
@@ -108,13 +112,13 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
               <div className="flex items-start justify-between mb-3 md:mb-4">
                 <div className="flex-1">
                   <h3 className="font-bold text-base md:text-lg text-gray-900 dark:text-white mb-1">
-                    {cat.name}
+                    {theme.name}
                   </h3>
                   <div className="flex items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-600 dark:text-gray-400">
-                    <span>{cat.total} questions</span>
+                    <span>{theme.total} questions</span>
                     <span>•</span>
                     <span className={examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'}>
-                      {cat.learned} étudiées
+                      {theme.learned} étudiées
                     </span>
                   </div>
                 </div>
@@ -122,10 +126,10 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
                   <div className={`text-2xl md:text-3xl font-bold ${
                     examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
                   }`}>
-                    {cat.percentage}%
+                    {theme.percentage}%
                   </div>
                   <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                    {cat.learned}/{cat.total}
+                    {theme.learned}/{theme.total}
                   </div>
                 </div>
               </div>
@@ -138,13 +142,13 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
                       ? 'bg-gradient-to-r from-blue-500 to-blue-600'
                       : 'bg-gradient-to-r from-purple-500 to-purple-600'
                   }`}
-                  style={{ width: `${cat.percentage}%` }}
+                  style={{ width: `${theme.percentage}%` }}
                 />
               </div>
 
               {/* Practice Button */}
               <button
-                onClick={() => onStartCategoryQuiz(examType, cat.name)}
+                onClick={() => onStartCategoryQuiz(examType, theme.name)}
                 className={`w-full flex items-center justify-between px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 transition-all group ${
                   examType === 'CSP'
                     ? 'border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30'
@@ -158,7 +162,7 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
                   <span className={`font-medium text-sm md:text-base ${
                     examType === 'CSP' ? 'text-blue-700 dark:text-blue-300' : 'text-purple-700 dark:text-purple-300'
                   }`}>
-                    Pratiquer cette catégorie
+                    Pratiquer ce thème
                   </span>
                 </div>
                 <ChevronRight className={`w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 ${
@@ -183,7 +187,7 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
           <p className={`text-xs md:text-sm ${
             examType === 'CSP' ? 'text-blue-800 dark:text-blue-300' : 'text-purple-800 dark:text-purple-300'
           }`}>
-            Concentrez-vous sur les catégories où votre progression est la plus faible pour maximiser vos chances de réussite à l'examen.
+            Concentrez-vous sur les thèmes où votre progression est la plus faible pour maximiser vos chances de réussite à l'examen.
           </p>
         </div>
       </div>

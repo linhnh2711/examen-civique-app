@@ -1,7 +1,11 @@
 import React from 'react';
 import { Trophy, Star, Flame, Home } from 'lucide-react';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const ResultPage = ({ score, currentStreak, onBackHome, totalQuestions = 15 }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBackHome);
+
   const percentage = Math.round((score / totalQuestions) * 100);
   const passed = percentage >= 80;
 

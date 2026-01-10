@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Home, BarChart3, BookOpen } from 'lucide-react';
 import { questionsDB } from '../data/questions';
-import { loadLearnedQuestions } from '../utils/storage';
+import { loadLearnedQuestions, getProgress } from '../utils/storage';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const CategoryStatsPage = ({ examType, onBack, onNavigateToPractice }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
   const [categoryStats, setCategoryStats] = useState([]);
 
   useEffect(() => {
@@ -11,26 +15,26 @@ const CategoryStatsPage = ({ examType, onBack, onNavigateToPractice }) => {
     const learned = loadLearnedQuestions();
     const learnedSet = new Set(learned[examType] || []);
 
-    // Calculate category stats
-    const categories = {};
+    // Calculate theme stats
+    const themes = {};
     questionsDB.forEach(q => {
       // Only include questions for this exam type
       if (!q.tags.includes(examType)) return;
 
-      if (!categories[q.category]) {
-        categories[q.category] = {
+      if (!themes[q.theme]) {
+        themes[q.theme] = {
           total: 0,
           learned: 0
         };
       }
-      categories[q.category].total++;
+      themes[q.theme].total++;
       if (learnedSet.has(q.id)) {
-        categories[q.category].learned++;
+        themes[q.theme].learned++;
       }
     });
 
     // Sort alphabetically with French locale for consistency
-    const categoryArray = Object.entries(categories)
+    const categoryArray = Object.entries(themes)
       .map(([name, data]) => ({
         name,
         total: data.total,
@@ -42,9 +46,9 @@ const CategoryStatsPage = ({ examType, onBack, onNavigateToPractice }) => {
     setCategoryStats(categoryArray);
   }, [examType]);
 
-  const totalQuestions = categoryStats.reduce((sum, cat) => sum + cat.total, 0);
-  const totalLearned = categoryStats.reduce((sum, cat) => sum + cat.learned, 0);
-  const overallPercentage = totalQuestions > 0 ? Math.round((totalLearned / totalQuestions) * 100) : 0;
+  // Use getProgress to ensure consistency with HomePage
+  const progress = getProgress(examType);
+  const overallPercentage = progress.percentage;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -72,7 +76,7 @@ const CategoryStatsPage = ({ examType, onBack, onNavigateToPractice }) => {
                 Progression globale {examType}
               </h2>
               <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
-                {totalLearned} / {totalQuestions} questions étudiées
+                {progress.learned} / {progress.total} questions étudiées
               </p>
             </div>
             <div className={`text-3xl md:text-5xl font-bold ${

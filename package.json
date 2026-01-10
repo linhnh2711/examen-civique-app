@@ -2,9 +2,9 @@
   "name": "examen-civique-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Application d'apprentissage pour l'examen civique français",
-  "author": "Your Name",
-  "license": "MIT",
+  "description": "Application d'entraînement pour l'examen civique français requis pour la naturalisation ou carte de résident",
+  "author": "Linh NH <nglinh2121@gmail.com>",
+  "license": "Proprietary",
   "homepage": ".",
   "dependencies": {
     "@capacitor/cli": "^8.0.0",

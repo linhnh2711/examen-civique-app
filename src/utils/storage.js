@@ -55,12 +55,22 @@ export const getProgress = (type) => {
   const learned = loadLearnedQuestions();
   // Dynamically import questionsDB to get real total
   const { questionsDB } = require('../data/questions');
-  const totalQuestions = questionsDB.filter(q => q.tags.includes(type)).length;
+
+  // Get all question IDs that have this type tag
+  const validQuestionIds = new Set(
+    questionsDB.filter(q => q.tags.includes(type)).map(q => q.id)
+  );
+
+  const totalQuestions = validQuestionIds.size;
+
+  // Count only learned questions that actually belong to this type
+  const learnedSet = new Set(learned[type] || []);
+  const validLearnedCount = Array.from(learnedSet).filter(id => validQuestionIds.has(id)).length;
 
   return {
-    learned: learned[type].length,
+    learned: validLearnedCount,
     total: totalQuestions,
-    percentage: totalQuestions > 0 ? Math.round((learned[type].length / totalQuestions) * 100) : 0
+    percentage: totalQuestions > 0 ? Math.round((validLearnedCount / totalQuestions) * 100) : 0
   };
 };
 
@@ -146,7 +156,7 @@ export const removeWrongAnswer = (questionId) => {
   saveWrongAnswers(filtered);
 };
 
-// Saved Questions Storage (Questions favorites/enregistrées)
+// Saved Questions Storage (Questions favorites/enregistrées - for QCM mode)
 export const loadSavedQuestions = () => {
   try {
     const saved = localStorage.getItem('saved-questions');
@@ -186,6 +196,75 @@ export const isQuestionSaved = (questionId) => {
   return savedQuestions.includes(questionId);
 };
 
+// Note: Saved flashcards now use the same storage as saved questions
+// since both store only question + correct answer
+
+// Selected Exam Type Storage (CSP or CR)
+export const loadSelectedExamType = () => {
+  try {
+    const saved = localStorage.getItem('selected-exam-type');
+    return saved || 'CSP'; // Default to CSP
+  } catch (err) {
+    console.error('Load selected exam type error:', err);
+    return 'CSP';
+  }
+};
+
+export const saveSelectedExamType = (examType) => {
+  try {
+    localStorage.setItem('selected-exam-type', examType);
+  } catch (err) {
+    console.error('Save selected exam type error:', err);
+  }
+};
+
+// Calculate Precision based on recent quiz history
+export const calculatePrecision = (examType) => {
+  const history = loadQuizHistory();
+
+  // Filter by exam type
+  const filteredHistory = history.filter(entry => entry.type === examType);
+
+  if (filteredHistory.length === 0) {
+    return {
+      percentage: 0,
+      isExamen: false,
+      count: 0,
+      description: 'Aucun quiz effectué'
+    };
+  }
+
+  // Check if user has done any Examen Blanc for this type
+  const examenHistory = filteredHistory.filter(entry => entry.mode === 'Examen Blanc');
+
+  let relevantHistory;
+  let isExamen = false;
+
+  if (examenHistory.length > 0) {
+    // User has done examen blanc - use only examen blanc results
+    relevantHistory = examenHistory.slice(-5); // Last 5 examen blanc
+    isExamen = true;
+  } else {
+    // No examen blanc - use quiz pratique results
+    relevantHistory = filteredHistory.slice(-5); // Last 5 quiz
+  }
+
+  // Calculate average precision
+  const totalQuestions = relevantHistory.reduce((sum, entry) => sum + (entry.total || 0), 0);
+  const totalCorrect = relevantHistory.reduce((sum, entry) => sum + (entry.score || 0), 0);
+
+  const percentage = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+
+  return {
+    percentage,
+    isExamen,
+    count: relevantHistory.length,
+    description: isExamen
+      ? `Moyenne des ${relevantHistory.length} dernier${relevantHistory.length > 1 ? 's' : ''} examen${relevantHistory.length > 1 ? 's' : ''} blanc${relevantHistory.length > 1 ? 's' : ''}`
+      : `Moyenne des ${relevantHistory.length} dernier${relevantHistory.length > 1 ? 's' : ''} quiz`
+  };
+};
+
 // Answered Questions Storage (alias for learned questions for Firebase sync)
 export const loadAnsweredQuestions = () => {
   return loadLearnedQuestions();
@@ -193,4 +272,26 @@ export const loadAnsweredQuestions = () => {
 
 export const saveAnsweredQuestions = (answeredQuestions) => {
   saveLearnedQuestions(answeredQuestions);
+};
+
+// Save individual answered question (for flashcards)
+export const saveAnsweredQuestion = (questionId, isCorrect) => {
+  const answeredQuestions = loadAnsweredQuestions();
+
+  if (!answeredQuestions[questionId]) {
+    answeredQuestions[questionId] = {
+      id: questionId,
+      correct: 0,
+      total: 0,
+      lastAnswered: Date.now()
+    };
+  }
+
+  answeredQuestions[questionId].total += 1;
+  if (isCorrect) {
+    answeredQuestions[questionId].correct += 1;
+  }
+  answeredQuestions[questionId].lastAnswered = Date.now();
+
+  saveAnsweredQuestions(answeredQuestions);
 };

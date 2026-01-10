@@ -14,7 +14,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Dans une démocratie, les dirigeants sont élus par les citoyens lors d'élections libres. La France est une république démocratique où le peuple exerce sa souveraineté par le vote.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -30,7 +30,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Non, personne n'a le droit de ne pas respecter une loi en vigueur. Toute loi votée doit être respectée par tous, même si on n'est pas d'accord avec elle.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -46,7 +46,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Tout le monde doit respecter la loi sans exception : citoyens, étrangers, gouvernants, y compris le président de la République. Le principe d'égalité devant la loi est fondamental.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -62,7 +62,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'autorité judiciaire a pour mission de faire appliquer la loi et de sanctionner ceux qui ne la respectent pas. Elle garantit le respect des droits et libertés.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -78,7 +78,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Un juge détient le pouvoir judiciaire, distinct du pouvoir législatif (qui vote les lois) et du pouvoir exécutif (qui gouverne). C'est le principe de séparation des pouvoirs.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -94,7 +94,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'autorité judiciaire est exercée par les juges et magistrats qui rendent la justice de manière indépendante. Le président de la République en est le garant.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -110,7 +110,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Un ministre qui ne respecte pas la loi peut être poursuivi devant la justice comme tout citoyen. Nul n'est au-dessus de la loi, principe fondamental de l'État de droit.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -127,7 +127,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les élections législatives permettent d'élire les 577 députés qui siègent à l'Assemblée nationale. Elles ont lieu tous les cinq ans au suffrage universel direct.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -143,7 +143,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Assemblée nationale est composée de 577 députés élus au suffrage universel direct pour cinq ans. Ils représentent les circonscriptions législatives françaises.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -160,7 +160,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les sénateurs sont élus au suffrage universel indirect par des grands électeurs (élus locaux). Contrairement aux députés, ils ne sont pas élus directement par tous les citoyens.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -176,7 +176,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les élections municipales permettent d'élire les conseillers municipaux qui ensuite élisent le maire parmi eux. Elles ont lieu tous les six ans.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -192,7 +192,7 @@ export const questionsDB = [
     ],
     "correct": 3,
     "explanation": "Les élections présidentielles permettent d'élire le président de la République française au suffrage universel direct pour un mandat de cinq ans.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -208,7 +208,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le droit de vote est accordé à partir de 18 ans en France. C'est l'âge de la majorité civile et politique depuis 1974.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -224,7 +224,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le président de la République est élu pour un mandat de 5 ans (quinquennat) renouvelable une fois. Ce mandat était de 7 ans avant la réforme de 2000.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -240,7 +240,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les députés de l'Assemblée nationale sont élus pour un mandat de 5 ans. L'Assemblée peut être dissoute avant la fin du mandat par le président de la République.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -256,7 +256,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les sénateurs sont élus pour un mandat de 6 ans. Le Sénat est renouvelé par moitié tous les trois ans, assurant ainsi une continuité institutionnelle.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -273,7 +273,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le pouvoir exécutif est détenu par le président de la République et le gouvernement dirigé par le Premier ministre. Ils sont chargés d'appliquer les lois et de gouverner.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -289,7 +289,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Pour voter, il faut obligatoirement être inscrit sur les listes électorales de sa commune. L'inscription peut se faire en mairie ou en ligne.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -306,7 +306,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Peuvent voter aux élections nationales tous les citoyens français majeurs (18 ans) jouissant de leurs droits civiques et inscrits sur les listes électorales.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -323,7 +323,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le suffrage universel signifie que tous les citoyens majeurs ont le droit de voter, sans distinction de sexe, de fortune, de capacité ou de race. C'est un principe démocratique fondamental.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -339,7 +339,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Selon l'article 4 de la Constitution, les partis et groupements politiques concourent à l'expression du suffrage et se forment et exercent leur activité librement.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -355,7 +355,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les députés sont élus pour siéger à l'Assemblée nationale où ils examinent, discutent et votent les lois avec les sénateurs.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -371,7 +371,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La séparation des pouvoirs, théorisée par Montesquieu, distingue le pouvoir exécutif (gouvernement), le pouvoir législatif (Parlement) et le pouvoir judiciaire (tribunaux) pour garantir l'équilibre démocratique.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -388,7 +388,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le pouvoir législatif appartient au Parlement, composé de l'Assemblée nationale et du Sénat, qui vote les lois.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -404,7 +404,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "C'est le pouvoir judiciaire, représenté par un juge du tribunal, qui sanctionne l'auteur d'une infraction pénale comme le vol.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -421,7 +421,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les députés sont élus au suffrage universel direct par les citoyens français majeurs inscrits sur les listes électorales lors des élections législatives.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -437,7 +437,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Parlement, composé de l'Assemblée nationale et du Sénat, est l'institution qui vote les lois en France.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -453,7 +453,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le palais de l'Élysée, situé à Paris, est la résidence officielle et le lieu de travail du Président de la République française.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -469,7 +469,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France compte 101 départements : 96 en métropole et 5 départements d'outre-mer (Guadeloupe, Martinique, Guyane, La Réunion, Mayotte).",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -485,7 +485,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le préfet est le représentant de l'État dans le département et veille à l'application des lois et des décisions du gouvernement.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -501,7 +501,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le maire est élu par le conseil municipal et dirige la commune. Il exerce à la fois des compétences communales et représente l'État dans la commune.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -518,7 +518,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Président de la République dispose de pouvoirs importants mais définis et limités par la Constitution. La séparation des pouvoirs garantit l'équilibre démocratique.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -535,7 +535,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le préfet est un haut fonctionnaire nommé par le Président de la République qui représente l'État et le gouvernement dans le département.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -552,7 +552,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Parlement vote les lois, vote le budget de l'État et contrôle l'action du gouvernement par divers moyens (questions, commissions d'enquête, motion de censure).",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -568,7 +568,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France est une République, actuellement la Cinquième République fondée en 1958. C'est un régime démocratique où le pouvoir appartient au peuple.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -585,7 +585,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Union européenne compte 27 États membres depuis le retrait du Royaume-Uni en 2020 (Brexit).",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -601,7 +601,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Suisse n'est pas membre de l'Union européenne. Elle a choisi de rester en dehors tout en maintenant des accords bilatéraux avec l'UE.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -618,7 +618,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Pour voter aux élections européennes en France, il faut être citoyen de l'Union européenne, avoir 18 ans et être inscrit sur les listes électorales.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -635,7 +635,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les élections européennes pour élire les députés du Parlement européen ont lieu tous les 5 ans dans tous les États membres de l'Union européenne.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -652,7 +652,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France fait partie des six pays fondateurs de la Communauté européenne en 1957 avec l'Allemagne, l'Italie, la Belgique, les Pays-Bas et le Luxembourg.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -669,7 +669,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France utilise l'euro depuis 2002, la monnaie unique de la zone euro adoptée par 20 pays de l'Union européenne.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -685,7 +685,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les députés européens sont élus au suffrage universel direct par les citoyens de l'Union européenne tous les 5 ans.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP"
     ]
@@ -701,7 +701,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La journée de l'Europe est célébrée le 9 mai, en commémoration de la déclaration Schuman de 1950 qui marque le début de la construction européenne.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CSP",
       "CR"
@@ -718,7 +718,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Constitution actuelle de la France est celle de la Ve République, adoptée en 1958 sous l'impulsion du général de Gaulle.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -734,7 +734,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Constitution française, ainsi que les textes qui lui sont associés comme la Déclaration des droits de l'homme et du citoyen, énoncent les droits et devoirs des personnes en France.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -750,7 +750,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les droits individuels s'exercent dans le respect de la loi et des droits d'autrui, garantissant ainsi un équilibre entre liberté individuelle et vie en société.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -766,7 +766,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "La Déclaration des droits de l'homme et du citoyen a été adoptée le 26 août 1789, pendant la Révolution française.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -782,7 +782,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le droit à l'éducation est un droit fondamental garanti par la Constitution, l'instruction étant obligatoire pour tous les enfants.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -798,7 +798,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 fait partie du bloc de constitutionnalité et garantit les droits et libertés fondamentaux en France.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -814,7 +814,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté d'expression est le droit d'exprimer ses opinions et idées dans le respect de la loi, notamment sans tenir de propos diffamatoires, injurieux ou incitant à la haine.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -830,7 +830,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le droit à un procès équitable garantit à toute personne le droit de se défendre devant un tribunal impartial, avec l'assistance d'un avocat.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -846,7 +846,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 est le texte fondateur qui établit les droits et devoirs des citoyens français.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -862,7 +862,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La Déclaration des droits de l'homme et du citoyen a été adoptée le 26 août 1789, au début de la Révolution française.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -878,7 +878,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté de conscience permet à chacun de choisir sa religion ou de n'en avoir aucune, principe fondamental de la laïcité française.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -894,7 +894,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "En France, l'interruption volontaire de grossesse (IVG) est légale et peut être pratiquée jusqu'à 14 semaines de grossesse depuis la loi de 2022.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -910,7 +910,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le divorce est toujours possible en France, soit par consentement mutuel, soit par acceptation du principe de la rupture, soit pour faute ou altération définitive du lien conjugal.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP",
       "CR"
@@ -927,7 +927,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La peine de mort a été abolie en France en 1981 sous la présidence de François Mitterrand, avec la loi portée par Robert Badinter.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP",
       "CR"
@@ -944,7 +944,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les libertés individuelles s'exercent dans le cadre de la loi et sont limitées par le respect de l'ordre public et des droits d'autrui.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -960,7 +960,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La polygamie est strictement interdite en France. Le mariage ne peut unir que deux personnes et la bigamie est un délit pénal.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -976,7 +976,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Réduire ses déchets est un devoir citoyen et environnemental inscrit dans la Charte de l'environnement, partie intégrante de la Constitution française depuis 2005.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -992,7 +992,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Jeter des déchets sur la voie publique constitue une infraction sanctionnée par une amende pouvant aller jusqu'à 68 euros selon le Code de la santé publique.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1008,7 +1008,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les libertés individuelles peuvent être limitées pour préserver l'ordre public, la sécurité et les droits des autres citoyens, conformément à la Déclaration des droits de l'homme et du citoyen.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1024,7 +1024,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Toute personne témoin d'un accident a l'obligation légale de porter assistance aux victimes et d'alerter les secours, sous peine de poursuites pour non-assistance à personne en danger.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1040,7 +1040,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La citoyenneté française confère des droits politiques essentiels, notamment le droit de voter et d'être élu aux élections, ainsi que l'accès à certains emplois publics.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1056,7 +1056,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le non-respect de la loi expose à des sanctions pénales proportionnées à la gravité de l'infraction, allant de l'amende à la peine d'emprisonnement.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1072,7 +1072,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La gendarmerie nationale est une force de sécurité militaire chargée de missions de police administrative et judiciaire, principalement dans les zones rurales et périurbaines.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1088,7 +1088,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La police nationale assure le maintien de l'ordre public, la protection des personnes et des biens, et la lutte contre la criminalité, principalement en zones urbaines.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP",
       "CR"
@@ -1105,7 +1105,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Une infraction est un comportement interdit par la loi et sanctionné pénalement. Elle se classe en trois catégories : contravention, délit et crime.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1121,7 +1121,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La réduction des déchets passe par le tri sélectif, le recyclage, le compostage et l'adoption de modes de consommation responsables pour limiter la production de déchets.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1137,7 +1137,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Abandonner des déchets encombrants sur la voie publique constitue un dépôt sauvage sanctionné par une amende pouvant atteindre 1 500 euros. Il faut utiliser les déchetteries ou les services de collecte adaptés.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1153,7 +1153,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La traite des êtres humains est un crime qui consiste à exploiter des personnes (travail forcé, prostitution, prélèvement d'organes) par la violence, la menace ou la tromperie.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP"
     ]
@@ -1169,7 +1169,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Une victime de violences doit porter plainte auprès de la police ou de la gendarmerie et peut contacter des associations d'aide aux victimes. Le numéro 3919 est disponible pour les violences conjugales.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP",
       "CR"
@@ -1186,7 +1186,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le crime est l'infraction la plus grave, jugée par la cour d'assises et passible de peines pouvant aller jusqu'à la réclusion criminelle à perpétuité.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CSP",
       "CR"
@@ -1203,7 +1203,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "La Révolution française a débuté en 1789 avec la prise de la Bastille le 14 juillet, marquant la fin de la monarchie absolue et l'avènement des idéaux de liberté, égalité et fraternité.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1219,7 +1219,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Napoléon Bonaparte a été empereur des Français de 1804 à 1815. Il a marqué l'histoire par ses réformes (Code civil) et ses conquêtes militaires en Europe.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1235,7 +1235,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Louis Pasteur était un scientifique français célèbre pour ses découvertes sur les vaccins et la pasteurisation, qui ont révolutionné la médecine et l'hygiène au XIXe siècle.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1251,7 +1251,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La France vit sous la Ve République depuis 1958, instaurée par le général de Gaulle. Cette République se caractérise par un régime semi-présidentiel.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1267,7 +1267,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Shoah désigne le génocide systématique des Juifs d'Europe par le régime nazi pendant la Seconde Guerre mondiale, qui a causé la mort de six millions de personnes.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1283,7 +1283,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Algérie a été colonisée par la France de 1830 à 1962. La France a également colonisé d'autres territoires en Afrique, en Asie et dans les Caraïbes.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1299,7 +1299,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Jules Ferry, ministre de l'Instruction publique, a instauré les lois de 1881-1882 rendant l'école primaire gratuite, laïque et obligatoire pour tous les enfants de 6 à 13 ans.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1315,7 +1315,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Seconde Guerre mondiale s'est déroulée de 1939 à 1945, opposant les Alliés aux puissances de l'Axe, et s'est terminée par la capitulation de l'Allemagne en mai 1945 et du Japon en septembre 1945.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1331,7 +1331,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Première Guerre mondiale s'est déroulée de 1914 à 1918, débutant après l'assassinat de l'archiduc François-Ferdinand et se terminant par l'armistice du 11 novembre 1918.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1347,7 +1347,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La CEE a été créée en 1957 par le traité de Rome, signé par six pays fondateurs dont la France, établissant un marché commun européen.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1363,7 +1363,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le 11 novembre commémore l'armistice de 1918 qui mit fin aux combats de la Première Guerre mondiale. C'est un jour de mémoire pour honorer tous les morts pour la France.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1379,7 +1379,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Charles de Gaulle a été élu premier Président de la Ve République en décembre 1958, après avoir fondé cette nouvelle République la même année.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1395,7 +1395,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'esclavage a été définitivement aboli en France en 1848 grâce au décret signé par Victor Schœlcher sous la Seconde République, après une première abolition en 1794 qui avait été annulée par Napoléon.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1411,7 +1411,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'école publique est devenue gratuite en 1881 grâce aux lois de Jules Ferry, qui ont également rendu l'instruction primaire obligatoire et laïque.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1427,7 +1427,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La France a connu cinq républiques depuis 1792 : la Première (1792-1804), la Deuxième (1848-1852), la Troisième (1870-1940), la Quatrième (1946-1958) et la Cinquième depuis 1958.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1443,7 +1443,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Louis XVI était roi de France lorsque la Révolution française a éclaté en 1789. Il a été guillotiné en 1793 après la proclamation de la République.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1459,7 +1459,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Charles de Gaulle a fondé la Ve République en 1958, établissant une nouvelle Constitution qui renforçait les pouvoirs du Président de la République.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1475,7 +1475,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le 14 juillet commémore la prise de la Bastille en 1789, événement symbolique du début de la Révolution française et de la fin de l'absolutisme royal.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1491,7 +1491,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Première Guerre mondiale s'est déroulée de 1914 à 1918, impliquant la France aux côtés des Alliés contre les Empires centraux.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1507,7 +1507,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "En 1958, la Ve République a été fondée par Charles de Gaulle avec l'adoption d'une nouvelle Constitution approuvée par référendum, remplaçant la IVe République.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1523,7 +1523,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Seine est l'un des principaux fleuves français, traversant Paris et se jetant dans la Manche. D'autres fleuves français incluent la Loire, le Rhône, la Garonne et le Rhin (frontière).",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1539,7 +1539,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Lyon est une grande ville française située au confluent du Rhône et de la Saône, et est la troisième plus grande ville de France après Paris et Marseille.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1555,7 +1555,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'océan Atlantique borde toute la côte ouest de la France métropolitaine, de la Bretagne jusqu'à la frontière espagnole au Pays basque.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1571,7 +1571,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Paris est la capitale de la France et sa plus grande ville avec environ 2,2 millions d'habitants intra-muros, située sur la Seine en région Île-de-France.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1587,7 +1587,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Paris est la capitale de la France depuis plus de mille ans, siège du gouvernement et centre politique, économique et culturel du pays.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1603,7 +1603,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La France métropolitaine est située en Europe occidentale, bordée par l'océan Atlantique, la mer Méditerranée et plusieurs pays européens.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1619,7 +1619,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Martinique est un département et région d'outre-mer français situé dans les Caraïbes. D'autres DOM incluent la Guadeloupe, la Guyane, La Réunion et Mayotte.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1635,7 +1635,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Depuis la réforme territoriale de 2016, la France métropolitaine compte 13 régions administratives.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1651,7 +1651,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Marseille est le plus grand port maritime de France, situé sur la mer Méditerranée.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1667,7 +1667,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La mer Méditerranée borde le sud de la France métropolitaine, du Languedoc-Roussillon à la Côte d'Azur.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1683,7 +1683,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Nice est une ville majeure de la Côte d'Azur, située sur le littoral méditerranéen.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1699,7 +1699,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Corse est une île française située dans la mer Méditerranée, au sud-est de la France métropolitaine.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1715,7 +1715,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les Alpes forment une frontière naturelle entre la France et l'Italie, avec le Mont Blanc comme point culminant.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1731,7 +1731,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Molière (1622-1673) était un dramaturge et comédien français, auteur de comédies célèbres comme 'Le Malade imaginaire' et 'L'Avare'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1747,7 +1747,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Charles Baudelaire (1821-1867) était un poète français majeur, auteur du recueil 'Les Fleurs du mal'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1763,7 +1763,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "George Sand (1804-1876), de son vrai nom Amantine Aurore Dupin, était une femme écrivain française célèbre pour ses romans et sa vie libre.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1779,7 +1779,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Simone de Beauvoir (1908-1986) était une philosophe, écrivain et féministe française, auteure du 'Deuxième Sexe'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1795,7 +1795,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Albert Camus (1913-1960) était un écrivain, philosophe et journaliste français, prix Nobel de littérature en 1957, auteur de 'L'Étranger'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1811,7 +1811,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Paul Cézanne (1839-1906) était un peintre français post-impressionniste, considéré comme un précurseur de l'art moderne.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1827,7 +1827,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Marc Chagall (1887-1985) était un peintre et artiste d'origine russe naturalisé français, célèbre pour ses œuvres colorées et poétiques.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1843,7 +1843,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Joséphine Baker (1906-1975) était une chanteuse, danseuse et résistante franco-américaine, première femme noire au Panthéon en 2021.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1859,7 +1859,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Édith Piaf (1915-1963) était une chanteuse française légendaire, surnommée 'La Môme', célèbre pour 'La Vie en rose'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1875,7 +1875,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Louvre est le plus grand musée d'art du monde, situé à Paris, abritant notamment la Joconde de Léonard de Vinci.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1891,7 +1891,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Jean de la Fontaine (1621-1695) était un poète français célèbre pour ses Fables mettant en scène des animaux.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1907,7 +1907,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Victor Hugo (1802-1885) était un écrivain français majeur, auteur des 'Misérables' et de 'Notre-Dame de Paris'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1923,7 +1923,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La tour Eiffel, construite en 1889 pour l'Exposition universelle, est située à Paris et est le monument le plus visité au monde.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1939,7 +1939,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Noël est célébré le 25 décembre en France, c'est une fête chrétienne devenue tradition culturelle nationale.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CSP"
     ]
@@ -1955,7 +1955,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le 15 est le numéro du SAMU (Service d'Aide Médicale Urgente) pour toutes les urgences médicales en France.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -1971,7 +1971,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le 18 est le numéro des sapeurs-pompiers en France pour les incendies, accidents et autres situations d'urgence.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -1987,7 +1987,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'assurance automobile est obligatoire en France pour tout véhicule en circulation. Sans assurance, il est interdit de conduire.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2003,7 +2003,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "En France, seul le mariage civil célébré à la mairie par un officier d'état civil a une valeur juridique. Le mariage religieux est facultatif.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2019,7 +2019,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La déclaration de naissance doit être faite dans les 5 jours suivant l'accouchement auprès de la mairie du lieu de naissance.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2035,7 +2035,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le travail non déclaré (travail au noir) est illégal en France et expose l'employeur et le salarié à des sanctions pénales et financières.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2051,7 +2051,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'employeur doit respecter le SMIC (Salaire Minimum Interprofessionnel de Croissance) qui est le salaire horaire minimum légal en France.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2067,7 +2067,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le SMIC est le Salaire Minimum Interprofessionnel de Croissance, c'est le salaire horaire minimum en dessous duquel aucun salarié ne peut être payé.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2083,7 +2083,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'inscription à France Travail (anciennement Pôle emploi) est la première démarche recommandée pour bénéficier d'un accompagnement dans la recherche d'emploi.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2099,7 +2099,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La durée légale du travail en France est fixée à 35 heures par semaine pour un temps plein, au-delà ce sont des heures supplémentaires.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2115,7 +2115,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "France Travail accompagne toute personne en recherche d'emploi ou souhaitant une formation professionnelle, quelle que soit sa situation.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2131,7 +2131,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Une personne étrangère peut créer une entreprise en France si son titre de séjour l'y autorise (carte de résident, vie privée et familiale avec mention entrepreneur, etc.).",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2147,7 +2147,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "En France, l'égalité entre hommes et femmes est garantie par la loi. Une femme peut créer son entreprise librement, comme un homme.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2163,7 +2163,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Un mineur peut travailler à partir de 16 ans en France, avec certaines restrictions. Entre 14 et 16 ans, seuls des travaux légers pendant les vacances sont autorisés.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2179,7 +2179,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Assurance Maladie, qui fait partie de la Sécurité sociale, est l'organisme qui rembourse les frais de santé en France.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2195,7 +2195,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Un numéro d'urgence est un numéro de téléphone gratuit, accessible 24h/24 et 7j/7, pour signaler une situation de danger nécessitant une intervention rapide.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2211,7 +2211,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Toute personne résidant en France de manière stable et régulière a droit à la protection maladie et peut accéder aux soins.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP",
       "CR"
@@ -2228,7 +2228,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Pour un problème de santé non urgent, il faut consulter en priorité son médecin traitant qui assure le suivi médical régulier.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2244,7 +2244,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le médecin traitant assure le suivi médical régulier du patient, coordonne son parcours de soins et oriente vers des spécialistes si nécessaire.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2260,7 +2260,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les urgences hospitalières sont réservées aux situations graves mettant en danger la vie ou nécessitant des soins médicaux immédiats (accident, malaise sévère, etc.).",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2276,7 +2276,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les vaccinations obligatoires visent à protéger la population, notamment les plus vulnérables, contre des maladies infectieuses graves et à éviter les épidémies grâce à l'immunité collective.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2292,7 +2292,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La carte Vitale est la carte d'assuré social qui permet de bénéficier du remboursement des soins par l'Assurance Maladie de manière simplifiée et rapide.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2308,7 +2308,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La mutuelle santé est une assurance complémentaire qui rembourse tout ou partie des frais de santé non pris en charge par la Sécurité sociale.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2324,7 +2324,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "En France, l'instruction est obligatoire pour tous les enfants de 3 à 16 ans, conformément au Code de l'éducation.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2340,7 +2340,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'autorité parentale implique des droits et devoirs ayant pour finalité l'intérêt de l'enfant, notamment le protéger dans sa santé, sa sécurité et sa moralité, assurer son éducation et permettre son développement.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2356,7 +2356,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'instruction est obligatoire pour tous les enfants, français et étrangers, résidant sur le territoire français, de 3 à 16 ans.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2372,7 +2372,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le baccalauréat est le diplôme national qui sanctionne la fin des études secondaires et ouvre l'accès à l'enseignement supérieur.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2388,7 +2388,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Après l'école élémentaire (du CP au CM2), les élèves poursuivent leur scolarité au collège pendant quatre ans (de la 6e à la 3e).",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2404,7 +2404,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'assiduité scolaire est obligatoire : tout enfant inscrit à l'école doit fréquenter régulièrement les cours et toute absence doit être justifiée auprès de l'établissement.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2420,7 +2420,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Tous les enfants ont le droit d'être scolarisés en France quelle que soit leur maîtrise du français, et des dispositifs spécifiques d'accompagnement linguistique sont mis en place pour faciliter leur intégration.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CSP"
     ]
@@ -2436,7 +2436,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Voter aux élections est un acte de participation citoyenne directe permettant d'exercer sa souveraineté. Les autres sont des obligations ou des droits, mais pas des formes de participation active à la vie démocratique.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2452,7 +2452,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté d'expression garantit le droit d'exprimer ses opinions, mais dans le respect des lois qui interdisent notamment la diffamation, l'injure et l'incitation à la haine.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2468,7 +2468,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le titre de séjour est un document officiel qui autorise un ressortissant étranger à résider sur le territoire français de manière régulière pour une durée déterminée.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2484,7 +2484,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté de circulation garantit à toute personne le droit de circuler librement et de choisir son lieu de résidence sur le territoire français, sous réserve du respect des lois.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2500,7 +2500,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le site www.gouvernement.fr est le portail officiel du gouvernement français où l'on retrouve les symboles de la République, dont Marianne, le drapeau tricolore et la devise.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2516,7 +2516,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le refrain de la Marseillaise dit \"Aux armes citoyens ! Formez vos bataillons\", rappelant l'appel aux citoyens à défendre la patrie pendant la Révolution française.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2532,7 +2532,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le premier vers de la Marseillaise est \"Allons enfants de la patrie, le jour de gloire est arrivé\". C'est l'hymne national français composé par Rouget de Lisle en 1792.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2548,7 +2548,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté individuelle garantit à chacun le droit de choisir son mode de vie, ses opinions et ses croyances, dans le respect des lois et des libertés d'autrui.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2564,7 +2564,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La laïcité garantit la liberté de conscience : chacun peut pratiquer la religion de son choix ou n'en avoir aucune. L'État est neutre et ne favorise aucune religion.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2580,7 +2580,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'instruction est obligatoire et les parents ne peuvent refuser la participation de leur enfant aux activités scolaires pour des motifs religieux ou personnels. L'école républicaine est laïque et mixte.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2596,7 +2596,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La devise de la République française est \"Liberté, Égalité, Fraternité\". Elle est inscrite sur les frontons des bâtiments publics et figure dans la Constitution.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2612,7 +2612,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La répudiation est strictement interdite en France. Le divorce doit obligatoirement être prononcé par un juge, garantissant ainsi l'égalité entre les époux et la protection des droits de chacun.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2628,7 +2628,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le système fiscal français repose sur le principe de progressivité : chacun contribue aux charges publiques selon ses capacités financières, conformément à l'article 13 de la Déclaration des droits de l'homme.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2644,7 +2644,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Brûler publiquement le drapeau tricolore constitue une outrage à un symbole de la République, puni par l'article 433-5-1 du Code pénal d'une amende de 1 500 euros.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2660,7 +2660,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'État français lutte activement contre les discriminations par des lois qui interdisent et sanctionnent pénalement toute discrimination fondée sur l'origine, le sexe, la religion ou tout autre critère prohibé.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2676,7 +2676,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Marianne est la représentation symbolique de la République française et de ses valeurs de liberté, d'égalité et de fraternité. Son buste figure dans les mairies.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2692,7 +2692,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté d'association, garantie par la loi de 1901, permet à toute personne de créer ou d'adhérer librement à une association pour défendre des intérêts communs, dans le respect de la loi.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2708,7 +2708,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui, dans le respect des lois. Elle s'exerce dans le cadre défini par la loi qui garantit l'ordre public et les droits de tous.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2724,7 +2724,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Marianne figure sur les timbres-poste français et son buste est présent dans toutes les mairies de France. Elle est le symbole de la République française.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2740,7 +2740,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Refuser d'embaucher une personne en raison de son sexe constitue une discrimination interdite et punissable par la loi. Le principe d'égalité entre les femmes et les hommes est garanti.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2756,7 +2756,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "L'égalité républicaine signifie que tous les citoyens ont les mêmes droits et les mêmes devoirs devant la loi, sans distinction d'origine, de religion ou de condition sociale.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2772,7 +2772,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La loi de séparation des Églises et de l'État a été votée le 9 décembre 1905. Elle établit la laïcité de la République et garantit la liberté de conscience.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2788,7 +2788,7 @@ export const questionsDB = [
     ],
     "correct": 3,
     "explanation": "Depuis la loi de 2004, le port de signes religieux ostensibles est interdit aux élèves dans les écoles publiques. Les enseignants, en tant qu'agents publics, doivent également respecter la neutralité religieuse.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2804,7 +2804,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La neutralité de l'État signifie qu'il ne reconnaît, ne salarie ni ne subventionne aucun culte. L'État garantit la liberté de conscience et le libre exercice des cultes.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2820,7 +2820,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les usagers du service public conservent leur liberté de conscience et d'expression religieuse. Ils peuvent donc porter des signes religieux visibles dans les services publics.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2836,7 +2836,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Tous les agents publics doivent respecter le principe de neutralité religieuse dans l'exercice de leurs fonctions. Ils ne doivent manifester aucune préférence religieuse.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2852,7 +2852,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Oui, les agents publics doivent être neutres dans l'exercice de leurs fonctions et traiter tous les usagers de manière égale, sans distinction de religion.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2868,7 +2868,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le principe de laïcité garantit la liberté de conscience, le libre exercice des cultes et l'égalité de tous les citoyens devant la loi sans distinction de religion.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2884,7 +2884,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté de conscience garantie par la République permet à chacun de choisir, de changer ou de ne pas avoir de religion. C'est un droit fondamental.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2900,7 +2900,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La laïcité représente la séparation entre l'État et les religions, garantissant la liberté de conscience et l'égalité de tous devant la loi sans distinction religieuse.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2916,7 +2916,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "La Charte de la laïcité à l'école interdit le port de signes ou de tenues manifestant ostensiblement une appartenance religieuse par les élèves, conformément à la loi de 2004.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2932,7 +2932,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'article 1er de la Constitution de 1958 proclame que la France est une République indivisible, laïque, démocratique et sociale qui assure l'égalité devant la loi de tous les citoyens.",
-    "category": "Principes et valeurs",
+    "theme": "Principes et valeurs",
     "tags": [
       "CR"
     ]
@@ -2948,7 +2948,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'État de droit est un système où tous, y compris les gouvernants et les institutions, sont soumis au respect de la loi et où les droits fondamentaux sont garantis.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -2964,7 +2964,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "En cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat, le président peut être destitué par le Parlement constitué en Haute Cour.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -2980,7 +2980,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Selon l'article 6 de la Déclaration des droits de l'homme et du citoyen de 1789, la loi est l'expression de la volonté générale, votée par les représentants du peuple.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -2996,7 +2996,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le mandat du conseil municipal et du maire est de 6 ans. Les conseillers municipaux sont élus au suffrage universel direct et élisent ensuite le maire parmi eux.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3012,7 +3012,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'État de droit garantit que tous les citoyens et les pouvoirs publics sont soumis aux mêmes lois, et que chacun peut faire valoir ses droits devant la justice.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3028,7 +3028,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Une personne peut voter à la place d'une autre uniquement si elle dispose d'une procuration en bonne et due forme, établie préalablement devant les autorités compétentes.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3044,7 +3044,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "En France, le vote est un droit citoyen mais pas une obligation légale. Chaque citoyen est libre de participer ou non aux élections.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3060,7 +3060,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Non, le président doit respecter la durée de son mandat fixée à 5 ans par la Constitution. Il ne peut se maintenir au pouvoir et doit organiser de nouvelles élections.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3076,7 +3076,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Selon l'article 21 de la Constitution, le Premier ministre dirige l'action du Gouvernement et est responsable de la défense nationale.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3092,7 +3092,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France est organisée de manière décentralisée avec trois niveaux de collectivités territoriales : les communes, les départements et les régions.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3108,7 +3108,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le pouvoir législatif est le pouvoir de voter et d'adopter les lois. En France, il est exercé par le Parlement (Assemblée nationale et Sénat).",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3124,7 +3124,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La séparation des pouvoirs (exécutif, législatif, judiciaire) permet d'éviter la concentration du pouvoir et protège contre l'arbitraire et les abus.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3140,7 +3140,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Gouvernement, dirigé par le Premier ministre, détermine et conduit la politique de la nation et dispose de l'administration et de la force armée.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3156,7 +3156,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Hôtel de Matignon, situé rue de Varenne à Paris, est la résidence officielle et le lieu de travail du Premier ministre français.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3172,7 +3172,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Président de la République est le garant de la Constitution, de l'indépendance nationale et de l'intégrité du territoire. Il arbitre et assure le fonctionnement régulier des pouvoirs publics.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3188,7 +3188,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Premier ministre dirige l'action du Gouvernement, assure l'exécution des lois et exerce le pouvoir réglementaire.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3204,7 +3204,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Premier ministre est le chef du Gouvernement. Il dirige l'action gouvernementale et coordonne le travail des ministres.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3220,7 +3220,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France compte 18 régions au total : 13 régions en France métropolitaine et 5 régions d'outre-mer (Guadeloupe, Martinique, Guyane, La Réunion, Mayotte).",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3236,7 +3236,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Défenseur des droits est une autorité constitutionnelle indépendante qui défend les droits des citoyens face aux administrations et lutte contre les discriminations.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3252,7 +3252,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'euro est devenu la monnaie fiduciaire (pièces et billets) en France et dans la zone euro le 1er janvier 2002, bien que sa création monétaire date de 1999.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3268,7 +3268,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le département a principalement en charge l'action sociale (aide aux personnes âgées, handicapées, à l'enfance), la gestion des collèges et l'entretien des routes départementales.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3284,7 +3284,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les communes gèrent les services de proximité : état civil, urbanisme, écoles maternelles et primaires, voirie communale, action sociale locale.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3300,7 +3300,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La France compte environ 35 000 communes, ce qui en fait le pays d'Europe avec le plus grand nombre de communes.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3316,7 +3316,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le traité de Maastricht, signé en 1992, a créé l'Union européenne et établi les fondements de l'union économique et monétaire.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3332,7 +3332,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le Royaume-Uni a officiellement quitté l'Union européenne le 31 janvier 2020, suite au référendum du Brexit de 2016.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3348,7 +3348,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La devise de l'Union européenne est « Unie dans la diversité », soulignant que les Européens œuvrent ensemble pour la paix et la prospérité tout en conservant leurs cultures diverses.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3364,7 +3364,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'hymne de l'Union européenne est l'Ode à la joie, tirée de la 9e symphonie de Beethoven, symbolisant l'idéal de fraternité et d'unité.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3380,7 +3380,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Le drapeau européen est composé de 12 étoiles dorées (jaunes) disposées en cercle sur fond bleu. Le nombre 12 symbolise la perfection et l'unité.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3396,7 +3396,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le drapeau européen est bleu avec un cercle de douze étoiles dorées représentant l'union et la solidarité entre les peuples d'Europe.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3412,7 +3412,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le traité de Maastricht a été signé le 7 février 1992 et est entré en vigueur en 1993, créant officiellement l'Union européenne.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3428,7 +3428,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le siège officiel du Parlement européen est à Strasbourg, en France, où se tiennent les sessions plénières mensuelles.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3444,7 +3444,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Commission européenne a son siège à Bruxelles, en Belgique, où se trouvent ses principaux services administratifs.",
-    "category": "Système institutionnel",
+    "theme": "Système institutionnel",
     "tags": [
       "CR"
     ]
@@ -3460,7 +3460,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La PMA (Procréation Médicalement Assistée) se rattache à la liberté de fonder une famille et au droit à la vie privée et familiale.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3476,7 +3476,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'État peut restreindre certaines libertés au nom de l'ordre public, qui comprend la sécurité publique, la santé publique et la moralité publique.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3492,7 +3492,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Depuis la loi du 17 mai 2013, le mariage est ouvert à tous les couples, sans distinction de sexe, conformément au principe d'égalité.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3508,7 +3508,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'article 1er de la Déclaration de 1789 énonce : \"Les hommes naissent et demeurent libres et égaux en droits\", principe fondamental de la République.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3524,7 +3524,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Depuis la loi Veil de 1975, l'avortement est autorisé en France dans les conditions prévues par la loi, notamment avant la fin de la 14e semaine de grossesse.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3540,7 +3540,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Constitution définit l'organisation des pouvoirs publics (exécutif, législatif, judiciaire) et garantit les droits et libertés fondamentaux des citoyens.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3556,7 +3556,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté de la presse garantit le droit d'informer et d'être informé librement, élément essentiel de la démocratie, tout en respectant certaines limites légales.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3572,7 +3572,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Charte de l'environnement, intégrée à la Constitution en 2005, consacre les droits et devoirs fondamentaux relatifs à la protection de l'environnement.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3588,7 +3588,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La dignité humaine est un principe selon lequel tout être humain mérite un respect absolu et ne peut être instrumentalisé ou traité de manière dégradante.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3604,7 +3604,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le droit de manifester permet d'exprimer collectivement et publiquement une opinion dans le respect de l'ordre public, souvent avec déclaration préalable.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3620,7 +3620,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "PMA signifie Procréation Médicalement Assistée, ensemble de techniques médicales permettant d'aider à la conception d'un enfant.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3636,7 +3636,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La Constitution est le texte le plus difficile à modifier car sa révision nécessite une procédure spéciale, souvent avec référendum ou vote du Congrès à la majorité des 3/5.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3652,7 +3652,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté de conscience et de culte garantit à chacun le droit de choisir sa religion ou de n'en avoir aucune, et de pratiquer son culte.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3668,7 +3668,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le droit de grève, reconnu par la Constitution, permet aux salariés de cesser collectivement le travail pour défendre leurs intérêts professionnels.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3684,7 +3684,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Constitution est la loi fondamentale et suprême d'un État qui organise les pouvoirs publics et garantit les droits et libertés fondamentaux.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3700,7 +3700,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Toute femme enceinte, majeure ou mineure, qui estime être en situation de détresse peut demander à avorter dans les délais et conditions prévus par la loi.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3716,7 +3716,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Toute personne majeure de nationalité française jouit du droit de vote sans distinction de sexe, conformément aux principes d'égalité républicaine établis en 1944.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3732,7 +3732,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les réseaux sociaux sont soumis aux mêmes règles juridiques que les autres espaces publics : diffamation, injures, harcèlement et incitation à la haine y sont interdits et punissables.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3748,7 +3748,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Jeter un mégot par terre est une infraction sanctionnée par une amende forfaitaire pouvant atteindre 135 euros, car il s'agit d'un abandon de déchets sur la voie publique.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3764,7 +3764,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'État peut limiter certains droits et libertés de manière proportionnée et justifiée pour protéger l'ordre public, la sécurité et l'intérêt général, conformément au principe de conciliation des libertés.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3780,7 +3780,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Privilégier les transports en commun ou le vélo réduit les émissions de CO2 et la pollution, contribuant ainsi à la protection de l'environnement et à la lutte contre le réchauffement climatique.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3796,7 +3796,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Respecter les lois de la République est une obligation pour toute personne vivant sur le territoire français, alors que le vote est un droit mais non une obligation en France.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3812,7 +3812,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La liberté d'expression peut être limitée légalement pour sanctionner les propos racistes, antisémites, homophobes ou incitant à la haine et à la violence, conformément aux lois sur la presse et le racisme.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3828,7 +3828,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le tri des déchets est obligatoire et permet leur recyclage, réduisant ainsi la pollution, la consommation de ressources naturelles et contribuant à la protection de l'environnement.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3844,7 +3844,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Il faut obtempérer aux ordres légitimes des forces de l'ordre qui représentent l'autorité publique. Le refus d'obtempérer constitue une infraction passible de sanctions pénales.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3860,7 +3860,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Appeler les secours est une forme d'assistance à personne en danger, obligation légale en France. La non-assistance à personne en danger est un délit puni par la loi.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3876,7 +3876,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les limitations de vitesse restreignent la liberté de circuler comme on veut, mais protègent l'intérêt général en assurant la sécurité routière et en réduisant les accidents mortels.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3892,7 +3892,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Face à des violences, il faut alerter les autorités (police, gendarmes) et porter secours à la victime si possible sans se mettre en danger. C'est une obligation légale d'assistance à personne en danger.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3908,7 +3908,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Toute personne résidant sur le territoire français, quelle que soit sa nationalité, doit respecter les lois françaises. C'est un principe fondamental de la souveraineté nationale.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3924,7 +3924,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le meurtre est un crime, l'infraction la plus grave du droit pénal français, jugé par la cour d'assises et passible de la réclusion criminelle, contrairement aux délits et contraventions.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3940,7 +3940,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le vol et l'escroquerie sont des délits, infractions de gravité intermédiaire jugées par le tribunal correctionnel, passibles d'amendes et/ou de peines d'emprisonnement jusqu'à 10 ans.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3956,7 +3956,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La police et la gendarmerie nationales sont les forces de l'ordre chargées de maintenir l'ordre public et la sécurité, sous l'autorité du ministère de l'Intérieur et du maire au niveau local.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3972,7 +3972,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le tri sélectif des déchets est obligatoire en France depuis 1992 pour permettre le recyclage et réduire l'impact environnemental. Les communes doivent mettre en place des systèmes de collecte adaptés.",
-    "category": "Droits et devoirs",
+    "theme": "Droits et devoirs",
     "tags": [
       "CR"
     ]
@@ -3988,7 +3988,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Louis XIV était surnommé le Roi Soleil, symbole de son pouvoir absolu et de la splendeur de son règne (1643-1715), le plus long de l'histoire de France.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4004,7 +4004,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Louis XVI a été guillotiné le 21 janvier 1793 place de la Révolution (actuelle place de la Concorde) après avoir été jugé et condamné par la Convention nationale pour trahison.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4020,7 +4020,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Napoléon Bonaparte est devenu Napoléon Ier, empereur des Français, le 2 décembre 1804 lors de son sacre à Notre-Dame de Paris en présence du pape Pie VII.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4036,7 +4036,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Marianne est le symbole de la République française depuis la Révolution. Elle incarne la liberté et la République et figure dans toutes les mairies.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4052,7 +4052,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "L'appel du 18 juin 1940 a été lancé par le général de Gaulle depuis Londres pour appeler les Français à résister face à l'occupation allemande.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4068,7 +4068,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'étude de la Shoah permet de transmettre la mémoire du génocide des Juifs et d'éduquer contre le racisme, l'antisémitisme et toutes les formes de discrimination.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4084,7 +4084,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'Algérie a été colonisée par la France de 1830 à 1962. Elle a obtenu son indépendance après une guerre de libération qui s'est terminée en 1962.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4100,7 +4100,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Depuis le référendum de 1962, voulu par le général de Gaulle, le président de la République est élu au suffrage universel direct par tous les citoyens français.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4116,7 +4116,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La CECA, créée en 1951, est la première étape de la construction européenne. Elle réunissait six pays dont la France et l'Allemagne pour gérer le charbon et l'acier.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4132,7 +4132,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La peine de mort a été abolie en France en 1981 sous la présidence de François Mitterrand, grâce à la loi portée par le ministre de la Justice Robert Badinter.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4148,7 +4148,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Première République a été proclamée le 22 septembre 1792 après l'abolition de la royauté. C'est le premier régime républicain de l'histoire de France.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4164,7 +4164,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Jean Moulin a unifié les mouvements de Résistance intérieure sous l'autorité du général de Gaulle. Il est mort en déportation en 1943 et repose au Panthéon.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4180,7 +4180,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le droit de vote a été accordé aux femmes françaises le 21 avril 1944 par ordonnance du général de Gaulle. Elles ont voté pour la première fois en 1945.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4196,7 +4196,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'ONU a été créée en 1945 pour maintenir la paix et la sécurité internationales après la Seconde Guerre mondiale. La France est l'un des cinq membres permanents du Conseil de sécurité.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4212,7 +4212,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La peine de mort a été abolie en France le 9 octobre 1981 grâce à la loi défendue par Robert Badinter, alors ministre de la Justice.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4228,7 +4228,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'euro est devenu la monnaie fiduciaire utilisée en France le 1er janvier 2002, remplaçant le franc français. L'euro existait sous forme scripturale depuis 1999.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4244,7 +4244,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Première Guerre mondiale a commencé en 1914 et s'est terminée en 1918. Elle a opposé les Alliés aux Empires centraux et causé des millions de morts.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4260,7 +4260,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le débarquement du 6 juin 1944, appelé le Jour J, a eu lieu sur les plages de Normandie. Il marque le début de la libération de la France de l'occupation allemande.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4276,7 +4276,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'Afrique a été le continent le plus concerné par la décolonisation française, avec l'indépendance de nombreux pays dans les années 1950-1960, notamment l'Algérie en 1962.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4292,7 +4292,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le 8 mai est un jour férié qui commémore la victoire des Alliés sur l'Allemagne nazie et la fin de la Seconde Guerre mondiale en Europe en 1945.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4308,7 +4308,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La France métropolitaine est bordée par la mer Méditerranée au sud, l'océan Atlantique à l'ouest et la Manche au nord.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4324,7 +4324,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Espagne partage une frontière terrestre avec la France au niveau des Pyrénées. La France a également des frontières avec la Belgique, le Luxembourg, l'Allemagne, la Suisse, l'Italie et Monaco.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4340,7 +4340,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Marseille est le premier port maritime de France et de la Méditerranée. C'est une ville portuaire importante depuis l'Antiquité située sur la côte méditerranéenne.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4356,7 +4356,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Manche est le bras de mer qui sépare la France de l'Angleterre, avec une largeur minimale de 33 km au Pas-de-Calais.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4372,7 +4372,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France d'outre-mer désigne l'ensemble des territoires de la République française situés en dehors de l'Europe, comme la Guadeloupe, la Martinique, la Réunion, la Guyane et la Polynésie française.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4388,7 +4388,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les Pyrénées forment une frontière naturelle de 430 km entre la France et l'Espagne, s'étendant de l'océan Atlantique à la mer Méditerranée.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4404,7 +4404,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La Réunion est un département français d'outre-mer situé dans l'océan Indien, à l'est de Madagascar. La Guadeloupe et la Martinique se trouvent dans les Caraïbes, et la Corse en Méditerranée.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4420,7 +4420,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France compte environ 68 millions d'habitants en 2025, incluant la France métropolitaine et les territoires d'outre-mer.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4436,7 +4436,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La Seine traverse Paris d'est en ouest sur environ 13 km, divisant la ville en rive droite et rive gauche.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4452,7 +4452,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "La Suisse partage une frontière de 573 km avec la France à l'est. La France a huit pays frontaliers : Belgique, Luxembourg, Allemagne, Suisse, Italie, Monaco, Espagne et Andorre.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4468,7 +4468,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Luxembourg partage une frontière de 73 km avec la France au nord-est, aux côtés de la Belgique et de l'Allemagne dans cette région.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4484,7 +4484,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les principales activités économiques se concentrent dans les grandes villes et métropoles comme Paris, Lyon, Marseille, Toulouse et Lille, qui regroupent entreprises, industries et services.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4500,7 +4500,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La France est le pays le plus visité au monde avec environ 90 millions de touristes étrangers par an, grâce à son patrimoine culturel, sa gastronomie et ses paysages variés.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4516,7 +4516,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Environ 80% des Français vivent en zones urbaines, avec une concentration importante dans les grandes métropoles et leurs agglomérations.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4532,7 +4532,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'Île-de-France est la région la plus peuplée avec plus de 12 millions d'habitants, soit environ 18% de la population française totale.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4548,7 +4548,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Toulouse est la quatrième plus grande métropole de France avec environ 1 million d'habitants dans son aire urbaine, reconnue pour son industrie aéronautique.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4564,7 +4564,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Paris est le département le plus touristique de France, attirant des dizaines de millions de visiteurs chaque année pour ses monuments, musées et patrimoine culturel.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4580,7 +4580,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "De nombreux musées et monuments nationaux sont gratuits le premier dimanche de chaque mois, permettant à tous d'accéder à la culture.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4596,7 +4596,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Environ 300 millions de personnes parlent français dans le monde, faisant du français la cinquième langue la plus parlée et une langue officielle dans 29 pays.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4612,7 +4612,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Marguerite Yourcenar (1903-1987) était une écrivaine française, auteure notamment des 'Mémoires d'Hadrien', et la première femme élue à l'Académie française en 1980.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4628,7 +4628,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Claude Monet (1840-1926) était un peintre français, fondateur de l'impressionnisme, célèbre pour ses séries des Nymphéas et de la cathédrale de Rouen.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4644,7 +4644,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le Louvre est le plus grand musée de Paris et du monde, situé dans le 1er arrondissement, abritant la Joconde et des milliers d'œuvres d'art.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4660,7 +4660,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Auguste Rodin (1840-1917) était un sculpteur français majeur, créateur d'œuvres emblématiques comme 'Le Penseur', 'Le Baiser' et 'Les Bourgeois de Calais'.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4676,7 +4676,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le français est la 5ème langue la plus parlée dans le monde avec environ 300 millions de locuteurs répartis sur les cinq continents.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4692,7 +4692,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La cathédrale Notre-Dame de Paris a subi un incendie majeur le 15 avril 2019, détruisant sa flèche et sa toiture, mais préservant sa structure principale.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4708,7 +4708,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Simone de Beauvoir était une écrivaine, philosophe et féministe française célèbre, auteure notamment du 'Deuxième Sexe' publié en 1949.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4724,7 +4724,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Claude Debussy était un compositeur français majeur de la fin du XIXe et du début du XXe siècle, considéré comme l'un des fondateurs de la musique impressionniste.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4740,7 +4740,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Auguste Renoir était un peintre impressionniste français célèbre, connu pour ses scènes de la vie parisienne et ses portraits lumineux.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4756,7 +4756,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le 14 juillet est la fête nationale française commémorant la prise de la Bastille en 1789 et la Fête de la Fédération de 1790.",
-    "category": "Histoire et culture",
+    "theme": "Histoire et culture",
     "tags": [
       "CR"
     ]
@@ -4772,7 +4772,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Seul le mariage civil célébré à la mairie par un officier d'état civil a une valeur juridique en France et est reconnu par l'État.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4788,7 +4788,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'inscription à l'école publique se fait auprès de la mairie de la commune de résidence, qui délivre un certificat d'inscription pour l'école de secteur.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4804,7 +4804,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "L'autorité parentale reste conjointe après le divorce, les deux parents continuent à exercer ensemble l'autorité parentale, sauf décision contraire du juge.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4820,7 +4820,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'aide juridictionnelle permet aux personnes ayant des ressources insuffisantes de bénéficier d'une prise en charge totale ou partielle des frais d'avocat.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4836,7 +4836,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La naissance d'un enfant doit être déclarée à la mairie du lieu de naissance dans les 5 jours suivant l'accouchement pour établir l'acte de naissance.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4852,7 +4852,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Pour passer l'examen pratique du permis de conduire, il faut d'abord avoir réussi l'examen théorique du code de la route.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4868,7 +4868,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Un bail locatif doit être écrit et signé par le propriétaire et le locataire pour être valide et avoir une valeur juridique.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4884,7 +4884,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les gros électroménagers comme les lave-vaisselle doivent être déposés en déchetterie où ils seront recyclés selon la filière des déchets d'équipements électriques et électroniques.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4900,7 +4900,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le 17 est le numéro d'urgence pour contacter la police ou la gendarmerie en France en cas d'accident, d'agression ou de situation dangereuse.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4916,7 +4916,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La contraception est accessible à toutes et tous, femmes et hommes, avec différentes méthodes disponibles selon les besoins de chacun.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4932,7 +4932,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le principe de confidentialité ou secret médical oblige les professionnels de santé à ne pas divulguer les informations concernant leurs patients sans leur consentement.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4948,7 +4948,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "L'inscription à l'Assurance maladie est obligatoire pour toutes les personnes résidant en France de manière stable et régulière, quelle que soit leur nationalité.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4964,7 +4964,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le congé parental d'éducation peut être demandé par la mère ou le père salarié pour s'occuper de leur enfant, après sa naissance ou son adoption.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4980,7 +4980,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le conseil de prud'hommes est une juridiction spécialisée qui règle les conflits individuels du travail entre employeurs et salariés.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -4996,7 +4996,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le travail dissimulé (au noir) est strictement interdit en France et constitue une infraction pénale passible de sanctions pour l'employeur comme pour le salarié.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5012,7 +5012,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les heures supplémentaires doivent être rémunérées avec une majoration et le salarié a des droits encadrés par le Code du travail pour les accepter ou les refuser selon les cas.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5028,7 +5028,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "France Travail (anciennement Pôle emploi) accompagne les demandeurs d'emploi dans leur recherche, les inscrit, leur verse des allocations et les aide dans leur parcours professionnel.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5044,7 +5044,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Le droit syndical garantit aux salariés la liberté de se syndiquer et permet aux syndicats de défendre collectivement les intérêts professionnels des travailleurs.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5060,7 +5060,7 @@ export const questionsDB = [
     ],
     "correct": 0,
     "explanation": "Le droit de grève, reconnu par la Constitution, permet aux salariés de cesser collectivement le travail pour défendre des revendications professionnelles, sans rupture du contrat de travail.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5076,7 +5076,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Pour bénéficier des allocations chômage, il faut avoir travaillé et cotisé une durée minimale, être involontairement privé d'emploi et être en recherche active d'un emploi.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5092,7 +5092,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "L'école maternelle accueille les enfants de 3 à 6 ans et constitue la première étape de la scolarité, devenue obligatoire à partir de 3 ans.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5108,7 +5108,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le diplôme national du brevet (DNB) est obtenu à la fin de la classe de troisième et valide les connaissances et compétences acquises au collège.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5124,7 +5124,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les parents d'élèves ont le droit d'être informés du parcours scolaire de leur enfant et peuvent participer à la vie de l'école notamment via leurs représentants élus.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5140,7 +5140,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "La cantine scolaire est un service public accessible à tous les élèves scolarisés sans discrimination, selon les places disponibles et les modalités définies par la collectivité.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5156,7 +5156,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Depuis la loi de 2019, l'instruction est obligatoire dès 3 ans (âge d'entrée en maternelle) et jusqu'à 16 ans en France.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5172,7 +5172,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "En France, la majorité civile est fixée à 18 ans. À cet âge, une personne devient juridiquement capable et dispose de tous ses droits civiques.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5188,7 +5188,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Les parents doivent respecter les principes de laïcité et le bon fonctionnement du service public d'éducation, notamment en s'abstenant de tout prosélytisme.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5204,7 +5204,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Seuls certains motifs sont légitimes pour justifier une absence scolaire : maladie de l'enfant, réunion solennelle de famille, empêchement résultant de difficultés de transport.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5220,7 +5220,7 @@ export const questionsDB = [
     ],
     "correct": 2,
     "explanation": "Le non-respect de l'obligation d'instruction est sanctionné pénalement et peut entraîner jusqu'à 6 mois d'emprisonnement et 7 500 euros d'amende pour les parents.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5236,7 +5236,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Les vacances de Noël ont lieu fin décembre et début janvier, généralement pendant deux semaines incluant les fêtes de fin d'année.",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]
@@ -5252,7 +5252,7 @@ export const questionsDB = [
     ],
     "correct": 1,
     "explanation": "Tout enfant en situation de handicap a le droit d'être scolarisé en milieu ordinaire avec, si nécessaire, un accompagnement et des aménagements adaptés (AVS, matériel spécifique, etc.).",
-    "category": "Vivre dans la société française",
+    "theme": "Vivre dans la société française",
     "tags": [
       "CR"
     ]

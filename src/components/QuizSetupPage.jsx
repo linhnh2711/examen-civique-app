@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Home, BookOpen, CheckCircle } from 'lucide-react';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const QuizSetupPage = ({ examType, onStart, onBack }) => {
-  const [questionCount, setQuestionCount] = useState('15');
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
+  const [questionCount, setQuestionCount] = useState('');
   const [error, setError] = useState('');
 
   const presetOptions = [15, 30, 45, 100];
@@ -77,8 +81,8 @@ const QuizSetupPage = ({ examType, onStart, onBack }) => {
               inputMode="numeric"
               value={questionCount}
               onChange={handleInputChange}
-              placeholder="Entrez un nombre..."
-              className="w-full px-4 py-3 md:py-4 text-center text-2xl md:text-3xl font-bold border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all"
+              placeholder="Entrez un nombre"
+              className="w-full px-4 py-3 md:py-4 text-center text-2xl md:text-3xl font-bold border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 transition-all"
             />
             {error && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-400 text-center">{error}</p>

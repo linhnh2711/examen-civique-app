@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Trophy, XCircle, Home, ChevronDown, ChevronUp, Check, X, Clock, Star } from 'lucide-react';
 import { toggleSavedQuestion, isQuestionSaved } from '../utils/storage';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const ExamenResultPage = ({ result, onBackHome }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBackHome);
+
   const [showDetails, setShowDetails] = useState(false);
   const [showNavigation, setShowNavigation] = useState(false);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
@@ -51,14 +55,14 @@ const ExamenResultPage = ({ result, onBackHome }) => {
   };
 
   // Grouper par catégorie
-  const resultsByCategory = {};
+  const resultsByTheme = {};
   questions.forEach(q => {
-    if (!resultsByCategory[q.category]) {
-      resultsByCategory[q.category] = { correct: 0, total: 0 };
+    if (!resultsByTheme[q.theme]) {
+      resultsByTheme[q.theme] = { correct: 0, total: 0 };
     }
-    resultsByCategory[q.category].total++;
+    resultsByTheme[q.theme].total++;
     if (answers[q.id] === q.correct) {
-      resultsByCategory[q.category].correct++;
+      resultsByTheme[q.theme].correct++;
     }
   });
 
@@ -125,11 +129,11 @@ const ExamenResultPage = ({ result, onBackHome }) => {
 
           {/* Stats par catégorie */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            {Object.entries(resultsByCategory).map(([category, stats]) => {
+            {Object.entries(resultsByTheme).map(([theme, stats]) => {
               const catPercentage = Math.round((stats.correct / stats.total) * 100);
               return (
-                <div key={category} className="bg-gray-50 rounded-xl p-4">
-                  <div className="text-sm font-medium text-gray-600 mb-2">{category}</div>
+                <div key={theme} className="bg-gray-50 rounded-xl p-4">
+                  <div className="text-sm font-medium text-gray-600 mb-2">{theme}</div>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold text-gray-900">
                       {stats.correct} / {stats.total}
@@ -248,7 +252,7 @@ const ExamenResultPage = ({ result, onBackHome }) => {
 
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
-                        <div className="text-sm text-gray-500">Question {index + 1} - {q.category}</div>
+                        <div className="text-sm text-gray-500">Question {index + 1} - {q.theme}</div>
                         <button
                           onClick={() => handleToggleSave(q.id)}
                           className="p-1 rounded-full hover:bg-gray-100 transition-all"

@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Home, Star, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 import { loadSavedQuestions, toggleSavedQuestion } from '../utils/storage';
 import { questionsDB } from '../data/questions';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const SavedQuestionsPage = ({ onBack }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
   const [savedQuestions, setSavedQuestions] = useState([]);
   const [expandedQuestions, setExpandedQuestions] = useState(new Set());
 
@@ -136,8 +140,8 @@ const QuestionCard = ({ question, index, isExpanded, onToggleExpand, onRemove })
       <div className="p-4">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="flex-1">
-            <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-              {question.category}
+            <div className="text-xs px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-2 inline-block">
+              {question.theme}
             </div>
             <h3 className="font-bold text-gray-900 dark:text-white text-sm md:text-base">
               {question.question}
@@ -173,35 +177,21 @@ const QuestionCard = ({ question, index, isExpanded, onToggleExpand, onRemove })
 
       {/* Answer Details (Expanded) */}
       {isExpanded && (
-        <div className="border-t-2 border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900">
-          <div className="space-y-2 mb-4">
-            {question.options.map((option, optIndex) => {
-              const isCorrect = optIndex === question.correct;
-              return (
-                <div
-                  key={optIndex}
-                  className={`p-3 rounded-lg ${
-                    isCorrect
-                      ? 'bg-green-50 dark:bg-green-900/30 border-2 border-green-300 dark:border-green-700'
-                      : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700'
-                  }`}
-                >
-                  <span
-                    className={`text-sm ${
-                      isCorrect
-                        ? 'text-green-900 dark:text-green-300 font-medium'
-                        : 'text-gray-700 dark:text-gray-300'
-                    }`}
-                  >
-                    {option}
-                    {isCorrect && ' ✓'}
-                  </span>
-                </div>
-              );
-            })}
+        <div className="border-t-2 border-gray-200 dark:border-gray-700 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
+          {/* Correct Answer Only */}
+          <div className="mb-4">
+            <div className="text-xs font-semibold text-green-700 dark:text-green-400 mb-2">
+              Réponse correcte:
+            </div>
+            <div className="p-4 bg-green-100 dark:bg-green-900/40 border-2 border-green-300 dark:border-green-700 rounded-lg">
+              <span className="text-base font-bold text-green-900 dark:text-green-300">
+                {question.options[question.correct]} ✓
+              </span>
+            </div>
           </div>
 
-          <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+          {/* Explanation */}
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
             <p className="text-sm text-blue-900 dark:text-blue-300">
               <strong>💡 Explication:</strong> {question.explanation}
             </p>

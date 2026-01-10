@@ -3,8 +3,12 @@ import { ArrowLeft, User, Mail, Lock, Save, AlertCircle, CheckCircle } from 'luc
 import { updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { uploadLocalData } from '../services/syncService';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const ProfilePage = ({ user, userName, onBack, onUpdateUserName }) => {
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
   const [name, setName] = useState(userName || '');
   const [email, setEmail] = useState(user?.email || '');
   const [newPassword, setNewPassword] = useState('');

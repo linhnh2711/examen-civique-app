@@ -1,44 +1,90 @@
 import React, { useState, useEffect } from 'react';
-import { Home, TrendingUp, Target, Award, Calendar, BarChart3, PieChart, HandMetal, Flame, Star, Crown } from 'lucide-react';
-import { getProgress, loadQuizHistory } from '../utils/storage';
+import { Home, TrendingUp, Target, Award, Calendar, BarChart3, PieChart, HandMetal, Flame, Star, Crown, HelpCircle, Info } from 'lucide-react';
+import { getProgress, loadQuizHistory, loadLearnedQuestions, loadWrongAnswers, loadSelectedExamType, calculatePrecision } from '../utils/storage';
 import { questionsDB } from '../data/questions';
+import { useSwipeBack } from '../hooks/useSwipeBack';
 
 const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
-  const [progressCSP, setProgressCSP] = useState({ learned: 0, total: 180, percentage: 0 });
-  const [progressCR, setProgressCR] = useState({ learned: 0, total: 180, percentage: 0 });
+  // Enable swipe-back gesture
+  useSwipeBack(onBack);
+
+  const selectedExamType = loadSelectedExamType(); // Get user's selected exam type
+  const [progress, setProgress] = useState({ learned: 0, total: 180, percentage: 0 });
   const [categoryStats, setCategoryStats] = useState([]);
   const [recentHistory, setRecentHistory] = useState([]);
+  const [precision, setPrecision] = useState({ percentage: 0, isExamen: false, description: '' });
+  const [showPrecisionTooltip, setShowPrecisionTooltip] = useState(false);
+  const [showStreakTooltip, setShowStreakTooltip] = useState(false);
+  const [showDatabaseInfo, setShowDatabaseInfo] = useState(false);
+  const [databaseStats, setDatabaseStats] = useState([]);
 
   useEffect(() => {
-    setProgressCSP(getProgress('CSP'));
-    setProgressCR(getProgress('CR'));
+    setProgress(getProgress(selectedExamType));
+    setPrecision(calculatePrecision(selectedExamType));
 
-    // Calculate category stats
-    const categories = {};
+    // Load user's answered questions for selected exam type only
+    const learnedQuestions = loadLearnedQuestions();
+    const learnedIds = new Set(learnedQuestions[selectedExamType] || []);
+
+    // Load wrong answers to calculate accuracy
+    const wrongAnswers = loadWrongAnswers();
+    const wrongAnswerIds = new Set(wrongAnswers.map(w => w.questionId));
+
+    // Calculate theme stats based on user's performance for selected exam type only
+    const themes = {};
     questionsDB.forEach(q => {
-      if (!categories[q.category]) {
-        categories[q.category] = { total: 0, csp: 0, cr: 0 };
+      // Only include questions for the selected exam type
+      if (!q.tags.includes(selectedExamType)) return;
+
+      if (!themes[q.theme]) {
+        themes[q.theme] = {
+          total: 0,
+          answered: 0,
+          correct: 0
+        };
       }
-      categories[q.category].total++;
-      if (q.tags.includes('CSP')) categories[q.category].csp++;
-      if (q.tags.includes('CR')) categories[q.category].cr++;
+      themes[q.theme].total++;
+
+      // Check if user answered this question
+      if (learnedIds.has(q.id)) {
+        themes[q.theme].answered++;
+        // Check if they got it right
+        if (!wrongAnswerIds.has(q.id)) {
+          themes[q.theme].correct++;
+        }
+      }
     });
 
     // Sort alphabetically with French locale for consistency
-    const categoryArray = Object.entries(categories)
+    const categoryArray = Object.entries(themes)
       .map(([name, data]) => ({
         name,
-        ...data
+        ...data,
+        accuracy: data.answered > 0 ? Math.round((data.correct / data.answered) * 100) : 0
       }))
       .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
     setCategoryStats(categoryArray);
 
+    // Calculate database stats for info popup (all themes regardless of exam type)
+    const dbThemes = {};
+    questionsDB.forEach(q => {
+      if (!dbThemes[q.theme]) {
+        dbThemes[q.theme] = { total: 0, csp: 0, cr: 0 };
+      }
+      dbThemes[q.theme].total++;
+      if (q.tags.includes('CSP')) dbThemes[q.theme].csp++;
+      if (q.tags.includes('CR')) dbThemes[q.theme].cr++;
+    });
+
+    const dbArray = Object.entries(dbThemes)
+      .map(([name, data]) => ({ name, ...data }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
+    setDatabaseStats(dbArray);
+
     // Load recent quiz history
     const history = loadQuizHistory();
     setRecentHistory(history.slice(-5).reverse());
-  }, []);
-
-  const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+  }, [selectedExamType]);
 
   // Find last exam blanc result
   const lastExam = recentHistory.find(entry => entry.mode === 'Examen Blanc');
@@ -75,21 +121,38 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
             </div>
           </div>
 
-          {/* Accuracy */}
+          {/* Precision */}
           <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-green-100 dark:bg-green-900/30 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
                 <Target className="w-5 h-5 md:w-6 md:h-6 text-green-600 dark:text-green-400" />
               </div>
               <div className="flex-1">
-                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2">Précision</div>
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-1">
+                  <span>{precision.isExamen ? "Précision d'examen" : "Précision"}</span>
+                  <div className="relative">
+                    <button
+                      onMouseEnter={() => setShowPrecisionTooltip(true)}
+                      onMouseLeave={() => setShowPrecisionTooltip(false)}
+                      onClick={() => setShowPrecisionTooltip(!showPrecisionTooltip)}
+                      className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                    >
+                      <HelpCircle className="w-3 h-3" />
+                    </button>
+                    {showPrecisionTooltip && (
+                      <div className="absolute left-0 top-full mt-1 w-48 p-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg z-10">
+                        <div className="text-center">{precision.description}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className={`text-xl md:text-2xl font-bold ${
-                  accuracy >= 80
+                  precision.percentage >= 80
                     ? 'text-green-600 dark:text-green-400'
-                    : accuracy >= 60
+                    : precision.percentage >= 60
                       ? 'text-orange-600 dark:text-orange-400'
                       : 'text-red-600 dark:text-red-400'
-                }`}>{accuracy}%</div>
+                }`}>{precision.percentage}%</div>
               </div>
             </div>
           </div>
@@ -111,7 +174,24 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
                 )}
               </div>
               <div className="flex-1">
-                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2">Meilleure série</div>
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-1">
+                  <span>Meilleure série</span>
+                  <div className="relative">
+                    <button
+                      onMouseEnter={() => setShowStreakTooltip(true)}
+                      onMouseLeave={() => setShowStreakTooltip(false)}
+                      onClick={() => setShowStreakTooltip(!showStreakTooltip)}
+                      className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                    >
+                      <HelpCircle className="w-3 h-3" />
+                    </button>
+                    {showStreakTooltip && (
+                      <div className="absolute left-0 top-full mt-1 w-64 p-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg z-10">
+                        <div className="text-center">La plus longue série de réponses correctes consécutives en mode quiz</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="text-xl md:text-2xl font-bold text-orange-600 dark:text-orange-400">{stats.bestStreak}</div>
               </div>
             </div>
@@ -147,94 +227,79 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
           </div>
         </div>
 
-        {/* Progress by Type */}
-        <div className="grid grid-cols-2 gap-4 md:gap-6 mb-8">
-          {/* CSP Progress */}
-          <button
-            onClick={() => onViewCategoryProgress('CSP')}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
-          >
-            <h3 className="font-bold text-sm md:text-base text-gray-900 dark:text-white mb-2 md:mb-3 flex items-center gap-2">
-              <PieChart className="w-4 h-4 md:w-5 md:h-5 text-blue-600 dark:text-blue-400" />
-              <span className="hidden md:inline">Progression CSP</span>
-              <span className="md:hidden">CSP</span>
-            </h3>
-            <div className="mb-2 md:mb-3">
-              <div className="flex items-baseline justify-center gap-1.5 md:gap-2 mb-1">
-                <span className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 leading-none">{progressCSP.percentage}%</span>
-                <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-semibold">complété</span>
-              </div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center">
-                {progressCSP.learned} / {progressCSP.total}
-              </div>
+        {/* Progress for Selected Type */}
+        <div
+          className="w-full bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8"
+        >
+          <h3 className="font-bold text-lg md:text-xl text-gray-900 dark:text-white mb-3 md:mb-4 flex items-center gap-2">
+            <PieChart className={`w-5 h-5 md:w-6 md:h-6 ${
+              selectedExamType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+            }`} />
+            <span>Progression {selectedExamType}</span>
+          </h3>
+          <div className="mb-3 md:mb-4">
+            <div className="flex items-baseline justify-center gap-2 md:gap-3 mb-2">
+              <span className={`text-4xl md:text-5xl font-bold leading-none ${
+                selectedExamType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+              }`}>{progress.percentage}%</span>
+              <span className="text-sm md:text-base text-gray-500 dark:text-gray-400 font-semibold">complété</span>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3">
-              <div
-                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 md:h-3 rounded-full transition-all"
-                style={{ width: `${progressCSP.percentage}%` }}
-              />
+            <div className="text-sm md:text-base text-gray-600 dark:text-gray-400 text-center">
+              {progress.learned} / {progress.total} questions étudiées
             </div>
-          </button>
-
-          {/* CR Progress */}
-          <button
-            onClick={() => onViewCategoryProgress('CR')}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-3 md:p-4 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:scale-105 transition-all text-left"
-          >
-            <h3 className="font-bold text-sm md:text-base text-gray-900 dark:text-white mb-2 md:mb-3 flex items-center gap-2">
-              <PieChart className="w-4 h-4 md:w-5 md:h-5 text-purple-600 dark:text-purple-400" />
-              <span className="hidden md:inline">Progression CR</span>
-              <span className="md:hidden">CR</span>
-            </h3>
-            <div className="mb-2 md:mb-3">
-              <div className="flex items-baseline justify-center gap-1.5 md:gap-2 mb-1">
-                <span className="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400 leading-none">{progressCR.percentage}%</span>
-                <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-semibold">complété</span>
-              </div>
-              <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center">
-                {progressCR.learned} / {progressCR.total}
-              </div>
-            </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3">
-              <div
-                className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 md:h-3 rounded-full transition-all"
-                style={{ width: `${progressCR.percentage}%` }}
-              />
-            </div>
-          </button>
+          </div>
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 md:h-4">
+            <div
+              className={`h-3 md:h-4 rounded-full transition-all ${
+                selectedExamType === 'CSP'
+                  ? 'bg-gradient-to-r from-blue-500 to-blue-600'
+                  : 'bg-gradient-to-r from-purple-500 to-purple-600'
+              }`}
+              style={{ width: `${progress.percentage}%` }}
+            />
+          </div>
         </div>
 
-        {/* Category Breakdown */}
+        {/* Theme Breakdown - User Performance */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 mb-8">
           <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-            Questions par catégorie
+            <BarChart3 className={`w-5 h-5 ${
+              selectedExamType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+            }`} />
+            <span>Vos performances par thème</span>
+            <button
+              onClick={() => setShowDatabaseInfo(true)}
+              className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              title="À propos de notre base de questions"
+            >
+              <Info className="w-4 h-4" />
+            </button>
           </h3>
           <div className="space-y-4">
             {categoryStats.map((cat, idx) => (
               <div key={idx}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{cat.name}</span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">{cat.total} questions</span>
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex-1">
-                    <div className="text-xs text-blue-600 dark:text-blue-400 mb-1">CSP: {cat.csp}</div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div
-                        className="bg-blue-500 h-2 rounded-full"
-                        style={{ width: `${(cat.csp / cat.total) * 100}%` }}
-                      />
+                  <div>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{cat.name}</span>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {cat.answered} / {cat.total} étudiées
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-purple-600 dark:text-purple-400 mb-1">CR: {cat.cr}</div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div
-                        className="bg-purple-500 h-2 rounded-full"
-                        style={{ width: `${(cat.cr / cat.total) * 100}%` }}
-                      />
-                    </div>
+                </div>
+
+                {/* Progress bar showing answered questions */}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs text-gray-600 dark:text-gray-400">Progression</span>
+                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                      {cat.answered > 0 ? Math.round((cat.answered / cat.total) * 100) : 0}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all"
+                      style={{ width: `${cat.answered > 0 ? (cat.answered / cat.total) * 100 : 0}%` }}
+                    />
                   </div>
                 </div>
               </div>
@@ -282,6 +347,76 @@ const StatsPage = ({ stats, onBack, onViewCategoryProgress }) => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* Database Info Modal */}
+        {showDatabaseInfo && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-6 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                  <Info className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  À propos de notre base de questions
+                </h2>
+                <button
+                  onClick={() => setShowDatabaseInfo(false)}
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="p-6">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+                  Notre application contient un total de <strong className="text-gray-900 dark:text-white">{questionsDB.length} questions</strong> officielles
+                  réparties par thème pour vous préparer efficacement à l'examen civique français.
+                </p>
+
+                <div className="space-y-4">
+                  {databaseStats.map((theme, idx) => (
+                    <div key={idx} className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-bold text-base text-gray-900 dark:text-white">{theme.name}</h3>
+                        <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">
+                          {theme.total} questions
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <div className="text-xs text-blue-600 dark:text-blue-400 mb-1 font-semibold">
+                            CSP: {theme.csp} questions
+                          </div>
+                          <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                            <div
+                              className="bg-blue-500 h-2 rounded-full"
+                              style={{ width: `${(theme.csp / theme.total) * 100}%` }}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-purple-600 dark:text-purple-400 mb-1 font-semibold">
+                            CR: {theme.cr} questions
+                          </div>
+                          <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                            <div
+                              className="bg-purple-500 h-2 rounded-full"
+                              style={{ width: `${(theme.cr / theme.total) * 100}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
+                  <p className="text-xs text-blue-800 dark:text-blue-300">
+                    <strong>💡 Note:</strong> Certaines questions apparaissent à la fois dans CSP et CR.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )}
