@@ -18,10 +18,13 @@ import ExamInfoPage from './components/ExamInfoPage';
 import FlashcardPage from './components/FlashcardPage';
 import TermsOfServicePage from './components/TermsOfServicePage';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+import Toast from './components/Toast';
 import { loadStats, saveStats, addQuizResult } from './utils/storage';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { PaywallProvider } from './contexts/PaywallContext';
 import { onAuthChange } from './services/authService';
 import { downloadAndMergeCloudData, syncDataToCloud, uploadLocalData } from './services/syncService';
+import { canSyncToCloud } from './services/entitlementService';
 
 const App = () => {
   const [mode, setMode] = useState('home');
@@ -34,6 +37,7 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState('');
+  const [toast, setToast] = useState(null); // { message, type, action }
 
   // Load userName from localStorage on mount
   useEffect(() => {
@@ -87,6 +91,12 @@ const App = () => {
     const savedStats = loadStats();
     if (savedStats) setStats(savedStats);
   }, []);
+
+  // PART 3 FIX: Reset scroll position on page navigation
+  // This ensures every page opens at the top, not where previous page was scrolled
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [mode]);
 
   const updateStats = (newStats) => {
     saveStats(newStats);
@@ -147,21 +157,38 @@ const App = () => {
 
   const handleLoginSuccess = async (authUser, displayName) => {
     setUser(authUser);
-    if (displayName) {
-      setUserName(displayName);
-      localStorage.setItem('userName', displayName);
-      // Upload userName to Firestore
-      await uploadLocalData(authUser.uid, displayName);
-    } else if (authUser.displayName) {
-      setUserName(authUser.displayName);
-      localStorage.setItem('userName', authUser.displayName);
-      await uploadLocalData(authUser.uid, authUser.displayName);
+    const name = displayName || authUser.displayName || '';
+    
+    if (name) {
+      setUserName(name);
+      localStorage.setItem('userName', name);
     }
+    
+    // Try to sync data to cloud
+    const syncResult = await uploadLocalData(authUser.uid, name);
+    
+    // Show appropriate toast based on sync result
+    if (syncResult.skipped && syncResult.reason === 'premium_required') {
+      // Sync was skipped because user is not Premium Full
+      setToast({
+        message: 'Connexion réussie ! Pour synchroniser vos données sur le cloud, passez à Premium Full.',
+        type: 'premium',
+        action: null, // Will use showPaywall from context
+      });
+    } else if (syncResult.success && !syncResult.skipped) {
+      // Sync succeeded
+      setToast({
+        message: 'Connexion réussie ! Vos données sont synchronisées.',
+        type: 'success',
+      });
+    }
+    
     setMode('home');
   };
 
   return (
     <ThemeProvider>
+      <PaywallProvider>
       {mode === 'login' && (
         <LoginPage
           onBack={handleBackHome}
@@ -343,6 +370,17 @@ const App = () => {
         />
       )}
 
+      {/* Toast notifications */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+          action={toast.action}
+        />
+      )}
+
+      </PaywallProvider>
     </ThemeProvider>
   );
 };

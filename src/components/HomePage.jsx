@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, ChevronRight, Award, Target, RefreshCw, Moon, Sun, Star, LogIn, LogOut, User, MessageSquare, Layers, HelpCircle } from 'lucide-react';
+import { BookOpen, ChevronRight, Award, Target, RefreshCw, Moon, Sun, Star, LogIn, LogOut, User, MessageSquare, Layers, HelpCircle, Lock, Crown, RotateCcw, Loader2 } from 'lucide-react';
 import { getProgress, loadWrongAnswers, loadSavedQuestions, loadSelectedExamType, saveSelectedExamType, calculatePrecision } from '../utils/storage';
 import { useTheme } from '../contexts/ThemeContext';
+import { usePaywall } from '../contexts/PaywallContext';
 import { logout } from '../services/authService';
+import { restorePurchases } from '../services/purchaseService';
+// PremiumBadge and LimitIndicator available if needed
+// import { PremiumBadge, LimitIndicator } from './LockedFeatureOverlay';
 
 const HomePage = ({ stats, user, userName, onStartQuiz, onStartExamen, onViewStats, onReviewWrong, onViewCategoryProgress, onViewSavedQuestions, onLogin, onViewProfile, onFeedback, onViewExamInfo, onStartFlashcard, onViewTermsOfService, onViewPrivacyPolicy }) => {
   const { isDark, toggleTheme } = useTheme();
+  const { 
+    checkExamenBlancAccess, 
+    checkRevisionErreursAccess,
+    canAccessExamenBlanc,
+    canAccessRevisionErreurs,
+    refreshPremiumStatus,
+  } = usePaywall();
   const [progressCSP, setProgressCSP] = useState({ learned: 0, total: 180, percentage: 0 });
   const [progressCR, setProgressCR] = useState({ learned: 0, total: 180, percentage: 0 });
   const [selectedType, setSelectedType] = useState(loadSelectedExamType()); // Load saved selection
@@ -14,6 +25,32 @@ const HomePage = ({ stats, user, userName, onStartQuiz, onStartExamen, onViewSta
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [precision, setPrecision] = useState({ percentage: 0, isExamen: false, description: '' });
   const [showPrecisionTooltip, setShowPrecisionTooltip] = useState(false);
+  const [restoringPurchases, setRestoringPurchases] = useState(false);
+  const [restoreMessage, setRestoreMessage] = useState(null); // { type: 'success' | 'error', text: string }
+
+  // Handle restore purchases - visible to all users (Apple requirement)
+  const handleRestorePurchases = async () => {
+    setRestoringPurchases(true);
+    setRestoreMessage(null);
+    
+    try {
+      const result = await restorePurchases();
+      if (result.success && result.restored?.length > 0) {
+        setRestoreMessage({ type: 'success', text: result.message || 'Achat restauré avec succès !' });
+        refreshPremiumStatus();
+      } else if (result.success) {
+        setRestoreMessage({ type: 'info', text: 'Aucun achat à restaurer' });
+      } else {
+        setRestoreMessage({ type: 'error', text: result.error || 'Erreur lors de la restauration' });
+      }
+    } catch (err) {
+      setRestoreMessage({ type: 'error', text: 'Une erreur est survenue' });
+    } finally {
+      setRestoringPurchases(false);
+      // Clear message after 4 seconds
+      setTimeout(() => setRestoreMessage(null), 4000);
+    }
+  };
 
   useEffect(() => {
     setProgressCSP(getProgress('CSP'));
@@ -285,12 +322,31 @@ const HomePage = ({ stats, user, userName, onStartQuiz, onStartExamen, onViewSta
           </button>
 
           <button
-            onClick={() => onStartExamen(selectedType)}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all flex items-center justify-between group"
+            onClick={() => {
+              if (checkExamenBlancAccess()) {
+                onStartExamen(selectedType);
+              }
+            }}
+            className={`relative w-full rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all flex items-center justify-between group ${
+              canAccessExamenBlanc()
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                : 'bg-gradient-to-r from-gray-400 to-gray-500 text-white'
+            }`}
           >
+            {/* Premium Full badge for locked state */}
+            {!canAccessExamenBlanc() && (
+              <div className="absolute -top-2 -right-2 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                <Crown className="w-3 h-3" />
+                PREMIUM
+              </div>
+            )}
             <div className="flex items-center gap-3 md:gap-4">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                <Award className="w-5 h-5 md:w-6 md:h-6" />
+                {canAccessExamenBlanc() ? (
+                  <Award className="w-5 h-5 md:w-6 md:h-6" />
+                ) : (
+                  <Lock className="w-5 h-5 md:w-6 md:h-6" />
+                )}
               </div>
               <div className="text-left">
                 <div className="font-bold text-base md:text-lg">Examen Blanc</div>
@@ -324,20 +380,47 @@ const HomePage = ({ stats, user, userName, onStartQuiz, onStartExamen, onViewSta
           {/* Review Wrong Answers */}
           {wrongAnswersCount > 0 && (
             <button
-              onClick={onReviewWrong}
-              className="w-full bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border-2 border-red-200 dark:border-red-800 hover:border-red-400 dark:hover:border-red-600 transition-all hover:shadow-xl group"
+              onClick={() => {
+                if (checkRevisionErreursAccess()) {
+                  onReviewWrong();
+                }
+              }}
+              className={`relative w-full bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border-2 transition-all hover:shadow-xl group ${
+                canAccessRevisionErreurs()
+                  ? 'border-red-200 dark:border-red-800 hover:border-red-400 dark:hover:border-red-600'
+                  : 'border-gray-200 dark:border-gray-700'
+              }`}
             >
+              {/* Premium Full badge for locked state */}
+              {!canAccessRevisionErreurs() && (
+                <div className="absolute -top-2 -right-2 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                  <Crown className="w-3 h-3" />
+                  PREMIUM
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3 md:gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center group-hover:bg-red-200 dark:group-hover:bg-red-800/50 transition-colors">
-                    <RefreshCw className="w-5 h-5 md:w-6 md:h-6 text-red-600 dark:text-red-400" />
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-colors ${
+                    canAccessRevisionErreurs()
+                      ? 'bg-red-100 dark:bg-red-900/30 group-hover:bg-red-200 dark:group-hover:bg-red-800/50'
+                      : 'bg-gray-100 dark:bg-gray-700'
+                  }`}>
+                    {canAccessRevisionErreurs() ? (
+                      <RefreshCw className="w-5 h-5 md:w-6 md:h-6 text-red-600 dark:text-red-400" />
+                    ) : (
+                      <Lock className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />
+                    )}
                   </div>
                   <div className="text-left">
-                    <div className="font-bold text-base md:text-lg text-gray-900 dark:text-white">Réviser les erreurs</div>
+                    <div className={`font-bold text-base md:text-lg ${
+                      canAccessRevisionErreurs() ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'
+                    }`}>Réviser les erreurs</div>
                     <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">{wrongAnswersCount} question{wrongAnswersCount > 1 ? 's' : ''} à réviser</div>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-red-600 dark:text-red-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className={`w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform ${
+                  canAccessRevisionErreurs() ? 'text-red-600 dark:text-red-400' : 'text-gray-400'
+                }`} />
               </div>
             </button>
           )}
@@ -378,6 +461,33 @@ const HomePage = ({ stats, user, userName, onStartQuiz, onStartExamen, onViewSta
         {/* Legal Footer */}
         <div className="mt-6 md:mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex flex-col items-center gap-3">
+            {/* Restore Purchases Button - Apple App Store Requirement */}
+            <button
+              onClick={handleRestorePurchases}
+              disabled={restoringPurchases}
+              className="flex items-center gap-2 text-xs md:text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors disabled:opacity-50"
+            >
+              {restoringPurchases ? (
+                <Loader2 className="w-3 h-3 animate-spin" />
+              ) : (
+                <RotateCcw className="w-3 h-3" />
+              )}
+              {restoringPurchases ? 'Restauration...' : 'Restaurer l\'achat'}
+            </button>
+
+            {/* Restore message */}
+            {restoreMessage && (
+              <div className={`text-xs px-3 py-1.5 rounded-lg ${
+                restoreMessage.type === 'success' 
+                  ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                  : restoreMessage.type === 'info'
+                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                    : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+              }`}>
+                {restoreMessage.text}
+              </div>
+            )}
+
             <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm text-gray-600 dark:text-gray-400">
               <button
                 onClick={onViewTermsOfService}

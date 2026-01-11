@@ -7,9 +7,23 @@ import {
   signOut,
   onAuthStateChanged,
   OAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
+
+// Detect if running in Capacitor iOS native app
+const isNativeIOS = () => {
+  try {
+    if (typeof window !== 'undefined' && window.Capacitor) {
+      return window.Capacitor.getPlatform() === 'ios';
+    }
+  } catch (e) {
+    // Ignore
+  }
+  return false;
+};
 
 /**
  * SECURITY: Email/Password Authentication
@@ -45,6 +59,9 @@ export const loginWithEmail = async (email, password) => {
  * - Uses Firebase OAuth provider for Apple
  * - No password management needed
  * - Compliant with Apple's authentication requirements
+ * 
+ * NOTE: On iOS native apps, popup doesn't work well.
+ * We use signInWithRedirect on iOS instead.
  */
 export const signInWithApple = async () => {
   try {
@@ -54,10 +71,46 @@ export const signInWithApple = async () => {
     provider.addScope('email');
     provider.addScope('name');
 
+    // On iOS native app, use redirect instead of popup
+    if (isNativeIOS()) {
+      console.log('[AuthService] Using signInWithRedirect for iOS');
+      await signInWithRedirect(auth, provider);
+      // After redirect, the result will be handled by handleAppleRedirectResult
+      return { success: true, pending: true, message: 'Redirection en cours...' };
+    }
+
+    // On web, use popup
     const userCredential = await signInWithPopup(auth, provider);
     return { success: true, user: userCredential.user };
   } catch (error) {
     console.error('Apple Sign-In error:', error);
+    
+    // Handle specific error codes with user-friendly messages
+    if (error.code === 'auth/cancelled-popup-request' || error.code === 'auth/popup-closed-by-user') {
+      return { success: false, cancelled: true, error: 'Connexion annulée' };
+    }
+    if (error.code === 'auth/popup-blocked') {
+      return { success: false, error: 'Pop-up bloqué. Veuillez autoriser les pop-ups.' };
+    }
+    
+    return { success: false, error: error.message || 'Erreur de connexion Apple' };
+  }
+};
+
+/**
+ * Handle Apple Sign-In redirect result (called on app init for iOS)
+ * This catches the result after signInWithRedirect returns
+ */
+export const handleAppleRedirectResult = async () => {
+  try {
+    const result = await getRedirectResult(auth);
+    if (result) {
+      console.log('[AuthService] Redirect result:', result.user?.email);
+      return { success: true, user: result.user };
+    }
+    return { success: false, noResult: true };
+  } catch (error) {
+    console.error('[AuthService] Redirect result error:', error);
     return { success: false, error: error.message };
   }
 };

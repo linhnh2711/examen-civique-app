@@ -17,96 +17,82 @@ Nouvelle version disponible ! Entraînez-vous avec des quiz interactifs et des e
 
 ## Description (4000 caractères max)
 
-**Préparez-vous efficacement pour l'examen civique français**
+Préparez-vous efficacement pour l'examen civique français
 
-Examen Civique - Vibe Study est l'application d'entraînement parfaite pour vous préparer à l'examen civique requis dans le cadre d'une demande de naturalisation française ou de carte de résident (CSP ou CR).
+Examen Civique est l'application d'entraînement parfaite pour vous préparer à l'examen civique français requis dans le cadre d'une demande de carte de séjour pluriannuelle (CSP) ou de carte de résident (CR).
 
-**✨ FONCTIONNALITÉS PRINCIPALES**
+FONCTIONNALITÉS PRINCIPALES
 
-📚 **Quiz Pratique Personnalisables**
-• Créez vos propres sessions d'entraînement
-• Choisissez le nombre de questions (de 5 à 40)
-• Mode CSP (Carte de Séjour Pluriannuelle) ou CR (Carte de Résident)
-• Questions adaptées à votre niveau
+Quiz Pratique Personnalisables
+- Choisissez le nombre de questions selon vos envies pour un apprentissage à votre rythme
+- Mode CSP (Carte de Séjour Pluriannuelle) ou CR (Carte de Résident)
+- Questions adaptées à votre niveau
 
-🎯 **Examen Blanc**
-• Conditions réelles de l'examen : 40 questions en 45 minutes
-• Score minimum requis : 80% (32/40)
-• Évaluation précise de votre niveau
-• Entraînement au format officiel
+Examen Blanc
+- Conditions réelles de l'examen : 40 questions en 45 minutes
+- Évaluation précise de votre niveau
+- Entraînement au format officiel
 
-📖 **Flashcards Interactives**
-• Mémorisez efficacement avec des cartes d'apprentissage
-• Mode révision rapide
-• Système d'apprentissage progressif
+Flashcards Interactives
+- Mémorisez les questions et réponses avec des cartes
+- Enregistrez des cartes pour les réviser plus tard
 
-🎓 **Apprentissage par Thème**
-• 5 thématiques officielles :
-  - Principes et valeurs de la République
-  - Systèmes institutionnels et politiques
-  - Droits et devoirs
-  - Histoire, géographie et culture
-  - Vivre dans la société française
-• Progression détaillée par catégorie
-• Ciblage de vos points faibles
+Apprentissage par Thème
+- 5 thématiques officielles :
+  Principes et valeurs de la République
+  Systèmes institutionnels et politiques
+  Droits et devoirs
+  Histoire, géographie et culture
+  Vivre dans la société française
+- Progression détaillée par catégorie
+- Ciblage de vos points faibles
 
-📊 **Suivi de Progression Détaillé**
-• Statistiques complètes de performance
-• Taux de précision par type d'examen
-• Historique complet de vos quiz et examens
-• Meilleure série de bonnes réponses
-• Graphiques de progression
+Suivi de Progression Détaillé
+- Statistiques complètes de performance
+- Taux de précision par type d'examen
+- Historique de vos quiz et examens
+- Meilleure série de bonnes réponses
+- Graphiques de progression
 
-⭐ **Questions Sauvegardées**
-• Marquez les questions importantes
-• Révisez vos favoris à tout moment
-• Organisation intelligente
+Questions Sauvegardées
+- Marquez les questions importantes
+- Révisez vos favoris à tout moment
+- Organisation intelligente
 
-🔄 **Révision des Erreurs**
-• Identifiez vos points faibles
-• Retravaillez les questions manquées
-• Améliorez vos connaissances ciblées
+Révision des Erreurs
+- Identifiez vos points faibles
+- Retravaillez les questions manquées
+- Améliorez vos connaissances ciblées
 
-**🌓 MODE SOMBRE**
+MODE SOMBRE
 Interface élégante avec support du mode sombre pour une lecture confortable à toute heure.
 
-**📱 SYNCHRONISATION CLOUD (Optional)**
+SYNCHRONISATION CLOUD (Optionnel)
 Sauvegardez votre progression et synchronisez entre vos appareils.
 
-**📖 CONTENU PÉDAGOGIQUE**
+CONTENU PÉDAGOGIQUE
 
 Base de données complète avec :
-• Questions pour CSP : 180+ questions
-• Questions pour CR : 199+ questions
-• Contenu basé sur le Livret du Citoyen et les textes officiels
-• Mises à jour régulières
+- Questions pour CSP : 180+ questions
+- Questions pour CR : 199+ questions
+- Contenu basé sur le Livret du Citoyen et les textes officiels
+- Mises à jour régulières
 
-**🎯 POURQUOI CHOISIR CETTE APPLICATION ?**
+POURQUOI CHOISIR CETTE APPLICATION ?
 
-✅ Application non officielle mais conforme aux exigences réelles
-✅ Interface intuitive et moderne
-✅ Aucune publicité intrusive
-✅ Progression sauvegardée localement
-✅ Respect de votre vie privée
-✅ Fonctionne hors ligne
-✅ Mise à jour régulière du contenu
+- Application non officielle mais conforme aux exigences réelles
+- Interface intuitive et moderne
+- Aucune publicité intrusive
+- Progression sauvegardée localement
+- Respect de votre vie privée
+- Fonctionne hors ligne
+- Mise à jour régulière du contenu
 
-**📋 À PROPOS DE L'EXAMEN CIVIQUE**
-
-Depuis le 1er janvier 2026, l'examen civique est obligatoire pour toute demande de Carte de Séjour Pluriannuelle (CSP) ou de Carte de Résident (CR).
-
-L'examen comprend :
-• 40 questions à choix multiples
-• 28 questions de connaissances
-• 12 questions de mise en situation
-• Durée : 45 minutes maximum
-• Score requis : 80% (32/40)
-
-**⚠️ IMPORTANT**
+IMPORTANT
 
 Cette application est un outil d'entraînement pédagogique indépendant. Elle n'est ni affiliée, ni approuvée par un organisme gouvernemental français ou toute autre autorité publique. Les utilisateurs sont invités à consulter les sources officielles pour toute démarche administrative.
 
-**📧 SUPPORT**
+SUPPORT
 
 Des questions ? Utilisez la fonction Feedback intégrée dans l'application pour nous contacter.
 

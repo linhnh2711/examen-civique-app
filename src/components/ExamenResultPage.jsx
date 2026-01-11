@@ -67,13 +67,13 @@ const ExamenResultPage = ({ result, onBackHome }) => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6 pb-24">
-      {/* Fixed "Retour à l'accueil" button */}
-      <div className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-md z-50 p-4">
-        <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-6 pb-24">
+      {/* Fixed "Retour à l'accueil" button - with safe-area padding for Dynamic Island */}
+      <div className="fixed top-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md z-50 pt-safe">
+        <div className="max-w-4xl mx-auto p-4">
           <button
             onClick={onBackHome}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-bold transition-all"
+            className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-bold transition-all"
           >
             <Home className="w-5 h-5" />
             Retour à l'accueil
@@ -81,7 +81,8 @@ const ExamenResultPage = ({ result, onBackHome }) => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto pt-16">
+      {/* Add extra padding to account for safe-area + header height */}
+      <div className="max-w-4xl mx-auto pt-20 mt-safe">
         {/* Result Header */}
         <div className="bg-white rounded-3xl shadow-2xl p-8 text-center mb-6">
           <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center ${
@@ -172,7 +173,7 @@ const ExamenResultPage = ({ result, onBackHome }) => {
         {showDetails && (
           <div className="relative">
             {/* Minimized navigation button */}
-            <div className="sticky top-20 z-40 mb-6">
+            <div className="sticky top-24 z-40 mb-6">
               <button
                 onClick={() => setShowNavigation(!showNavigation)}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center gap-2 font-semibold text-sm"

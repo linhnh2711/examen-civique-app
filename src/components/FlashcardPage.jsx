@@ -1,21 +1,34 @@
-import { useState, useEffect } from 'react';
-import { ArrowLeft, RotateCw, Bookmark, Filter } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowLeft, RotateCw, Bookmark, Filter, Lock, Crown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getQuestionsByType } from '../data/questions';
 import { toggleSavedQuestion, isQuestionSaved } from '../utils/storage';
 import { useSwipeBack } from '../hooks/useSwipeBack';
+import { usePaywall } from '../contexts/PaywallContext';
 
 const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
   // Enable swipe-back gesture
   useSwipeBack(onBack);
+  
+  // Paywall integration
+  const { 
+    checkFlashcardAccess, 
+    canAccessFlashcard, 
+    maxFlashcards,
+    isPremiumBasic 
+  } = usePaywall();
+  
   const [allQuestions, setAllQuestions] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [savedQuestions, setSavedQuestions] = useState(new Set());
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
   const [selectedTheme, setSelectedTheme] = useState('Tous');
   const [availableThemes, setAvailableThemes] = useState([]);
+  
+  // Use refs for touch tracking (immediate access, no async state updates)
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+  const isSwipingRef = useRef(false);
 
   // Load all questions and themes
   useEffect(() => {
@@ -36,15 +49,13 @@ const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
     setSavedQuestions(saved);
   }, [examType]);
 
-  // Filter and shuffle questions when theme changes
+  // Filter questions when theme changes (no shuffle - keep fixed order)
   useEffect(() => {
     let filtered = allQuestions;
     if (selectedTheme !== 'Tous') {
       filtered = allQuestions.filter(q => q.theme === selectedTheme);
     }
-    // Shuffle questions
-    const shuffled = [...filtered].sort(() => Math.random() - 0.5);
-    setQuestions(shuffled);
+    setQuestions(filtered);
     setCurrentIndex(0);
     setIsFlipped(false);
   }, [allQuestions, selectedTheme]);
@@ -72,8 +83,16 @@ const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
 
   const moveToNext = () => {
     setIsFlipped(false);
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+    const nextIndex = currentIndex + 1;
+    
+    // Check if next card is accessible (free users limited to 30 cards)
+    if (!canAccessFlashcard(nextIndex)) {
+      checkFlashcardAccess(nextIndex); // Shows paywall
+      return;
+    }
+    
+    if (nextIndex < questions.length) {
+      setCurrentIndex(nextIndex);
     } else {
       // Loop back to start
       setCurrentIndex(0);
@@ -94,41 +113,94 @@ const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
+  const isDraggingRef = useRef(false);
 
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) {
-      // No touch movement recorded, this was a tap - flip the card
-      handleFlip();
+  // Handle swipe end logic (shared between touch and mouse)
+  const handleSwipeEnd = () => {
+    if (touchEndX.current === null || touchStartX.current === null) {
+      touchStartX.current = null;
+      isSwipingRef.current = false;
+      isDraggingRef.current = false;
       return;
     }
 
-    const distance = touchStart - touchEnd;
+    const distance = touchStartX.current - touchEndX.current;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
 
     if (isLeftSwipe) {
-      // Swipe left = next card
       moveToNext();
     } else if (isRightSwipe) {
-      // Swipe right = previous card
       moveToPrevious();
-    } else {
-      // Small movement, treat as tap - flip the card
-      handleFlip();
     }
 
-    // Reset touch state
-    setTouchStart(null);
-    setTouchEnd(null);
+    // Reset
+    touchStartX.current = null;
+    touchEndX.current = null;
+    isDraggingRef.current = false;
+    
+    setTimeout(() => {
+      isSwipingRef.current = false;
+    }, 100);
+  };
+
+  // Touch events (mobile)
+  const onTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = null;
+    isSwipingRef.current = false;
+  };
+
+  const onTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+    if (touchStartX.current !== null) {
+      const distance = Math.abs(touchStartX.current - touchEndX.current);
+      if (distance > 10) {
+        isSwipingRef.current = true;
+      }
+    }
+  };
+
+  const onTouchEnd = () => {
+    handleSwipeEnd();
+  };
+
+  // Mouse events (desktop browser)
+  const onMouseDown = (e) => {
+    e.preventDefault();
+    touchStartX.current = e.clientX;
+    touchEndX.current = null;
+    isSwipingRef.current = false;
+    isDraggingRef.current = true;
+  };
+
+  const onMouseMove = (e) => {
+    if (!isDraggingRef.current) return;
+    touchEndX.current = e.clientX;
+    if (touchStartX.current !== null) {
+      const distance = Math.abs(touchStartX.current - touchEndX.current);
+      if (distance > 10) {
+        isSwipingRef.current = true;
+      }
+    }
+  };
+
+  const onMouseUp = () => {
+    if (!isDraggingRef.current) return;
+    handleSwipeEnd();
+  };
+
+  const onMouseLeave = () => {
+    if (isDraggingRef.current) {
+      handleSwipeEnd();
+    }
+  };
+  
+  // Handle direct click/tap on the card
+  const handleCardClick = () => {
+    if (!isSwipingRef.current) {
+      handleFlip();
+    }
   };
 
   if (!currentQuestion) {
@@ -184,20 +256,33 @@ const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
           </div>
         </div>
 
-        {/* Flashcard */}
-        <div className="mb-6">
+        {/* Flashcard with Navigation */}
+        <div className="mb-6 flex items-center gap-2 md:gap-4">
+          {/* Previous Button */}
+          <button
+            onClick={moveToPrevious}
+            disabled={currentIndex === 0}
+            className={`flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-all ${
+              currentIndex === 0
+                ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:scale-110'
+            }`}
+          >
+            <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
+          </button>
+
+          {/* Card */}
           <div
-            className="relative w-full bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 cursor-pointer transition-all duration-300 hover:shadow-3xl select-none"
+            className="relative flex-1 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 cursor-grab active:cursor-grabbing transition-all duration-300 hover:shadow-3xl select-none"
             style={{ minHeight: '400px' }}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
-            onClick={() => {
-              // For mouse clicks (non-touch devices)
-              if (!('ontouchstart' in window)) {
-                handleFlip();
-              }
-            }}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseLeave}
+            onClick={handleCardClick}
           >
             {!isFlipped ? (
               /* Front Side - Question */
@@ -234,6 +319,14 @@ const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
               </div>
             )}
           </div>
+
+          {/* Next Button */}
+          <button
+            onClick={moveToNext}
+            className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center justify-center shadow-lg hover:bg-blue-50 dark:hover:bg-gray-700 hover:scale-110 transition-all"
+          >
+            <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
+          </button>
         </div>
 
         {/* Save Button */}
@@ -252,10 +345,21 @@ const FlashcardPage = ({ examType, onBack, onViewSavedQuestions }) => {
         </div>
 
         {/* Card Counter */}
-        <div className="flex justify-center mb-4">
+        <div className="flex flex-col items-center mb-4 gap-2">
           <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
             {currentIndex + 1} / {questions.length}
           </span>
+          
+          {/* Free user limit indicator */}
+          {!isPremiumBasic && (
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-full">
+              <Lock className="w-3 h-3 text-orange-500" />
+              <span className="text-xs text-orange-600 dark:text-orange-400">
+                {Math.min(currentIndex + 1, maxFlashcards)}/{maxFlashcards} cartes gratuites
+              </span>
+              <Crown className="w-3 h-3 text-orange-500" />
+            </div>
+          )}
         </div>
 
         {/* Saved Questions Button */}

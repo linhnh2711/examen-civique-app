@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Lock, User, ArrowLeft, Apple, AlertCircle } from 'lucide-react';
-import { loginWithEmail, registerWithEmail, signInWithApple } from '../services/authService';
+import { loginWithEmail, registerWithEmail, signInWithApple, handleAppleRedirectResult } from '../services/authService';
 
 const LoginPage = ({ onBack, onLoginSuccess }) => {
   const [isRegisterMode, setIsRegisterMode] = useState(false);
@@ -10,6 +10,23 @@ const LoginPage = ({ onBack, onLoginSuccess }) => {
   const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Handle redirect result on mount (for iOS after signInWithRedirect)
+  useEffect(() => {
+    const checkRedirectResult = async () => {
+      try {
+        const result = await handleAppleRedirectResult();
+        if (result.success && result.user) {
+          console.log('[LoginPage] Got redirect result, logging in...');
+          onLoginSuccess(result.user);
+        }
+      } catch (err) {
+        console.log('[LoginPage] No redirect result or error:', err);
+      }
+    };
+    
+    checkRedirectResult();
+  }, [onLoginSuccess]);
 
   const handleEmailAuth = async (e) => {
     e.preventDefault();
@@ -72,17 +89,26 @@ const LoginPage = ({ onBack, onLoginSuccess }) => {
       const result = await signInWithApple();
 
       if (result.success) {
+        if (result.pending) {
+          // iOS redirect flow - keep loading state, result will come on return
+          setError('');
+          return; // Don't turn off loading - redirect is happening
+        }
         onLoginSuccess(result.user);
       } else {
-        if (result.error.includes('popup-closed-by-user')) {
+        // Handle cancelled by user
+        if (result.cancelled) {
           setError('Connexion annulée');
-        } else if (result.error.includes('popup-blocked')) {
+        } else if (result.error?.includes('popup-closed-by-user')) {
+          setError('Connexion annulée');
+        } else if (result.error?.includes('popup-blocked')) {
           setError('Veuillez autoriser les fenêtres popup pour cette fonctionnalité');
         } else {
-          setError('Erreur lors de la connexion avec Apple');
+          setError(result.error || 'Erreur lors de la connexion avec Apple');
         }
       }
     } catch (err) {
+      console.error('[LoginPage] Apple Sign-In error:', err);
       setError('Une erreur est survenue avec Apple Sign-In');
     } finally {
       setLoading(false);

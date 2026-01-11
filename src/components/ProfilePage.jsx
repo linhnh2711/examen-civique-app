@@ -1,21 +1,51 @@
 import React, { useState } from 'react';
-import { ArrowLeft, User, Mail, Lock, Save, AlertCircle, CheckCircle } from 'lucide-react';
-import { updateEmail, updatePassword, updateProfile } from 'firebase/auth';
+import { ArrowLeft, User, Mail, Lock, Save, AlertCircle, CheckCircle, Crown, Zap, RefreshCw, Loader2, LogOut } from 'lucide-react';
+import { updateEmail, updatePassword, updateProfile, signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { uploadLocalData } from '../services/syncService';
 import { useSwipeBack } from '../hooks/useSwipeBack';
+import { usePaywall } from '../contexts/PaywallContext';
+import { restorePurchases } from '../services/purchaseService';
+import { getTierDisplayName, PREMIUM_TIERS } from '../services/entitlementService';
 
 const ProfilePage = ({ user, userName, onBack, onUpdateUserName }) => {
   // Enable swipe-back gesture
   useSwipeBack(onBack);
+  
+  // Paywall integration
+  const { premiumStatus, showPaywall, refreshPremiumStatus } = usePaywall();
 
   const [name, setName] = useState(userName || '');
   const [email, setEmail] = useState(user?.email || '');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [restoringPurchases, setRestoringPurchases] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  // Handle restore purchases
+  const handleRestorePurchases = async () => {
+    setRestoringPurchases(true);
+    setError('');
+    setSuccess('');
+    
+    try {
+      const result = await restorePurchases();
+      if (result.success && result.restored?.length > 0) {
+        setSuccess(result.message || 'Achats restaurés avec succès !');
+        refreshPremiumStatus();
+      } else if (result.success) {
+        setError('Aucun achat à restaurer');
+      } else {
+        setError(result.error || 'Erreur lors de la restauration');
+      }
+    } catch (err) {
+      setError('Une erreur est survenue');
+    } finally {
+      setRestoringPurchases(false);
+    }
+  };
 
   const handleSaveAll = async () => {
     setLoading(true);
@@ -210,12 +240,135 @@ const ProfilePage = ({ user, userName, onBack, onUpdateUserName }) => {
           {loading ? 'Enregistrement...' : 'Enregistrer'}
         </button>
 
+        {/* Logout Button */}
+        <button
+          onClick={async () => {
+            try {
+              await signOut(auth);
+              onBack();
+            } catch (err) {
+              setError('Erreur lors de la déconnexion');
+            }
+          }}
+          className="w-full mt-4 py-4 rounded-xl font-bold text-red-600 dark:text-red-400 bg-white dark:bg-gray-800 border-2 border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex items-center justify-center gap-2"
+        >
+          <LogOut className="w-5 h-5" />
+          Se déconnecter
+        </button>
+
         {/* Security Note */}
         <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
           <p className="text-xs text-blue-900 dark:text-blue-300 text-center">
             <strong>🔒 Note de sécurité:</strong> Pour modifier votre email ou mot de passe,
             vous devrez peut-être vous reconnecter pour des raisons de sécurité.
           </p>
+        </div>
+
+        {/* Premium Management Section */}
+        <div className="mt-8">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <Crown className="w-6 h-6 text-purple-500" />
+            Abonnement Premium
+          </h2>
+          
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
+            {/* Current Status */}
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Statut actuel</p>
+                <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                  {premiumStatus === PREMIUM_TIERS.FULL ? (
+                    <>
+                      <Crown className="w-5 h-5 text-purple-500" />
+                      {getTierDisplayName(premiumStatus)}
+                    </>
+                  ) : premiumStatus === PREMIUM_TIERS.BASIC ? (
+                    <>
+                      <Zap className="w-5 h-5 text-blue-500" />
+                      {getTierDisplayName(premiumStatus)}
+                    </>
+                  ) : (
+                    getTierDisplayName(premiumStatus)
+                  )}
+                </p>
+              </div>
+              
+              {/* Badge */}
+              {premiumStatus === PREMIUM_TIERS.FULL && (
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                  FULL
+                </div>
+              )}
+              {premiumStatus === PREMIUM_TIERS.BASIC && (
+                <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                  BASIC
+                </div>
+              )}
+            </div>
+
+            {/* Features unlocked */}
+            {premiumStatus !== PREMIUM_TIERS.FREE && (
+              <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                <p className="text-sm text-green-700 dark:text-green-300 flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4" />
+                  {premiumStatus === PREMIUM_TIERS.FULL 
+                    ? 'Toutes les fonctionnalités sont débloquées !'
+                    : 'Flashcards illimitées, tous les thèmes débloqués'
+                  }
+                </p>
+              </div>
+            )}
+
+            {/* Upgrade button for non-Full users */}
+            {premiumStatus !== PREMIUM_TIERS.FULL && (
+              <button
+                onClick={() => showPaywall(null, premiumStatus === PREMIUM_TIERS.FREE ? 'basic' : 'full')}
+                className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 mb-4"
+              >
+                <Crown className="w-5 h-5" />
+                {premiumStatus === PREMIUM_TIERS.FREE 
+                  ? 'Passer à Premium'
+                  : 'Passer à Premium Full'
+                }
+              </button>
+            )}
+
+            {/* Restore purchases button */}
+            <button
+              onClick={handleRestorePurchases}
+              disabled={restoringPurchases}
+              className="w-full py-3 border-2 border-gray-200 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 text-gray-700 dark:text-gray-300 font-medium rounded-xl transition-all flex items-center justify-center gap-2"
+            >
+              {restoringPurchases ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <RefreshCw className="w-5 h-5" />
+              )}
+              {restoringPurchases ? 'Restauration...' : 'Restaurer les achats'}
+            </button>
+
+            {/* Info */}
+            <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
+              Si vous avez déjà effectué un achat sur un autre appareil, 
+              utilisez "Restaurer les achats" pour le récupérer.
+            </p>
+            
+            {/* DEV ONLY: Reset Premium (remove before App Store submission) */}
+            {process.env.REACT_APP_TEST_MODE === 'true' && (
+              <button
+                onClick={() => {
+                  localStorage.removeItem('premium_status');
+                  localStorage.removeItem('premium_sig');
+                  localStorage.removeItem('premium_data');
+                  refreshPremiumStatus();
+                  setSuccess('Premium réinitialisé (mode test)');
+                }}
+                className="mt-4 w-full py-2 border-2 border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm font-medium rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20"
+              >
+                🧪 Reset Premium (Test Mode)
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

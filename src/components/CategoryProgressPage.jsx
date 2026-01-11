@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Home, ChevronRight, BookOpen } from 'lucide-react';
+import { Home, ChevronRight, BookOpen, Lock, Crown } from 'lucide-react';
 import { questionsDB } from '../data/questions';
 import { loadLearnedQuestions } from '../utils/storage';
 import { useSwipeBack } from '../hooks/useSwipeBack';
+import { usePaywall } from '../contexts/PaywallContext';
 
 const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
   // Enable swipe-back gesture
   useSwipeBack(onBack);
+  
+  // Paywall integration
+  const { 
+    checkThemeAccess,
+    canAccessTheme,
+  } = usePaywall();
 
   const [categoryStats, setCategoryStats] = useState([]);
 
@@ -104,73 +111,110 @@ const CategoryProgressPage = ({ examType, onBack, onStartCategoryQuiz }) => {
 
         {/* Theme Cards */}
         <div className="space-y-3 md:space-y-4">
-          {categoryStats.map((theme, idx) => (
-            <div
-              key={idx}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all"
-            >
-              <div className="flex items-start justify-between mb-3 md:mb-4">
-                <div className="flex-1">
-                  <h3 className="font-bold text-base md:text-lg text-gray-900 dark:text-white mb-1">
-                    {theme.name}
-                  </h3>
-                  <div className="flex items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-600 dark:text-gray-400">
-                    <span>{theme.total} questions</span>
-                    <span>•</span>
-                    <span className={examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'}>
-                      {theme.learned} étudiées
-                    </span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className={`text-2xl md:text-3xl font-bold ${
-                    examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
-                  }`}>
-                    {theme.percentage}%
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                    {theme.learned}/{theme.total}
-                  </div>
-                </div>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3 mb-3 md:mb-4">
-                <div
-                  className={`h-2 md:h-3 rounded-full transition-all ${
-                    examType === 'CSP'
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-600'
-                      : 'bg-gradient-to-r from-purple-500 to-purple-600'
-                  }`}
-                  style={{ width: `${theme.percentage}%` }}
-                />
-              </div>
-
-              {/* Practice Button */}
-              <button
-                onClick={() => onStartCategoryQuiz(examType, theme.name)}
-                className={`w-full flex items-center justify-between px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 transition-all group ${
-                  examType === 'CSP'
-                    ? 'border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30'
-                    : 'border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30'
+          {categoryStats.map((theme, idx) => {
+            const isLocked = !canAccessTheme(theme.name);
+            
+            return (
+              <div
+                key={idx}
+                className={`relative bg-white dark:bg-gray-800 rounded-2xl p-4 md:p-6 shadow-lg border transition-all ${
+                  isLocked 
+                    ? 'border-gray-200 dark:border-gray-700 opacity-80' 
+                    : 'border-gray-100 dark:border-gray-700 hover:shadow-xl'
                 }`}
               >
-                <div className="flex items-center gap-2 md:gap-3">
-                  <BookOpen className={`w-4 h-4 md:w-5 md:h-5 ${
-                    examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
-                  }`} />
-                  <span className={`font-medium text-sm md:text-base ${
-                    examType === 'CSP' ? 'text-blue-700 dark:text-blue-300' : 'text-purple-700 dark:text-purple-300'
-                  }`}>
-                    Pratiquer ce thème
-                  </span>
+                {/* Premium badge for locked themes */}
+                {isLocked && (
+                  <div className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                    <Crown className="w-3 h-3" />
+                    BASIC
+                  </div>
+                )}
+                
+                <div className="flex items-start justify-between mb-3 md:mb-4">
+                  <div className="flex-1">
+                    <h3 className={`font-bold text-base md:text-lg mb-1 flex items-center gap-2 ${
+                      isLocked ? 'text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'
+                    }`}>
+                      {isLocked && <Lock className="w-4 h-4" />}
+                      {theme.name}
+                    </h3>
+                    <div className="flex items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                      <span>{theme.total} questions</span>
+                      <span>•</span>
+                      <span className={examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'}>
+                        {theme.learned} étudiées
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className={`text-2xl md:text-3xl font-bold ${
+                      isLocked 
+                        ? 'text-gray-400 dark:text-gray-500'
+                        : examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+                    }`}>
+                      {theme.percentage}%
+                    </div>
+                    <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                      {theme.learned}/{theme.total}
+                    </div>
+                  </div>
                 </div>
-                <ChevronRight className={`w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 ${
-                  examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
-                }`} />
-              </button>
-            </div>
-          ))}
+
+                {/* Progress Bar */}
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 md:h-3 mb-3 md:mb-4">
+                  <div
+                    className={`h-2 md:h-3 rounded-full transition-all ${
+                      isLocked
+                        ? 'bg-gray-300 dark:bg-gray-600'
+                        : examType === 'CSP'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600'
+                          : 'bg-gradient-to-r from-purple-500 to-purple-600'
+                    }`}
+                    style={{ width: `${theme.percentage}%` }}
+                  />
+                </div>
+
+                {/* Practice Button */}
+                <button
+                  onClick={() => {
+                    if (checkThemeAccess(theme.name)) {
+                      onStartCategoryQuiz(examType, theme.name);
+                    }
+                  }}
+                  className={`w-full flex items-center justify-between px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 transition-all group ${
+                    isLocked
+                      ? 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'
+                      : examType === 'CSP'
+                        ? 'border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30'
+                        : 'border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 md:gap-3">
+                    {isLocked ? (
+                      <Lock className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
+                    ) : (
+                      <BookOpen className={`w-4 h-4 md:w-5 md:h-5 ${
+                        examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+                      }`} />
+                    )}
+                    <span className={`font-medium text-sm md:text-base ${
+                      isLocked
+                        ? 'text-gray-500 dark:text-gray-400'
+                        : examType === 'CSP' ? 'text-blue-700 dark:text-blue-300' : 'text-purple-700 dark:text-purple-300'
+                    }`}>
+                      {isLocked ? 'Débloquer ce thème' : 'Pratiquer ce thème'}
+                    </span>
+                  </div>
+                  <ChevronRight className={`w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1 ${
+                    isLocked
+                      ? 'text-gray-400'
+                      : examType === 'CSP' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400'
+                  }`} />
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         {/* Info Box */}

@@ -15,6 +15,7 @@ import {
   loadAnsweredQuestions,
   saveAnsweredQuestions
 } from '../utils/storage';
+import { canSyncToCloud } from './entitlementService';
 
 /**
  * SECURITY NOTE:
@@ -127,11 +128,19 @@ const mergeSavedQuestions = (local, cloud) => {
 /**
  * Upload all local data to Firestore
  * Called after login or when user explicitly requests sync
+ * 
+ * PREMIUM FULL ONLY: Cloud sync requires Premium Full subscription
  */
 export const uploadLocalData = async (userId, userName = null) => {
   if (!userId) {
     console.error('Cannot upload: No user ID provided');
     return { success: false, error: 'No user ID' };
+  }
+  
+  // Check Premium Full entitlement
+  if (!canSyncToCloud()) {
+    console.log('Cloud sync skipped: Premium Full required');
+    return { success: true, skipped: true, reason: 'premium_required' };
   }
 
   try {
@@ -170,11 +179,19 @@ export const uploadLocalData = async (userId, userName = null) => {
  * Download data from Firestore and REPLACE local data
  * Cloud is the source of truth - local data is always replaced by cloud data
  * Called after login to sync data across devices
+ * 
+ * PREMIUM FULL ONLY: Cloud sync requires Premium Full subscription
  */
 export const downloadAndMergeCloudData = async (userId) => {
   if (!userId) {
     console.error('Cannot download: No user ID provided');
     return { success: false, error: 'No user ID' };
+  }
+  
+  // Check Premium Full entitlement
+  if (!canSyncToCloud()) {
+    console.log('Cloud sync skipped: Premium Full required');
+    return { success: true, skipped: true, reason: 'premium_required' };
   }
 
   try {
@@ -220,11 +237,19 @@ export const downloadAndMergeCloudData = async (userId) => {
 /**
  * Sync specific data type to Firestore
  * Called after user actions (quiz completion, save question, etc.)
+ * 
+ * PREMIUM FULL ONLY: Cloud sync requires Premium Full subscription
  */
 export const syncDataToCloud = async (userId, dataType, data) => {
   if (!userId) {
     // User not logged in - skip sync
     return { success: true, skipped: true };
+  }
+  
+  // Check Premium Full entitlement
+  if (!canSyncToCloud()) {
+    console.log('Cloud sync skipped: Premium Full required');
+    return { success: true, skipped: true, reason: 'premium_required' };
   }
 
   try {

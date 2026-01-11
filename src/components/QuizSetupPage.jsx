@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
-import { Home, BookOpen, CheckCircle } from 'lucide-react';
+import { Home, BookOpen, CheckCircle, Lock, Crown } from 'lucide-react';
 import { useSwipeBack } from '../hooks/useSwipeBack';
+import { usePaywall } from '../contexts/PaywallContext';
 
 const QuizSetupPage = ({ examType, onStart, onBack }) => {
   // Enable swipe-back gesture
   useSwipeBack(onBack);
+  
+  // Paywall integration
+  const { 
+    canStartQuiz,
+    maxQuestionsPerQuiz,
+    remainingQuizzesToday,
+    incrementDailyQuizCount,
+    isPremiumBasic,
+    showPaywall
+  } = usePaywall();
 
   const [questionCount, setQuestionCount] = useState('');
   const [error, setError] = useState('');
 
-  const presetOptions = [15, 30, 45, 100];
+  // Preset options - limit for free users
+  const allPresetOptions = [15, 30, 45, 100];
+  const presetOptions = isPremiumBasic 
+    ? allPresetOptions 
+    : allPresetOptions.filter(n => n <= maxQuestionsPerQuiz);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -32,6 +47,22 @@ const QuizSetupPage = ({ examType, onStart, onBack }) => {
       setError('Maximum 180 questions');
       return;
     }
+    
+    // Check daily quiz limit for free users
+    if (!canStartQuiz()) {
+      showPaywall('quiz_limit', 'basic');
+      return;
+    }
+    
+    // Check question count limit for free users
+    if (!isPremiumBasic && count > maxQuestionsPerQuiz) {
+      setError(`Maximum ${maxQuestionsPerQuiz} questions en mode gratuit`);
+      showPaywall('quiz_limit', 'basic');
+      return;
+    }
+    
+    // Increment daily quiz count for free users
+    incrementDailyQuizCount();
 
     onStart(count);
   };
@@ -121,8 +152,29 @@ const QuizSetupPage = ({ examType, onStart, onBack }) => {
             Commencer le quiz
           </button>
 
+          {/* Free user limits info */}
+          {!isPremiumBasic && (
+            <div className="mt-6 p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl">
+              <div className="flex items-center gap-2 mb-2">
+                <Lock className="w-4 h-4 text-orange-500" />
+                <span className="font-semibold text-sm text-orange-700 dark:text-orange-300">Mode gratuit</span>
+              </div>
+              <ul className="text-xs text-orange-600 dark:text-orange-400 space-y-1">
+                <li>• Maximum {maxQuestionsPerQuiz} questions par quiz</li>
+                <li>• {remainingQuizzesToday} quiz restant{remainingQuizzesToday > 1 ? 's' : ''} aujourd'hui</li>
+              </ul>
+              <button
+                onClick={() => showPaywall('quiz_limit', 'basic')}
+                className="mt-3 w-full flex items-center justify-center gap-2 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition-opacity"
+              >
+                <Crown className="w-4 h-4" />
+                Passer à Premium
+              </button>
+            </div>
+          )}
+
           {/* Info */}
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
+          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
             <p className="text-xs md:text-sm text-blue-800 dark:text-blue-300">
               💡 Mode apprentissage : vous verrez la correction après chaque question
             </p>
